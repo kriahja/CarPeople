@@ -109,5 +109,6 @@ public class CustomerManager
     public ArrayList<Customer> getAll()
     {
         // Need to return getAll from database
+        return null;
     }
 }
