@@ -99,6 +99,13 @@ public class Customer extends EntityID
     {
         return typeId;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Customer{" + "name= " + name + ", address= " + address + ", creditCardId= " + creditCardId + ", rentId= " + rentId + ", driversLicenceNo= " + driversLicenceNo + ", typeId= " + typeId + '}';
+    }
+    
     
     
 }
