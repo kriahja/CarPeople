@@ -9,7 +9,96 @@ package BE;
  *
  * @author notandi
  */
-public class Customer
+public class Customer extends EntityID
 {
+    private String name;
+    private String address;
+    private int creditCardId;
+    private int rentId;
+    private String driversLicenceNo;
+    private int typeId;
+
+    public Customer(String name, String address, int creditCardId, int rentId, String driversLicenceNo, int typeId)
+    {
+        this.name = name;
+        this.address = address;
+        this.creditCardId = creditCardId;
+        this.rentId = rentId;
+        this.driversLicenceNo = driversLicenceNo;
+        this.typeId = typeId;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress()
+    {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    /**
+     * @return the creditCardId
+     */
+    public int getCreditCardId()
+    {
+        return creditCardId;
+    }
+
+    /**
+     * @return the rentId
+     */
+    public int getRentId()
+    {
+        return rentId;
+    }
+
+    /**
+     * @return the driversLicenceNo
+     */
+    public String getDriversLicenceNo()
+    {
+        return driversLicenceNo;
+    }
+
+    /**
+     * @param driversLicenceNo the driversLicenceNo to set
+     */
+    public void setDriversLicenceNo(String driversLicenceNo)
+    {
+        this.driversLicenceNo = driversLicenceNo;
+    }
+
+    /**
+     * @return the typeId
+     */
+    public int getTypeId()
+    {
+        return typeId;
+    }
+    
     
 }
