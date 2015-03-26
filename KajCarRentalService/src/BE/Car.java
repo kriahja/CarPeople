@@ -12,5 +12,9 @@ package BE;
 public class Car {
     
    // brummmmmm brummmmm
+    public void brummmBrumm()
+    {
+        // vrruuuooom
+    }
     
 }
