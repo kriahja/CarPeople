@@ -45,6 +45,10 @@ public class CustomerTest
     @Test
     public void testSetName()
     {
+        System.out.println("testSetName()");
+
+        customer.setName("Rambo");
+        assertTrue("Name should now be Rambo", customer.getName().equals("Rambo"));
 
     }
 
@@ -56,7 +60,6 @@ public class CustomerTest
     {
         System.out.println("testGetAddress()");
 
-
         assertTrue("Address should be Ingemanns Alle", customer.getAddress().equals("Ingemanns Alle"));
         assertFalse("Should not be Ingomanns Alle", customer.getAddress().equals("Ingomanns Alle"));
     }
@@ -67,6 +70,10 @@ public class CustomerTest
     @Test
     public void testSetAddress()
     {
+        System.out.println("testSetAddress()");
+        
+        customer.setAddress("Amazon");
+        assertTrue("The address should have been changed to Amazon", customer.getAddress().equals("Amazon"));
     }
 
     /**
@@ -111,6 +118,10 @@ public class CustomerTest
     @Test
     public void testSetDriversLicenceNo()
     {
+        System.out.println("testSetDriversLicenceNo()");
+        
+        customer.setDriversLicenceNo("6666");
+        assertTrue("DriversLicenceNo should have been changed to 6666", customer.getDriversLicenceNo().equals("6666"));
     }
 
     /**
