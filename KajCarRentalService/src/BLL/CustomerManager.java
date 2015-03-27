@@ -5,6 +5,10 @@
  */
 package BLL;
 
+import BE.Customer;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author notandi
@@ -14,9 +18,97 @@ public class CustomerManager
     
     private static CustomerManager instance = null;
     private static CustomerManager db;
+    private List<Customer> customers;
     
-    public CustomerManager()
+    private CustomerManager()
     {
-        
+        // Need to finish the contructer once the DAL in created
+    }
+    
+    public static CustomerManager getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new CustomerManager();
+        }
+        return instance;
+    }
+    
+    public Customer getById(int id)
+    {
+        for (Customer c : customers)
+        {
+            if (c.getId() == id)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public Customer getByName(String name)
+    {
+        for (Customer c : customers)
+        {
+            if (c.getName().equals(name))
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public Customer getByAddress(String address)
+    {
+        for (Customer c : customers)
+        {
+            if (c.getAddress().equals(address))
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public Customer getByRentId(int rentId)
+    {
+        for (Customer c : customers)
+        {
+            if (c.getRentId() == rentId)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public Customer getByDriversLicence(String driversLicence)
+    {
+        for (Customer c : customers)
+        {
+            if (c.getDriversLicenceNo().equals(driversLicence))
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public Customer getByCreditCardId(int creditCardId)
+    {
+        for (Customer c : customers)
+        {
+            if (c.getCreditCardId() == creditCardId)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList<Customer> getAll()
+    {
+        // Need to return getAll from database
+        return null;
     }
 }
