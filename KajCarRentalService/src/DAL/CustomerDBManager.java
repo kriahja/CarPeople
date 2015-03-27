@@ -103,4 +103,34 @@ public class CustomerDBManager {
         }
     }
     
+    
+    public Customer addCustomer(Customer cus) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "INSERT INTO Customer(Name, Address, CreditCardId, "
+                    + "RentId, DriversLicenceNo, TypeId) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, cus.getName());
+            ps.setString(2, cus.getAddress());
+            ps.setInt(3, cus.getCreditCardId());
+            ps.setInt(4, cus.getRentId());
+            ps.setString(5, cus.getDriversLicenceNo());
+            ps.setInt(6, cus.getTypeId());
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new SQLException("Unable to add Customer.");
+            }
+
+            ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            int id = keys.getInt(1);  // first column in keys resultset
+
+            return new Customer(id, cus);
+        }
+    }
+    
 }
