@@ -97,82 +97,82 @@ public class CarManager
         return null;
     }
 
-    public List<Car> getIsDamaged()
+    public ArrayList<Car> getIsDamaged()
     {
-        cars = new ArrayList<>();
+        ArrayList<Car> damagedList = new ArrayList<>();
         for (Car isDmg : cars)
         {
             if (isDmg.isIsDamaged() == true)
             {
-                return cars;
+                damagedList.add(isDmg);
             }
         }
-        return null;
+        return damagedList;
     }
 
-    public List<Car> getIsNotDamaged()
+    public ArrayList<Car> getIsNotDamaged()
     {
-        cars = new ArrayList<>();
-        for (Car isNoDmg : cars)
+        ArrayList<Car> unDamagedList = new ArrayList<>();
+        for (Car isNotDmg : cars)
         {
-            if (isNoDmg.isIsDamaged() == false)
+            if (isNotDmg.isIsDamaged() == false)
             {
-                return cars;
+                unDamagedList.add(isNotDmg);
             }
         }
-        return null;
+        return unDamagedList;
     }
 
-    public List<Car> getIsFull()
+    public ArrayList<Car> getIsFull()
     {
-        cars = new ArrayList<>();
+        ArrayList<Car> fullFuelList = new ArrayList<>();
         for (Car isFull : cars)
         {
             if (isFull.isIsFull() == true)
             {
-                return cars;
+                fullFuelList.add(isFull);
             }
         }
-        return null;
+        return fullFuelList;
     }
 
     public List<Car> getIsNotFull()
     {
-        cars = new ArrayList<>();
+        ArrayList<Car> notFullFuelList = new ArrayList<>();
         for (Car isNotFull : cars)
         {
             if (isNotFull.isIsFull() == false)
             {
-                return cars;
+                notFullFuelList.add(isNotFull);
             }
         }
-        return null;
+        return notFullFuelList;
     }
 
     public List<Car> getIsFixed()
     {
-        cars = new ArrayList<>();
+        ArrayList<Car> fixedList = new ArrayList<>();
         for (Car isFixed : cars)
         {
-            if (isFixed.isIsFixed() == true)
+            if (isFixed.isIsFull() == true)
             {
-                return cars;
+                fixedList.add(isFixed);
             }
         }
-        return null;
+        return fixedList;
     }
 
     public List<Car> getIsNotFixed()
     {
-        cars = new ArrayList<>();
+        ArrayList<Car> notFixedList = new ArrayList<>();
         for (Car isNotFixed : cars)
         {
-            if (isNotFixed.isIsFixed() == false)
+            if (isNotFixed.isIsFull() == false)
             {
-                return cars;
+                notFixedList.add(isNotFixed);
             }
         }
-        return null;
+        return notFixedList;
     }
 
 }

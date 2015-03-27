@@ -17,12 +17,16 @@ public class CustomerManager
 {
     
     private static CustomerManager instance = null;
-    private static CustomerManager db;
+    
+    //   <<<<need Database Connection>>>>
+    //private static CustomerDBManager db;
+    
     private List<Customer> customers;
     
     private CustomerManager()
     {
-        // Need to finish the contructer once the DAL in created
+        customers = new ArrayList<>();
+        // Need to finish the contructer once the DAL is created
     }
     
     public static CustomerManager getInstance()
@@ -30,6 +34,7 @@ public class CustomerManager
         if (instance == null)
         {
             instance = new CustomerManager();
+            
         }
         return instance;
     }
