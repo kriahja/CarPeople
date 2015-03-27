@@ -42,6 +42,7 @@ public class CustomerManager
         if (instance == null)
         {
             instance = new CustomerManager();
+            
         }
         return instance;
     }
