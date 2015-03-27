@@ -6,8 +6,13 @@
 package BLL;
 
 import BE.Customer;
+import DAL.CustomerDBManager;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,16 +22,19 @@ public class CustomerManager
 {
     
     private static CustomerManager instance = null;
-    
-    //   <<<<need Database Connection>>>>
-    //private static CustomerDBManager db;
-    
+    private static CustomerDBManager db;
     private List<Customer> customers;
     
     private CustomerManager()
     {
         customers = new ArrayList<>();
-        // Need to finish the contructer once the DAL is created
+        try{
+            db = CustomerDBManager.getInstance();
+        }
+        catch(IOException ex)
+        {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static CustomerManager getInstance()
@@ -113,7 +121,12 @@ public class CustomerManager
     
     public ArrayList<Customer> getAll()
     {
-        // Need to return getAll from database
+        try {
+            
+            return db.getAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 }
