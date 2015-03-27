@@ -133,4 +133,24 @@ public class CustomerDBManager {
         }
     }
     
+    public void removeCustomer(int cusId) throws SQLException
+    {
+        {
+            try (Connection con = cm.getConnection())
+            {
+                String sql = "DELETE FROM Customer WHERE ID = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, cusId);
+
+                int affectedRows = ps.executeUpdate();
+                if (affectedRows == 0)
+                {
+                    throw new SQLException("Unable to remove Customer.");
+                }
+            }
+        }
+    }
+    
+    
+    
 }
