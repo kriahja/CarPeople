@@ -5,8 +5,8 @@
  */
 package BE;
 
-import org.junit.Test;
-import org.junit.Before;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -14,10 +14,14 @@ import org.junit.Before;
  */
 public class CarTest
 {
-    
+
+    private Car car;
+
     @Before
-    public void test()
+    public void testSetUp()
     {
+        car = new Car(null, 1111, 2222, 10000, true, true, true);
+        car.setName("Mercedez Bens");
         
     }
 
@@ -27,6 +31,9 @@ public class CarTest
     @Test
     public void testGetName()
     {
+        System.out.println("testGetName()");
+        
+        assertTrue("name should be Mercedez Bens", car.getName().equals("Mercedez Bens"));
     }
 
     /**
@@ -35,6 +42,11 @@ public class CarTest
     @Test
     public void testSetName()
     {
+        System.out.println("testSetName()");
+        
+        car.setName("Yaris");
+        assertTrue("Name should have changed to yaris", car.getName().equals("Yaris"));
+        assertFalse("Name should not be Mercedes Benz", car.getName().equals("Mercedes Benz"));
     }
 
     /**
@@ -43,6 +55,9 @@ public class CarTest
     @Test
     public void testGetDepId()
     {
+        System.out.println("testGetDepId()");
+        
+        assertTrue("DepId should be 1111", car.getDepId() == 1111);
     }
 
     /**
@@ -51,6 +66,9 @@ public class CarTest
     @Test
     public void testGetCatId()
     {
+        System.out.println("testGetCatId()");
+        
+        assertTrue("CatId should be 2222", car.getCatId() == 2222);
     }
 
     /**
@@ -59,6 +77,9 @@ public class CarTest
     @Test
     public void testGetKm()
     {
+        System.out.println("testGetKm()");
+        
+        assertTrue("Km should be 10000", car.getKm() == 10000);
     }
 
     /**
@@ -67,6 +88,11 @@ public class CarTest
     @Test
     public void testSetKm()
     {
+        System.out.println("testSetKm()");
+        
+        car.setKm(20000);
+        assertTrue("km should have been changed to 20000", car.getKm() == 20000);
+        assertFalse("km should not be 10000", car.getKm() == 10000);
     }
 
     /**
@@ -75,6 +101,9 @@ public class CarTest
     @Test
     public void testIsIsDamaged()
     {
+        System.out.println("testIsIsDamaged()");
+        
+        assertTrue("Car should be damaged", car.isIsDamaged() == true);
     }
 
     /**
@@ -83,6 +112,11 @@ public class CarTest
     @Test
     public void testSetIsDamaged()
     {
+        System.out.println("testSetIsDamaged()");
+        
+        car.setIsDamaged(false);
+        assertTrue("Car should have changed to not damaged", car.isIsDamaged() == false);
+        assertFalse("Car should not be damaged", car.isIsDamaged() == true);
     }
 
     /**
@@ -91,6 +125,10 @@ public class CarTest
     @Test
     public void testIsIsFull()
     {
+        System.out.println("testIsIsFull()");
+        
+        assertTrue("Car should be full", car.isIsFull() == true);
+        
     }
 
     /**
@@ -99,6 +137,11 @@ public class CarTest
     @Test
     public void testSetIsFull()
     {
+        System.out.println("testSetIsFull()");
+        
+        car.setIsFull(false);
+        assertTrue("Car should be not full", car.isIsFull() == false);
+        assertFalse("Car should not be full", car.isIsFull() == true);
     }
 
     /**
@@ -107,6 +150,9 @@ public class CarTest
     @Test
     public void testIsIsFixed()
     {
+        System.out.println("testIsIsFixed()");
+        
+        assertTrue("Car should be fixed", car.isIsFixed() == true);
     }
 
     /**
@@ -115,14 +161,12 @@ public class CarTest
     @Test
     public void testSetIsFixed()
     {
+        System.out.println("testSetIsFixed()");
+        
+        car.setIsFixed(false);
+        assertTrue("Car should not be fixed", car.isIsFixed() == false);
+        assertFalse("Testing if car is fixed when it is not ", car.isIsFixed() == true);
     }
 
-    /**
-     * Test of toString method, of class Car.
-     */
-    @Test
-    public void testToString()
-    {
-    }
-    
+
 }
