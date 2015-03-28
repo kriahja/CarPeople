@@ -5,7 +5,7 @@
  */
 package BLL;
 
-import BE.Car;
+import BE.Car.Car;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -72,9 +72,6 @@ public class CarManagerTest
     public void testGetIsDamaged()
     {
         System.out.println("testGetIsDamaged()");
-        Car c = new Car("Benz", 1111, 2222, 3333, true, true, true);
-        
-        c.setIsDamaged(true);
         
 
     }
@@ -85,8 +82,7 @@ public class CarManagerTest
     @Test
     public void testGetIsNotDamaged()
     {
-        Car c = new Car("Benz", 1111, 2222, 3333, true, true, true);
-        c.setIsDamaged(false);
+
         
     }
 

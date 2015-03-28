@@ -28,6 +28,11 @@ public class Customer extends EntityID
         this.typeId = typeId;
     }
 
+    public Customer(int id, Customer cus)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * @return the name
      */

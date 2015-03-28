@@ -5,7 +5,7 @@
  */
 package BLL;
 
-import BE.Car;
+import BE.Car.Car;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class CarManager
     {
         for (Car c : cars)
         {
-            if (c.getId() == id)
+            if (c.getCarId() == id)
             {
                 return c;
             }
@@ -102,7 +102,7 @@ public class CarManager
         ArrayList<Car> damagedList = new ArrayList<>();
         for (Car isDmg : cars)
         {
-            if (isDmg.isIsDamaged() == true)
+            if (isDmg.isDamaged() == true)
             {
                 damagedList.add(isDmg);
             }
@@ -115,7 +115,7 @@ public class CarManager
         ArrayList<Car> unDamagedList = new ArrayList<>();
         for (Car isNotDmg : cars)
         {
-            if (isNotDmg.isIsDamaged() == false)
+            if (isNotDmg.isDamaged() == false)
             {
                 unDamagedList.add(isNotDmg);
             }
@@ -128,7 +128,7 @@ public class CarManager
         ArrayList<Car> fullFuelList = new ArrayList<>();
         for (Car isFull : cars)
         {
-            if (isFull.isIsFull() == true)
+            if (isFull.isFull() == true)
             {
                 fullFuelList.add(isFull);
             }
@@ -141,7 +141,7 @@ public class CarManager
         ArrayList<Car> notFullFuelList = new ArrayList<>();
         for (Car isNotFull : cars)
         {
-            if (isNotFull.isIsFull() == false)
+            if (isNotFull.isFull() == false)
             {
                 notFullFuelList.add(isNotFull);
             }
@@ -154,7 +154,7 @@ public class CarManager
         ArrayList<Car> fixedList = new ArrayList<>();
         for (Car isFixed : cars)
         {
-            if (isFixed.isIsFull() == true)
+            if (isFixed.isFull() == true)
             {
                 fixedList.add(isFixed);
             }
@@ -167,7 +167,7 @@ public class CarManager
         ArrayList<Car> notFixedList = new ArrayList<>();
         for (Car isNotFixed : cars)
         {
-            if (isNotFixed.isIsFull() == false)
+            if (isNotFixed.isFull() == false)
             {
                 notFixedList.add(isNotFixed);
             }

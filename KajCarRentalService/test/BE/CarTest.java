@@ -5,6 +5,8 @@
  */
 package BE;
 
+import BE.Car.Car;
+import BE.Car.CarCtrl;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -16,12 +18,19 @@ public class CarTest
 {
 
     private Car car;
-
+    private CarCtrl c;
+    
     @Before
     public void testSetUp()
     {
-        car = new Car(null, 1111, 2222, 10000, true, true, true);
+        car = new Car(null, 10000);
         car.setName("Mercedez Bens");
+        
+        c = new CarCtrl();
+        c.setIsDamaged(true);
+        c.setIsFull(true);
+        c.setIsFixed(true);
+        
         
     }
 
@@ -57,7 +66,7 @@ public class CarTest
     {
         System.out.println("testGetDepId()");
         
-        assertTrue("DepId should be 1111", car.getDepId() == 1111);
+        assertNotNull("DepId should not be null", c.getDepId());
     }
 
     /**
@@ -68,7 +77,7 @@ public class CarTest
     {
         System.out.println("testGetCatId()");
         
-        assertTrue("CatId should be 2222", car.getCatId() == 2222);
+        assertNotNull("CatId should be null", c.getCatId());
     }
 
     /**
@@ -99,11 +108,11 @@ public class CarTest
      * Test of isIsDamaged method, of class Car.
      */
     @Test
-    public void testIsIsDamaged()
+    public void testIsDamaged()
     {
         System.out.println("testIsIsDamaged()");
         
-        assertTrue("Car should be damaged", car.isIsDamaged() == true);
+        assertTrue("Car should be damaged", c.isDamaged() == true);
     }
 
     /**
@@ -115,19 +124,19 @@ public class CarTest
         System.out.println("testSetIsDamaged()");
         
         car.setIsDamaged(false);
-        assertTrue("Car should have changed to not damaged", car.isIsDamaged() == false);
-        assertFalse("Car should not be damaged", car.isIsDamaged() == true);
+        assertTrue("Car should have changed to not damaged", car.isDamaged() == false);
+        assertFalse("Car should not be damaged", car.isDamaged() == true);
     }
 
     /**
      * Test of isIsFull method, of class Car.
      */
     @Test
-    public void testIsIsFull()
+    public void testIsFull()
     {
         System.out.println("testIsIsFull()");
         
-        assertTrue("Car should be full", car.isIsFull() == true);
+        assertTrue("Car should be full", c.isFull() == true);
         
     }
 
@@ -140,19 +149,19 @@ public class CarTest
         System.out.println("testSetIsFull()");
         
         car.setIsFull(false);
-        assertTrue("Car should be not full", car.isIsFull() == false);
-        assertFalse("Car should not be full", car.isIsFull() == true);
+        assertTrue("Car should be not full", car.isFull() == false);
+        assertFalse("Car should not be full", car.isFull() == true);
     }
 
     /**
      * Test of isIsFixed method, of class Car.
      */
     @Test
-    public void testIsIsFixed()
+    public void testIsFixed()
     {
         System.out.println("testIsIsFixed()");
         
-        assertTrue("Car should be fixed", car.isIsFixed() == true);
+        assertTrue("Car should be fixed", c.isFixed() == true);
     }
 
     /**
@@ -164,8 +173,8 @@ public class CarTest
         System.out.println("testSetIsFixed()");
         
         car.setIsFixed(false);
-        assertTrue("Car should not be fixed", car.isIsFixed() == false);
-        assertFalse("Testing if car is fixed when it is not ", car.isIsFixed() == true);
+        assertTrue("Car should not be fixed", car.isFixed() == false);
+        assertFalse("Testing if car is fixed when it is not ", car.isFixed() == true);
     }
 
 
