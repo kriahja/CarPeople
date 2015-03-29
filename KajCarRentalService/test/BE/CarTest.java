@@ -77,7 +77,7 @@ public class CarTest
     {
         System.out.println("testGetCatId()");
         
-        assertNotNull("CatId should be null", c.getCatId());
+        assertNotNull("CatId should not be null", c.getCatId());
     }
 
     /**
