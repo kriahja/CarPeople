@@ -45,6 +45,7 @@ public class CarDBManager
         //int carId = rs.getInt("ID");
         String carName = rs.getString("Name");
         int km = rs.getInt("KM");
+        
 
         Car car = new Car(carName, km);
 

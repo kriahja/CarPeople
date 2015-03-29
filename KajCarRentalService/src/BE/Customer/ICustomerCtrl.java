@@ -3,15 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BE;
+package BE.Customer;
 
 /**
  *
  * @author notandi
  */
-public interface IEntityID
+public interface ICustomerCtrl
 {
-    public int getId();
-    public void setId(int id);
+    public int getCustomerId();
+    
+    public int getCreditCardId();
+    
+    public int getRentId();
+    
+    public int getTypeId();
     
 }

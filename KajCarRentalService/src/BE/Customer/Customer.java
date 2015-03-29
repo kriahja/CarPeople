@@ -3,29 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BE;
+package BE.Customer;
 
 /**
  *
  * @author notandi
  */
-public class Customer extends EntityID
+public class Customer extends CustomerCtrl
 {
+
     private String name;
     private String address;
-    private int creditCardId;
-    private int rentId;
     private String driversLicenceNo;
-    private int typeId;
 
-    public Customer(String name, String address, int creditCardId, int rentId, String driversLicenceNo, int typeId)
+    public Customer(String name, String address, String driversLicenceNo)
     {
         this.name = name;
         this.address = address;
-        this.creditCardId = creditCardId;
-        this.rentId = rentId;
         this.driversLicenceNo = driversLicenceNo;
-        this.typeId = typeId;
+
     }
 
     public Customer(int id, Customer cus)
@@ -66,22 +62,6 @@ public class Customer extends EntityID
     }
 
     /**
-     * @return the creditCardId
-     */
-    public int getCreditCardId()
-    {
-        return creditCardId;
-    }
-
-    /**
-     * @return the rentId
-     */
-    public int getRentId()
-    {
-        return rentId;
-    }
-
-    /**
      * @return the driversLicenceNo
      */
     public String getDriversLicenceNo()
@@ -97,20 +77,11 @@ public class Customer extends EntityID
         this.driversLicenceNo = driversLicenceNo;
     }
 
-    /**
-     * @return the typeId
-     */
-    public int getTypeId()
-    {
-        return typeId;
-    }
-
     @Override
     public String toString()
     {
-        return "Customer{" + "name= " + name + ", address= " + address + ", creditCardId= " + creditCardId + ", rentId= " + rentId + ", driversLicenceNo= " + driversLicenceNo + ", typeId= " + typeId + '}';
+        return "Customer{" + "name= " + name + ", address= " + address + ", driversLicenceNo= " + driversLicenceNo + '}';
     }
-    
-    
+
     
 }

@@ -5,7 +5,7 @@
  */
 package DAL;
 
-import BE.Customer;
+import BE.Customer.Customer;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,12 +39,10 @@ public class CustomerDBManager {
         //int customerId = rs.getInt("ID");
         String customerName = rs.getString("Name");
         String address = rs.getString("Address");
-        int creditCardId = rs.getInt("CreditCardId");
-        int rentId = rs.getInt("RentId");
         String driversLicenseNo = rs.getString("DriverLicenseNo");
-        int typeId = rs.getInt("TypeId");
 
-      Customer cust = new Customer(customerName, address, creditCardId, rentId, driversLicenseNo, typeId);
+
+      Customer cust = new Customer(customerName, address, driversLicenseNo);
       
         return cust;
 

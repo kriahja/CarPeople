@@ -6,8 +6,6 @@
 package BE.Car;
 
 import BLL.CarManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
