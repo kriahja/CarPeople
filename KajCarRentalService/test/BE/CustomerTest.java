@@ -5,6 +5,8 @@
  */
 package BE;
 
+import BE.Customer.Customer;
+import BE.Customer.CustomerCtrl;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -16,14 +18,13 @@ public class CustomerTest
 {
 
     private Customer customer;
+    private CustomerCtrl c;
 
     @Before
     public void testSetUp()
     {
-        customer = new Customer(null, null, 1111, 2222, null, 3333);
-        customer.setName("John");
-        customer.setAddress("Ingemanns Alle");
-        customer.setDriversLicenceNo("1234");
+        customer = new Customer("John", "Ingemanns Alle", "1234");
+        
 
     }
 
@@ -84,8 +85,7 @@ public class CustomerTest
     {
         System.out.println("testGetCreditCardId()");
 
-        assertTrue("CredirNr should be 1111", customer.getCreditCardId() == 1111);
-        assertFalse("CreditNr should not be 2222", customer.getCreditCardId() == 2222);
+        assertNotNull("CreditId should not be null", customer.getCreditCardId());
     }
 
     /**
@@ -96,8 +96,7 @@ public class CustomerTest
     {
         System.out.println("testGetRentId()");
 
-        assertTrue("RentId should be 2222", customer.getRentId() == 2222);
-        assertFalse("RentId should not be 3333", customer.getRentId() == 3333);
+        assertNotNull("RentId should not be null", customer.getRentId());
     }
 
     /**
@@ -132,8 +131,7 @@ public class CustomerTest
     {
         System.out.println("testGetTypeId()");
 
-        assertTrue("TypeId should be 3333", customer.getTypeId() == 3333);
-        assertFalse("TypeId should not be 1111", customer.getTypeId() == 1111);
+       assertNotNull("TypeId should not be null", customer.getTypeId());
     }
 
 }
