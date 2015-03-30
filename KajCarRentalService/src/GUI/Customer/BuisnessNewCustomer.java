@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.Customer;
 
 /**
  *
  * @author agnarsdottir
  */
-public class AccistingCustomer extends javax.swing.JFrame
+public class BuisnessNewCustomer extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form NewCustomer
+     * Creates new form BuisnessNewCustomer
      */
-    public AccistingCustomer()
+    public BuisnessNewCustomer()
     {
         initComponents();
     }
@@ -69,21 +69,20 @@ public class AccistingCustomer extends javax.swing.JFrame
         }
         catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(AccistingCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(AccistingCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(AccistingCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(AccistingCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -91,7 +90,7 @@ public class AccistingCustomer extends javax.swing.JFrame
         {
             public void run()
             {
-                new AccistingCustomer().setVisible(true);
+                new BuisnessNewCustomer().setVisible(true);
             }
         });
     }
