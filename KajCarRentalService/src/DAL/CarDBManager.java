@@ -40,7 +40,7 @@ public class CarDBManager
         cm = DBConnectionManager.getInstance();
     }
 
-    private Car getOneCar(ResultSet rs) throws SQLException
+    public Car getOneCar(ResultSet rs) throws SQLException
     {
         //int carId = rs.getInt("ID");
         String carName = rs.getString("Name");

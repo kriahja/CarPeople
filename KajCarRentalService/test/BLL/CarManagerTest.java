@@ -23,6 +23,16 @@ public class CarManagerTest
     @Test
     public void testGetInstance()
     {
+        System.out.println("testGetInstance()");
+        
+        CarManager mgr = null;
+        assertNull(mgr);
+        
+        mgr = CarManager.getInstance();
+        
+        assertNotNull(mgr);
+        assertTrue(mgr instanceof CarManager);
+        
     }
 
     /**
@@ -31,6 +41,8 @@ public class CarManagerTest
     @Test
     public void testGetById()
     {
+        
+        
     }
 
     /**
@@ -117,5 +129,19 @@ public class CarManagerTest
     public void testGetIsNotFixed()
     {
     }
+    
+    @Test
+    public void testAddCar()
+    {
+        System.out.println("testAddCar()");
+        
+        CarManager mgr = CarManager.getInstance();
+        Car car = new Car("Benz", 10);
+        
+        mgr.addCar(car);
+        
+        //TODO
+    }
+
 
 }
