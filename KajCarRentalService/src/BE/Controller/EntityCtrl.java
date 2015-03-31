@@ -5,8 +5,6 @@
  */
 package BE.Controller;
 
-import BE.Controller.IEntityCtrl;
-
 /**
  *
  * @author notandi
