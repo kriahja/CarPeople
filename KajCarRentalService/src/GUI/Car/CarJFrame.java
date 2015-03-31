@@ -9,13 +9,13 @@ package GUI.Car;
  *
  * @author agnarsdottir
  */
-public class Car extends javax.swing.JFrame
+public class CarJFrame extends javax.swing.JFrame
 {
 
     /**
      * Creates new form Car
      */
-    public Car()
+    public CarJFrame()
     {
         initComponents();
     }
@@ -131,20 +131,21 @@ public class Car extends javax.swing.JFrame
         }
         catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Car.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Car.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Car.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Car.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -152,7 +153,7 @@ public class Car extends javax.swing.JFrame
         {
             public void run()
             {
-                new Car().setVisible(true);
+                new CarJFrame().setVisible(true);
             }
         });
     }
