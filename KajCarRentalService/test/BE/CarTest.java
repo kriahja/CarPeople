@@ -5,8 +5,7 @@
  */
 package BE;
 
-import BE.Car.Car;
-import BE.Car.CarCtrl;
+import BE.Controller.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -18,7 +17,7 @@ public class CarTest
 {
 
     private Car car;
-    private CarCtrl c;
+    private EntityCtrl e;
     
     @Before
     public void testSetUp()
@@ -26,10 +25,10 @@ public class CarTest
         car = new Car(null, 10000);
         car.setName("Mercedez Bens");
         
-        c = new CarCtrl();
-        c.setIsDamaged(true);
-        c.setIsFull(true);
-        c.setIsFixed(true);
+        e = new EntityCtrl();
+        e.setIsDamaged(true);
+        e.setIsFull(true);
+        e.setIsFixed(true);
         
         
     }
@@ -66,7 +65,7 @@ public class CarTest
     {
         System.out.println("testGetDepId()");
         
-        assertNotNull("DepId should not be null", c.getDepId());
+        assertNotNull("DepId should not be null", e.getDepId());
     }
 
     /**
@@ -77,7 +76,7 @@ public class CarTest
     {
         System.out.println("testGetCatId()");
         
-        assertNotNull("CatId should not be null", c.getCatId());
+        assertNotNull("CatId should not be null", e.getCatId());
     }
 
     /**
@@ -112,7 +111,7 @@ public class CarTest
     {
         System.out.println("testIsIsDamaged()");
         
-        assertTrue("Car should be damaged", c.isDamaged() == true);
+        assertTrue("Car should be damaged", e.isDamaged() == true);
     }
 
     /**
@@ -136,7 +135,7 @@ public class CarTest
     {
         System.out.println("testIsIsFull()");
         
-        assertTrue("Car should be full", c.isFull() == true);
+        assertTrue("Car should be full", e.isFull() == true);
         
     }
 
@@ -161,7 +160,7 @@ public class CarTest
     {
         System.out.println("testIsIsFixed()");
         
-        assertTrue("Car should be fixed", c.isFixed() == true);
+        assertTrue("Car should be fixed", e.isFixed() == true);
     }
 
     /**

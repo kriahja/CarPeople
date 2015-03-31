@@ -5,7 +5,7 @@
  */
 package DAL;
 
-import BE.Car.Car;
+import BE.Car;
 import BLL.Exceptions.KajCarExceptions;
 import java.io.IOException;
 import java.sql.Connection;
@@ -170,7 +170,7 @@ public class CarDBManager
             ps.setInt(2, car.getDepId());
 
             ps.setInt(3, car.getCatId());
-            ps.setInt(4, car.getCarId());
+            ps.setInt(4, car.getId());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)

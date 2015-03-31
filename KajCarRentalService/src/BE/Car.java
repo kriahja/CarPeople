@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BE.Car;
+package BE;
+
 
 import BLL.CarManager;
+import BE.Controller.*;
 
 /**
  *
  * @author a.tamas
  */
-public class Car extends CarCtrl
+public class Car extends EntityCtrl
 {
 
     private String name;
@@ -45,6 +47,7 @@ public class Car extends CarCtrl
     public String getName()
     {
         return name;
+        
     }
 
     /**

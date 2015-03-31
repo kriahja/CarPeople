@@ -5,8 +5,8 @@
  */
 package BLL.CustomerCar;
 
-import BE.Car.Car;
-import BE.Customer.Customer;
+import BE.Car;
+import BE.Customer;
 import java.util.ArrayList;
 import java.util.TreeMap;
 

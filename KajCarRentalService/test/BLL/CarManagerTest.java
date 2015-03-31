@@ -5,7 +5,7 @@
  */
 package BLL;
 
-import BE.Car.Car;
+import BE.Car;
 import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;

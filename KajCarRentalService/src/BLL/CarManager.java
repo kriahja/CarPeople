@@ -5,7 +5,7 @@
  */
 package BLL;
 
-import BE.Car.Car;
+import BE.Car;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.CarDBManager;
 import java.sql.ResultSet;
@@ -47,7 +47,7 @@ public class CarManager
     {
         for (Car c : cars)
         {
-            if (c.getCarId() == id)
+            if (c.getId() == id)
             {
                 return c;
             }

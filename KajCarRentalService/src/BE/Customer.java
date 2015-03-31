@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BE.Customer;
+package BE;
+
+import BE.Controller.*;
 
 /**
  *
  * @author notandi
  */
-public class Customer extends CustomerCtrl
+public class Customer extends EntityCtrl
 {
 
     private String name;

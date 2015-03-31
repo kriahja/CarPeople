@@ -5,8 +5,7 @@
  */
 package BE;
 
-import BE.Customer.Customer;
-import BE.Customer.CustomerCtrl;
+import BE.Controller.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -18,7 +17,7 @@ public class CustomerTest
 {
 
     private Customer customer;
-    private CustomerCtrl c;
+    private EntityCtrl e;
 
     @Before
     public void testSetUp()

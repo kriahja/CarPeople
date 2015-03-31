@@ -5,6 +5,7 @@
  */
 package BE.Customer.Type;
 
+import BE.Type;
 import org.junit.*;
 import static org.junit.Assert.*;
 

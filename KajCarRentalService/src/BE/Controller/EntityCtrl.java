@@ -3,25 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BE.Car;
+package BE.Controller;
+
+import BE.Controller.IEntityCtrl;
 
 /**
  *
  * @author notandi
  */
-public class CarCtrl implements ICarCtrl
+public class EntityCtrl implements IEntityCtrl
 {
 
+    //  OBJECT ID
     private int id;
+    //  CAR
     private int depId;
     private int catId;
-    
     private boolean isDamaged;
     private boolean isFull;
     private boolean isFixed;
-
+    //  CUSTOMER
+    private int creditCardId;
+    private int rentId;
+    private int typeId;
+    //  RENT
+    private int carId;
+    private int customerId;
+    private int insuranceId;
+    
     @Override
-    public int getCarId()
+    public int getId()
     {
         return id;
     }
@@ -72,6 +83,42 @@ public class CarCtrl implements ICarCtrl
     public void setIsFixed(boolean isFixed)
     {
         this.isFixed = isFixed;
+    }
+
+    @Override
+    public int getCreditCardId()
+    {
+        return creditCardId;
+    }
+
+    @Override
+    public int getRentId()
+    {
+        return rentId;
+    }
+
+    @Override
+    public int getTypeId()
+    {
+        return typeId;
+    }
+    
+    @Override
+    public int getCarId()
+    {
+        return carId;
+    }
+    
+    @Override
+    public int getCustomerId()
+    {
+        return customerId;
+    }
+    
+    @Override
+    public int insuranceId()
+    {
+        return insuranceId;
     }
 
 }

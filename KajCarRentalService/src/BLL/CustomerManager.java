@@ -5,7 +5,7 @@
  */
 package BLL;
 
-import BE.Customer.Customer;
+import BE.Customer;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.CustomerDBManager;
 import java.io.IOException;
@@ -53,7 +53,7 @@ public class CustomerManager
     {
         for (Customer c : customers)
         {
-            if (c.getCustomerId() == id)
+            if (c.getId() == id)
             {
                 return c;
             }

@@ -3,21 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BE.Customer.Type;
+package BE;
+
+import BE.Controller.*;
 
 /**
  *
  * @author notandi
  */
-public class Type extends TypeCtrl
+public class Type extends EntityCtrl
 {
     private String privateCustomer;
-    private String BusinessCustomer;
+    private String businessCustomer;
 
-    public Type(String privateCustomer, String BusinessCustomer)
+    public Type(String privateCustomer, String businessCustomer)
     {
         this.privateCustomer = privateCustomer;
-        this.BusinessCustomer = BusinessCustomer;
+        this.businessCustomer = businessCustomer;
     }
 
     public String getPrivateCustomer()
@@ -32,11 +34,11 @@ public class Type extends TypeCtrl
 
     public String getBusinessCustomer()
     {
-        return BusinessCustomer;
+        return businessCustomer;
     }
 
-    public void setBusinessCustomer(String BusinessCustomer)
+    public void setBusinessCustomer(String businessCustomer)
     {
-        this.BusinessCustomer = BusinessCustomer;
+        this.businessCustomer = businessCustomer;
     }
 }

@@ -5,7 +5,7 @@
  */
 package DAL;
 
-import BE.Customer.Customer;
+import BE.Customer;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

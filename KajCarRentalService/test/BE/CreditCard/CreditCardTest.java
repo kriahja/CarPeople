@@ -5,6 +5,7 @@
  */
 package BE.CreditCard;
 
+import BE.CreditCard;
 import org.junit.*;
 import static org.junit.Assert.*;
 

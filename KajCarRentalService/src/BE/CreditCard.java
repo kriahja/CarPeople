@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BE.CreditCard;
+package BE;
+
+import BE.Controller.*;
+
 
 /**
  *
  * @author notandi
  */
-public class CreditCard extends CreditCardCtrl
+public class CreditCard extends EntityCtrl
 {
     private int CardNumber;
     private int RegNumber;
