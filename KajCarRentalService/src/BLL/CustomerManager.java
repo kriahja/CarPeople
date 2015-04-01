@@ -7,7 +7,7 @@ package BLL;
 
 import BE.Customer;
 import BLL.Exceptions.KajCarExceptions;
-import DAL.CustomerDBManager;
+import DAL.DB.CustomerDBManager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class CustomerManager
         }
         catch (IOException ex)
         {
-            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new KajCarExceptions("Unable to connect to Customer database.");
         }
     }
 
@@ -123,41 +123,18 @@ public class CustomerManager
 
     public ArrayList<Customer> getAll()
     {
-        try
-        {
-
-            return db.getAll();
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return (ArrayList<Customer>) db.readAll();
+       
     }
 
     public Customer addCustomer(Customer cus)
     {
-        try
-        {
-            return db.addCustomer(cus);
-        }
-        catch (SQLException ex)
-        {
-
-            throw new KajCarExceptions("Unable to add Customer data.");
-        }
+        return db.create(cus);
 
     }
 
     public void removeCustomer(int cusId)
     {
-        try
-        {
-            db.removeCustomer(cusId);
-        }
-        catch (SQLException ex)
-        {
-            throw new KajCarExceptions("Unable to find and remove Customer data.");
-        }
+        db.delete(cusId);
     }
 }

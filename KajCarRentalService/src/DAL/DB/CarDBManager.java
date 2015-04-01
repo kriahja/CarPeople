@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAL.SQL;
+package DAL.DB;
 
 import BE.Car;
 import BLL.Exceptions.KajCarExceptions;
@@ -23,23 +23,23 @@ import java.util.List;
  *
  * @author notandi
  */
-public class SQLCarRepository implements ICRUDrepository<Car>
+public class CarDBManager implements ICRUDrepository<Car>
 {
 
     private final DBConnectionManager cm;
 
-    private static SQLCarRepository instance = null;
+    private static CarDBManager instance = null;
 
-    public static SQLCarRepository getInstance() throws IOException
+    public static CarDBManager getInstance() throws IOException
     {
         if (instance == null)
         {
-            instance = new SQLCarRepository();
+            instance = new CarDBManager();
         }
         return instance;
     }
 
-    private SQLCarRepository() throws IOException
+    private CarDBManager() throws IOException
     {
         cm = DBConnectionManager.getInstance();
     }

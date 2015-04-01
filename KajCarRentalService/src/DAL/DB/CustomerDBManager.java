@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAL.SQL;
+package DAL.DB;
 
 import BE.Controller.IEntityCtrl;
 import BE.Customer;
@@ -26,23 +26,23 @@ import java.util.logging.Logger;
  *
  * @author notandi
  */
-public class SQLCustomerRepository implements ICRUDrepository<Customer>
+public class CustomerDBManager implements ICRUDrepository<Customer>
 {
 
     private final DBConnectionManager cm;
 
-    private static SQLCustomerRepository instance = null;
+    private static CustomerDBManager instance = null;
 
-    public static SQLCustomerRepository getInstance() throws IOException
+    public static CustomerDBManager getInstance() throws IOException
     {
         if (instance == null)
         {
-            instance = new SQLCustomerRepository();
+            instance = new CustomerDBManager();
         }
         return instance;
     }
 
-    private SQLCustomerRepository() throws IOException
+    private CustomerDBManager() throws IOException
     {
         cm = DBConnectionManager.getInstance();
     }
