@@ -6,6 +6,7 @@
 package BLL;
 
 import BE.Rent;
+import DAL.DB.RentDBManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  */
 public class RentManager {
     private static RentManager instance = null;
+    private static RentDBManager db;
     private List<Rent> rents;
     public RentManager() 
     {
@@ -89,6 +91,23 @@ public class RentManager {
         }
         return null;
     }
+    
+      public Rent getCarId (int id)
+    {
+        for (Rent c : rents)
+        {
+            if (c.getCarId() == id)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+      
+      public void addRent(int carId, int customerId, int insurranceId, int startDate, int endDate)
+      {
+          db.addRent(carId, customerId, insurranceId, startDate, endDate);
+      }
     
     
 }
