@@ -45,5 +45,9 @@ public interface IEntityCtrl
     
     public int insuranceId();
     
+    public int getStartDate();
+    
+    public int getEndDate();
+    
     
 }

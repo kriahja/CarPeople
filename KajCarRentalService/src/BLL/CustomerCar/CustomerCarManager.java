@@ -8,7 +8,6 @@ package BLL.CustomerCar;
 import BE.Car;
 import BE.Customer;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 /**
  *
@@ -16,8 +15,8 @@ import java.util.TreeMap;
  */
 public class CustomerCarManager implements ICustomerCarManager
 {
-    private ArrayList<Car> cars;
-    private ArrayList<Customer> customers;
+    private final ArrayList<Car> cars;
+    private final ArrayList<Customer> customers;
 
     public CustomerCarManager()
     {

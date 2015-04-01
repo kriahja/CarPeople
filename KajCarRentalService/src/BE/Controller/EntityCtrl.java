@@ -28,6 +28,8 @@ public class EntityCtrl implements IEntityCtrl
     private int carId;
     private int customerId;
     private int insuranceId;
+    private int startDate;
+    private int endDate;
     
     @Override
     public int getId()
@@ -118,5 +120,17 @@ public class EntityCtrl implements IEntityCtrl
     {
         return insuranceId;
     }
+    @Override
+    public int getStartDate()
+    {
+        return startDate;
+    }
+
+    @Override
+    public int getEndDate() 
+    { 
+        return endDate;
+    }
+    
 
 }
