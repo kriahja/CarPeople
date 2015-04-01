@@ -15,99 +15,79 @@ import java.util.List;
  * @author ZALI
  */
 public class RentManager {
+
     private static RentManager instance = null;
+    
     private static RentDBManager db;
     private List<Rent> rents;
-    public RentManager() 
-    {
-        rents = new ArrayList<>();        
-    }   
-    
-    public static RentManager getInstance()
-    {
-        if (instance == null)
-        {
+
+    public RentManager() {
+        rents = new ArrayList<>();
+    }
+
+    public static RentManager getInstance() {
+        if (instance == null) {
             instance = new RentManager();
         }
         return instance;
     }
-    
-    public Rent getById(int id)
-    {
-        for (Rent c : rents)
-        {
-            if (c.getId() == id)
-            {
+
+    public Rent getById(int id) {
+        for (Rent c : rents) {
+            if (c.getId() == id) {
                 return c;
             }
         }
         return null;
     }
-    
-    public Rent getCustomerId (int id)
-    {
-        for (Rent c : rents)
-        {
-            if (c.getCustomerId() == id)
-            {
+
+    public Rent getCustomerId(int id) {
+        for (Rent c : rents) {
+            if (c.getCustomerId() == id) {
                 return c;
             }
         }
         return null;
     }
-    
-    public Rent getInsurranceId (int id)
-    {
-        for (Rent c : rents)
-        {
-            if (c.insuranceId() == id)
-            {
+
+    public Rent getCarId(int carId) {
+        for (Rent c : rents) {
+            if (c.getCarId() == carId) {
                 return c;
             }
         }
         return null;
     }
-    
-    public Rent getStartDate (int id)
-    {
-        for (Rent c : rents)
-        {
-            if (c.getStartDate() == id)
-            {
+
+    public Rent getInsurranceId(int id) {
+        for (Rent c : rents) {
+            if (c.insuranceId() == id) {
                 return c;
             }
         }
         return null;
     }
-    
-    public Rent getEndDate (int id)
-    {
-        for (Rent c : rents)
-        {
-            if (c.getEndDate() == id)
-            {
+
+    public Rent getStartDate(int id) {
+        for (Rent c : rents) {
+            if (c.getStartDate() == id) {
                 return c;
             }
         }
         return null;
     }
-    
-      public Rent getCarId (int id)
-    {
-        for (Rent c : rents)
-        {
-            if (c.getCarId() == id)
-            {
+
+    public Rent getEndDate(int id) {
+        for (Rent c : rents) {
+            if (c.getEndDate() == id) {
                 return c;
             }
         }
         return null;
     }
-      
-      public void addRent(int carId, int customerId, int insurranceId, int startDate, int endDate)
-      {
-          db.addRent(carId, customerId, insurranceId, startDate, endDate);
-      }
-    
-    
+
+    public void addRent(Rent rent) {
+        db.create(rent);
+    }
+
 }
