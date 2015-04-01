@@ -14,13 +14,13 @@ import java.util.List;
  * @author notandi
  * @param <T>
  */
-public abstract class AbstractMockRepository<T extends EntityCtrl> implements ICRUDrepository<T>
+public abstract class AbstractMockManager<T extends EntityCtrl> implements ICRUDrepository<T>
 {
 
     private List<T> list;
     static int id = 0;
 
-    public AbstractMockRepository()
+    public AbstractMockManager()
     {
         list = new ArrayList<>();
         
@@ -44,7 +44,7 @@ public abstract class AbstractMockRepository<T extends EntityCtrl> implements IC
     }
 
     @Override
-    public T read(int id)
+    public T readName(String Name)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

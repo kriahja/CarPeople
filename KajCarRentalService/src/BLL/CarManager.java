@@ -7,13 +7,10 @@ package BLL;
 
 import BE.Car;
 import BLL.Exceptions.KajCarExceptions;
-import DAL.CarDBManager;
-import java.sql.ResultSet;
+import DAL.DB.CarDBManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +21,6 @@ public class CarManager
 
     private static CarManager instance = null;
 
-    //   <<<<need Database Connection>>>>
     private static CarDBManager db;
     private List<Car> cars;
 
@@ -180,21 +176,11 @@ public class CarManager
         }
         return notFixedList;
     }
-    
+
     public Car addCar(Car car)
     {
-        try
-        {
-            return db.addCar(car);
-        }
-        catch (SQLException ex)
-        {
-            throw new KajCarExceptions("Unable to add Car data.");
-        }
-        
-        
+        return db.create(car);
+
     }
-
-
 
 }

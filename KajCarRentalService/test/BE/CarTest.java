@@ -22,8 +22,7 @@ public class CarTest
     @Before
     public void testSetUp()
     {
-        car = new Car(null, 10000);
-        car.setName("Mercedez Bens");
+        car = new Car("Mercedez Bens", 10000);
         
         e = new EntityCtrl();
         e.setIsDamaged(true);
