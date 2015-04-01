@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Customer;
+package GUI.Car;
 
 /**
  *
  * @author agnarsdottir
  */
-public class BuisnessNewCustomer extends javax.swing.JFrame
+public class CarC extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form BuisnessNewCustomer
+     * Creates new form CarC
      */
-    public BuisnessNewCustomer()
+    public CarC()
     {
         initComponents();
     }
@@ -30,19 +30,32 @@ public class BuisnessNewCustomer extends javax.swing.JFrame
     private void initComponents()
     {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        txtCarSearch = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Search Cars:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 423, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(232, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCarSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCarSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         pack();
@@ -71,19 +84,19 @@ public class BuisnessNewCustomer extends javax.swing.JFrame
         }
         catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(BuisnessNewCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CarC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -92,12 +105,13 @@ public class BuisnessNewCustomer extends javax.swing.JFrame
         {
             public void run()
             {
-                new BuisnessNewCustomer().setVisible(true);
+                new CarC().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField txtCarSearch;
     // End of variables declaration//GEN-END:variables
 }
