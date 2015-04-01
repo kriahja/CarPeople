@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -83,7 +85,25 @@ public class RentDBManager implements ICRUDrepository<Rent>
 
     @Override
     public List<Rent> readAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<Rent> carList = new ArrayList<>();
+            String sql = "Select * from Car";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+            {
+                Rent rent = getOneRent(rs);
+                carList.add(rent);
+            }
+            return carList;
+        }
+        catch (SQLException ex)
+        {
+
+            throw new KajCarExceptions("Unable to read data.");
+        }
     }
 
     @Override
