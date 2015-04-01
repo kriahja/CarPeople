@@ -41,6 +41,9 @@ public class CarDBManagerTest
     @Test
     public void testGetInstance() throws Exception
     {
+        System.out.println("testGetInstance()");
+        
+        assertTrue(db instanceof CarDBManager);
     }
 
     /**
@@ -51,11 +54,9 @@ public class CarDBManagerTest
     {
         System.out.println("testCreate()");
 
-        db = CarDBManager.getInstance();
-
-        db.create(car);
+        db.createdSimpleCar(car);
         assertNotNull(db);
-        assertTrue(db instanceof CarDBManager);
+        
     }
 
     /**

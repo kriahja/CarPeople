@@ -6,6 +6,7 @@
 package DAL.DB;
 
 import BE.Car;
+import BE.Controller.EntityCtrl;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
 import DAL.ICRUDrepository;
@@ -25,7 +26,8 @@ import java.util.List;
  */
 public class CarDBManager implements ICRUDrepository<Car>
 {
-
+    private EntityCtrl ec;
+    
     private final DBConnectionManager cm;
 
     private static CarDBManager instance = null;
@@ -42,6 +44,7 @@ public class CarDBManager implements ICRUDrepository<Car>
     private CarDBManager() throws IOException
     {
         cm = DBConnectionManager.getInstance();
+        ec = new EntityCtrl();
     }
 
     private Car getOneCar(ResultSet rs) throws SQLException
@@ -61,20 +64,16 @@ public class CarDBManager implements ICRUDrepository<Car>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "INSERT INTO Car(Name, depId, catId, "
-                    + "km, isDamaged, isFull) VALUES (?, ?, ?, ?, false, true)";
+            String sql = "INSERT INTO Car(Name, KM, depId, catId, "
+                    + " isDamaged, isFull) VALUES (?, ?, ?, ?, false, true)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, car.getName());
-            ps.setInt(2, car.getDepId());
-            ps.setInt(3, car.getCatId());
-            ps.setInt(4, car.getKm());
+            ps.setInt(2, car.getKm());
+            ps.setInt(3, car.getDepId());
+            ps.setInt(4, car.getCatId());
 
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
-                throw new SQLException("Unable to add Car.");
-            }
+            ps.executeUpdate();
 
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
@@ -85,6 +84,30 @@ public class CarDBManager implements ICRUDrepository<Car>
         catch (SQLException ex)
         {
             throw new KajCarExceptions("Unable to insert new Car data.");
+        }
+    }
+
+    public Car createdSimpleCar(Car car)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "INSERT INTO Car(Name, KM) VALUES (? ?)";
+            PreparedStatement ps = con.prepareStatement(sql,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, car.getName());
+            ps.setInt(2, car.getKm());
+            
+            ps.executeUpdate();
+            
+            ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            int id = keys.getInt(1);
+            
+            return new Car(ec.getCarId(), car);
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to create simple Car");
         }
     }
 
@@ -174,7 +197,6 @@ public class CarDBManager implements ICRUDrepository<Car>
         }
     }
 
-    
     public void advancedUpdate(Car car)
     {
         try (Connection con = cm.getConnection())
