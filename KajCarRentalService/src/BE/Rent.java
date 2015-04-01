@@ -12,6 +12,13 @@ public class Rent extends EntityCtrl {
     public int startDate;
     public int endDate;
 
+    public Rent(int startDate, int endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
+    
+
     public Rent(int id, Rent rent) {
         RentManager.getInstance().getById(id);
          try

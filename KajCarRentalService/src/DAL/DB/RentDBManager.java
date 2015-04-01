@@ -38,6 +38,17 @@ public class RentDBManager implements ICRUDrepository<Rent>
         return instance;
     }
     
+     private Rent getOneRent(ResultSet rs) throws SQLException
+    {
+
+        int startDate = rs.getInt("StartDate");
+        int endDate = rs.getInt("EndDate");
+
+        Rent rent = new Rent(startDate, endDate);
+
+        return rent;
+    }
+    
     @Override
     public Rent create(Rent rent) {
         try (Connection con = cm.getConnection())
