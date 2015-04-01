@@ -20,7 +20,9 @@ public interface ICRUDrepository<T extends IEntityCtrl>
 
     public List<T> readAll();
 
-    public T read(int id);
+    public T readName(String name);
+    
+    //public T readId(int id);
 
     public void update(T t);
 

@@ -18,32 +18,36 @@ import java.util.ArrayList;
  *
  * @author a.tamas
  */
-public class CustomerDBManager {
-    
+public class CustomerDBManager
+{
+
     private final DBConnectionManager cm;
 
     private static CustomerDBManager instance = null;
 
-    public static CustomerDBManager getInstance() throws IOException {
-        if (instance == null) {
+    public static CustomerDBManager getInstance() throws IOException
+    {
+        if (instance == null)
+        {
             instance = new CustomerDBManager();
         }
         return instance;
     }
 
-    CustomerDBManager() throws IOException {
+    CustomerDBManager() throws IOException
+    {
         cm = DBConnectionManager.getInstance();
     }
 
-    private Customer getOneCustomer(ResultSet rs) throws SQLException {
+    private Customer getOneCustomer(ResultSet rs) throws SQLException
+    {
         //int customerId = rs.getInt("ID");
         String customerName = rs.getString("Name");
         String address = rs.getString("Address");
         String driversLicenseNo = rs.getString("DriverLicenseNo");
 
+        Customer cust = new Customer(customerName, address, driversLicenseNo);
 
-      Customer cust = new Customer(customerName, address, driversLicenseNo);
-      
         return cust;
 
     }
@@ -52,14 +56,17 @@ public class CustomerDBManager {
      * @param customerId
      * @return
      */
-    public Customer getById(int customerId) throws SQLException {
-        try (Connection con = cm.getConnection()) {
+    public Customer getById(int customerId) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT * FROM Customer WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, customerId);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneCustomer(rs);
             }
         }
@@ -72,36 +79,41 @@ public class CustomerDBManager {
      * @return
      * @throws SQLException
      */
-    public Customer getByName(String customerName) throws SQLException {
-        try (Connection con = cm.getConnection()) {
+    public Customer getByName(String customerName) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
             String sql = "SELECT * FROM Customer WHERE Name = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, customerName);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            if (rs.next())
+            {
                 return getOneCustomer(rs);
             }
         }
         return null;
     }
 
-    public ArrayList<Customer> getAll() throws SQLException {
-        try (Connection con = cm.getConnection()) {
+    public ArrayList<Customer> getAll() throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
             ArrayList<Customer> custList = new ArrayList<>();
             String sql = "Select * from Customer";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 Customer cust = getOneCustomer(rs);
                 custList.add(cust);
             }
             return custList;
         }
     }
-    
-    
+
     public Customer addCustomer(Customer cus) throws SQLException
     {
         try (Connection con = cm.getConnection())
@@ -130,25 +142,21 @@ public class CustomerDBManager {
             return new Customer(id, cus);
         }
     }
-    
+
     public void removeCustomer(int cusId) throws SQLException
     {
+        try (Connection con = cm.getConnection())
         {
-            try (Connection con = cm.getConnection())
-            {
-                String sql = "DELETE FROM Customer WHERE ID = ?";
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setInt(1, cusId);
+            String sql = "DELETE FROM Customer WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, cusId);
 
-                int affectedRows = ps.executeUpdate();
-                if (affectedRows == 0)
-                {
-                    throw new SQLException("Unable to remove Customer.");
-                }
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new SQLException("Unable to remove Customer.");
             }
         }
     }
-    
-    
-    
+
 }

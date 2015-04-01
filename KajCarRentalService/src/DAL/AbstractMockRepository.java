@@ -44,7 +44,7 @@ public abstract class AbstractMockRepository<T extends EntityCtrl> implements IC
     }
 
     @Override
-    public T read(int id)
+    public T read(String carName)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

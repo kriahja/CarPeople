@@ -24,7 +24,7 @@ public class CarManager
 
     private static CarManager instance = null;
 
-    //   <<<<need Database Connection>>>>
+   
     private static CarDBManager db;
     private List<Car> cars;
 

@@ -35,7 +35,7 @@ public class CarDBManager
         return instance;
     }
 
-    CarDBManager() throws IOException
+    private CarDBManager() throws IOException
     {
         cm = DBConnectionManager.getInstance();
     }
