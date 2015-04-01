@@ -9,7 +9,6 @@ import BE.Car;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
 import DAL.ICRUDrepository;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,8 +18,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -49,7 +46,7 @@ public class SQLCarRepository implements ICRUDrepository<Car>
 
     private Car getOneCar(ResultSet rs) throws SQLException
     {
-        //int carId = rs.getInt("ID");
+
         String carName = rs.getString("Name");
         int km = rs.getInt("KM");
 
@@ -132,7 +129,29 @@ public class SQLCarRepository implements ICRUDrepository<Car>
         }
         catch (SQLException ex)
         {
-            throw new KajCarExceptions("Unable to read car data.");
+            throw new KajCarExceptions("Unable to read Car name.");
+        }
+        return null;
+    }
+
+    @Override
+    public Car readId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "SELECT * FROM Car WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return getOneCar(rs);
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read Car id.");
         }
         return null;
     }
@@ -142,19 +161,38 @@ public class SQLCarRepository implements ICRUDrepository<Car>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "UPDATE car SET Name = ?, DepId = ?, CatId = ? WHERE ID = ?";
+            String sql = "UPDATE car SET Name = ?, KM = ? WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, car.getName());
-            ps.setInt(2, car.getDepId());
-
-            ps.setInt(3, car.getCatId());
-            ps.setInt(4, car.getId());
+            ps.setInt(2, car.getKm());
 
             ps.executeUpdate();
         }
         catch (SQLException ex)
         {
             throw new KajCarExceptions("Unable to update car data.");
+        }
+    }
+
+    
+    public void advancedUpdate(Car car)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "UPDATE car SET Name = ?, KM = ?, DepId = ?, CatId = ? WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, car.getName());
+            ps.setInt(2, car.getKm());
+            ps.setInt(3, car.getDepId());
+
+            ps.setInt(4, car.getCatId());
+            ps.setInt(5, car.getId());
+
+            ps.executeUpdate();
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to perform advanced update to Car data.");
         }
     }
 

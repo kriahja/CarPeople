@@ -136,7 +136,49 @@ public class SQLCustomerRepository implements ICRUDrepository<Customer>
     }
 
     @Override
+    public Customer readId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "SELECT * FROM Customer WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return getOneCustomer(rs);
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read customer id.");
+        }
+        return null;
+    }
+
+    @Override
     public void update(Customer cus)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "UPDATE customer SET Name = ?, Address = ?"
+                    + "DriversLicenceNo = ?"
+                    + "WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cus.getName());
+            ps.setString(2, cus.getAddress());
+            ps.setString(3, cus.getDriversLicenceNo());
+
+            ps.executeUpdate();
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to update Customer data.");
+        }
+    }
+
+    public void advancedUpdate(Customer cus)
     {
         try (Connection con = cm.getConnection())
         {
@@ -157,7 +199,7 @@ public class SQLCustomerRepository implements ICRUDrepository<Customer>
         }
         catch (SQLException ex)
         {
-            throw new KajCarExceptions("Unable to update Customer data.");
+            throw new KajCarExceptions("Unable to perform adcanced update on Customer data.");
         }
     }
 

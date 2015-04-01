@@ -22,9 +22,10 @@ public interface ICRUDrepository<T extends IEntityCtrl>
 
     public T readName(String name);
     
-    //public T readId(int id);
+    public T readId(int id);
 
     public void update(T t);
 
     public void delete(int id);
 }
+
