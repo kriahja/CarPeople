@@ -44,10 +44,7 @@ public interface IEntityCtrl
     public int getCustomerId();
     
     public int insuranceId();
-    
-    public int getStartDate();
-    
-    public int getEndDate();
+
     
     
 }
