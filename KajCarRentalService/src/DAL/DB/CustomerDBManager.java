@@ -5,12 +5,10 @@
  */
 package DAL.DB;
 
-import BE.Controller.IEntityCtrl;
 import BE.Customer;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
 import DAL.ICRUDrepository;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,8 +17,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

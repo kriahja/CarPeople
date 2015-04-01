@@ -14,13 +14,13 @@ import java.util.List;
  * @author notandi
  * @param <T>
  */
-public abstract class AbstractMockRepository<T extends EntityCtrl> implements ICRUDrepository<T>
+public abstract class AbstractMockManager<T extends EntityCtrl> implements ICRUDrepository<T>
 {
 
     private List<T> list;
     static int id = 0;
 
-    public AbstractMockRepository()
+    public AbstractMockManager()
     {
         list = new ArrayList<>();
         
