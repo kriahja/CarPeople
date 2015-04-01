@@ -1,11 +1,13 @@
 
 package BE;
 
+import BE.Controller.*;
+
 /**
  *
  * @author ZALI
  */
-public class Rent {
+public class Rent extends EntityCtrl {
     public int startDate;
     public int endDate;
 
