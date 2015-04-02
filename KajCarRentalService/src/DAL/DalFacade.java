@@ -6,7 +6,11 @@
 package DAL;
 
 import BE.Car;
+import BE.Customer;
+import BE.Rent;
 import DAL.DB.CarDBManager;
+import DAL.DB.CustomerDBManager;
+import DAL.DB.RentDBManager;
 import java.io.IOException;
 
 /**
@@ -16,6 +20,8 @@ import java.io.IOException;
 public class DalFacade
 {
     private ICRUDmanager<Car> carManager;
+    private ICRUDmanager<Customer> custManager;
+    private ICRUDmanager<Rent> rentManager;
     
     public ICRUDmanager<Car> getCarManager() throws IOException
     {
@@ -24,5 +30,23 @@ public class DalFacade
             carManager = CarDBManager.getInstance();
         }
         return carManager;
+    }
+    
+    public ICRUDmanager<Customer> getCustomerManager() throws IOException
+    {
+        if (custManager == null)
+        {
+            custManager = CustomerDBManager.getInstance();
+        }
+        return custManager;
+    }
+    
+        public ICRUDmanager<Rent> getRentManager() throws IOException
+    {
+        if (rentManager == null)
+        {
+            rentManager = RentDBManager.getInstance();
+        }
+        return rentManager;
     }
 }
