@@ -5,7 +5,6 @@
  */
 package BE;
 
-
 import BLL.CarManager;
 import BE.Controller.*;
 
@@ -24,22 +23,13 @@ public class Car extends EntityCtrl
         this.name = name;
         this.km = km;
     }
-    
-    public Car (int id, Car car)
-    {
-      // what to do here ? :)) - Tamás I created this for you :D
-        CarManager.getInstance().getById(id);
-        try
-        {
-            car.clone();
-        }
-        catch (CloneNotSupportedException ex)
-        {
-            ex.getMessage();
-        }
-        
-    }
 
+    public Car(int id, String name, int km)
+    {
+        setId(id);
+        this.name = name;
+        this.km = km;
+    }
 
     /**
      * @return the name
@@ -47,7 +37,7 @@ public class Car extends EntityCtrl
     public String getName()
     {
         return name;
-        
+
     }
 
     /**
@@ -73,6 +63,5 @@ public class Car extends EntityCtrl
     {
         this.km = km;
     }
-
 
 }

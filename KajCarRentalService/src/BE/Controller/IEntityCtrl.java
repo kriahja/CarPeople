@@ -13,6 +13,7 @@ public interface IEntityCtrl
 {
     //  OBJECT ID
     public int getId();
+    public void setId(int id);
     
     //  CAR
     public int getDepId();
@@ -43,7 +44,7 @@ public interface IEntityCtrl
     
     public int getCustomerId();
     
-    public int insuranceId();
+    public int getInsuranceId();
 
     
     

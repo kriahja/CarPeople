@@ -61,25 +61,25 @@ public class RentManager {
 
     public Rent getInsurranceId(int id) {
         for (Rent c : rents) {
-            if (c.insuranceId() == id) {
+            if (c.getInsuranceId() == id) {
                 return c;
             }
         }
         return null;
     }
 
-    public Rent getStartDate(int id) {
+    public Rent getStartDate(int startDate) {
         for (Rent c : rents) {
-            if (c.getStartDate() == id) {
+            if (c.getStartDate() == startDate) {
                 return c;
             }
         }
         return null;
     }
 
-    public Rent getEndDate(int id) {
+    public Rent getEndDate(int endDate) {
         for (Rent c : rents) {
-            if (c.getEndDate() == id) {
+            if (c.getEndDate() == endDate) {
                 return c;
             }
         }

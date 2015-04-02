@@ -6,7 +6,7 @@
 package DAL.DB;
 
 import BE.Car;
-import BE.Controller.EntityCtrl;
+import DAL.ICRUDmanager;
 import java.io.IOException;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -18,20 +18,15 @@ import static org.junit.Assert.*;
 public class CarDBManagerTest
 {
 
-    private CarDBManager db;
-    private Car car;
-    private EntityCtrl e;
+    ICRUDmanager<Car> mgr;
+    Car car;
 
     @Before
     public void testSetUp() throws IOException
     {
-        db = CarDBManager.getInstance();
-        car = new Car("Benz", 20);
+        mgr = CarDBManager.getInstance();
+        car = new Car(1, "Benz", 10);
 
-        e = new EntityCtrl();
-        e.setIsDamaged(false);
-        e.setIsFixed(true);
-        e.setIsFull(true);
 
     }
 
@@ -43,7 +38,7 @@ public class CarDBManagerTest
     {
         System.out.println("testGetInstance()");
         
-        assertTrue(db instanceof CarDBManager);
+        assertTrue(mgr instanceof CarDBManager);
     }
 
     /**
@@ -53,9 +48,14 @@ public class CarDBManagerTest
     public void testCreate() throws IOException
     {
         System.out.println("testCreate()");
+        
+        car = mgr.create(car);
+        assertTrue("should have id 1 and name Benz",mgr.readId(car.getCarId()).getName().equals("Benz"));
+        assertTrue("should have id 1 and km 10",mgr.readId(car.getCarId()).getKm() == 10);
 
-        db.createdSimpleCar(car);
-        assertNotNull(db);
+   
+        
+        
         
     }
 
@@ -65,6 +65,9 @@ public class CarDBManagerTest
     @Test
     public void testReadAll()
     {
+        System.out.println("testReadAll()");
+        
+        
     }
 
     /**

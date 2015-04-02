@@ -26,8 +26,7 @@ import java.util.List;
  */
 public class CarDBManager implements ICRUDmanager<Car>
 {
-    private EntityCtrl ec;
-    
+
     private final DBConnectionManager cm;
 
     private static CarDBManager instance = null;
@@ -44,7 +43,6 @@ public class CarDBManager implements ICRUDmanager<Car>
     private CarDBManager() throws IOException
     {
         cm = DBConnectionManager.getInstance();
-        ec = new EntityCtrl();
     }
 
     private Car getOneCar(ResultSet rs) throws SQLException
@@ -56,7 +54,17 @@ public class CarDBManager implements ICRUDmanager<Car>
         Car car = new Car(carName, km);
 
         return car;
+    }
 
+    private Car getOneCarWithID(ResultSet rs) throws SQLException
+    {
+        int id = rs.getInt("ID");
+        String carName = rs.getString("Name");
+        int km = rs.getInt("KM");
+
+        Car car = new Car(id, carName, km);
+
+        return car;
     }
 
     @Override
@@ -73,21 +81,21 @@ public class CarDBManager implements ICRUDmanager<Car>
             ps.setInt(3, car.getDepId());
             ps.setInt(4, car.getCatId());
 
-            ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
 
-            ResultSet keys = ps.getGeneratedKeys();
-            keys.next();
-            int id = keys.getInt(1);  // first column in keys resultset
-
-            return new Car(id, car);
+            while (rs.next())
+            {
+                return getOneCarWithID(rs);
+            }
         }
         catch (SQLException ex)
         {
-            throw new KajCarExceptions("Unable to insert new Car data.");
+            throw new KajCarExceptions("Unable to create new Car data.");
         }
+        return null;
     }
 
-    public Car createdSimpleCar(Car car)
+    public Car createSimpleCar(Car car)
     {
         try (Connection con = cm.getConnection())
         {
@@ -96,19 +104,19 @@ public class CarDBManager implements ICRUDmanager<Car>
                     PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, car.getName());
             ps.setInt(2, car.getKm());
-            
-            ps.executeUpdate();
-            
-            ResultSet keys = ps.getGeneratedKeys();
-            keys.next();
-            int id = keys.getInt(1);
-            
-            return new Car(ec.getCarId(), car);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                return getOneCar(rs);
+            }
+
         }
         catch (SQLException ex)
         {
             throw new KajCarExceptions("Unable to create simple Car");
         }
+        return null;
     }
 
     @Override
@@ -135,7 +143,6 @@ public class CarDBManager implements ICRUDmanager<Car>
         }
     }
 
-    
     public Car readName(String carName)
     {
         try (Connection con = cm.getConnection())

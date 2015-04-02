@@ -34,6 +34,12 @@ public class EntityCtrl implements IEntityCtrl
     {
         return id;
     }
+    
+    @Override
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     @Override
     public int getDepId()
@@ -114,7 +120,7 @@ public class EntityCtrl implements IEntityCtrl
     }
 
     @Override
-    public int insuranceId()
+    public int getInsuranceId()
     {
         return insuranceId;
     }

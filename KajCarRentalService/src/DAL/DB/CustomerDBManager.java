@@ -5,6 +5,7 @@
  */
 package DAL.DB;
 
+import BE.Controller.EntityCtrl;
 import BE.Customer;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
@@ -48,10 +49,9 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         //int customerId = rs.getInt("ID");
         String customerName = rs.getString("Name");
         String address = rs.getString("Address");
-        String driversLicenseNo = rs.getString("DriverLicenseNo");  // SQL name?
+        String driversLicenseNo = rs.getString("DriversLicenceNr");  // SQL name?
 
         Customer cust = new Customer(customerName, address, driversLicenseNo);
-
         return cust;
 
     }
@@ -62,7 +62,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         try (Connection con = cm.getConnection())
         {
             String sql = "INSERT INTO Customer(Name, Address, CreditCardId, "
-                    + "RentId, DriversLicenceNo, TypeId) VALUES (?, ?, ?, ?, ?, ?)";
+                    + "RentId, DriversLicenceNr, TypeId) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, cus.getName());
@@ -72,13 +72,13 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
             ps.setString(5, cus.getDriversLicenceNo());
             ps.setInt(6, cus.getTypeId());
 
-            ps.executeUpdate();
+            ResultSet rs = ps.executeQuery();
 
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
             int id = keys.getInt(1);  // first column in keys resultset
 
-            return new Customer(id, cus);
+            return new Customer(id, cus.getName(), cus.getAddress(), cus.getDriversLicenceNo());
         }
         catch (SQLException ex)
         {

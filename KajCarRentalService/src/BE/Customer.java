@@ -26,9 +26,12 @@ public class Customer extends EntityCtrl
 
     }
 
-    public Customer(int id, Customer cus)
+    public Customer(int id, String name, String address, String driversLicenceNo)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setId(id);
+        this.name = name;
+        this.address = address;
+        this.driversLicenceNo = driversLicenceNo;
     }
 
     /**
@@ -82,8 +85,9 @@ public class Customer extends EntityCtrl
     @Override
     public String toString()
     {
-        return "Customer{" + "name= " + name + ", address= " + address + ", driversLicenceNo= " + driversLicenceNo + '}';
+        return "Customer{" + "name=" + name + ", address=" + address + ", driversLicenceNo=" + driversLicenceNo + '}';
     }
 
-    
+
+
 }

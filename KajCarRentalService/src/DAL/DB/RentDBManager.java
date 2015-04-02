@@ -61,7 +61,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
                     PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, rent.getCustomerId());
             ps.setInt(2, rent.getCarId());
-            ps.setInt(3, rent.insuranceId());
+            ps.setInt(3, rent.getInsuranceId());
             ps.setInt(4, rent.startDate);
             ps.setInt(4, rent.endDate);
 
