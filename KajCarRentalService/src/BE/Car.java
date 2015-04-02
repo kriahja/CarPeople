@@ -31,6 +31,12 @@ public class Car extends EntityCtrl
         this.km = km;
     }
 
+    public Car(int id, Car car) {
+        
+        this(id, car.getName(), car.getKm());
+        
+    }
+
     /**
      * @return the name
      */

@@ -33,6 +33,11 @@ public class Customer extends EntityCtrl
         this.address = address;
         this.driversLicenceNo = driversLicenceNo;
     }
+    
+    public Customer(int id, Customer cus)
+    {
+        this(id, cus.getName(), cus.getAddress(), cus.getDriversLicenceNo());
+    }
 
     /**
      * @return the name

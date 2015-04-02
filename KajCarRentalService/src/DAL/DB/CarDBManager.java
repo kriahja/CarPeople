@@ -81,18 +81,23 @@ public class CarDBManager implements ICRUDmanager<Car>
             ps.setInt(3, car.getDepId());
             ps.setInt(4, car.getCatId());
 
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next())
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
             {
-                return getOneCarWithID(rs);
+                throw new SQLException("Unable to add Team.");
             }
+
+            ResultSet keys = ps.getGeneratedKeys(); //
+            keys.next();                            // 
+            int id = keys.getInt(1);                // changed here because we want t create a car not get an existing one
+
+            return new Car(id, car);                //
         }
         catch (SQLException ex)
         {
             throw new KajCarExceptions("Unable to create new Car data.");
         }
-        return null;
+        
     }
 
     public Car createSimpleCar(Car car)
@@ -105,18 +110,18 @@ public class CarDBManager implements ICRUDmanager<Car>
             ps.setString(1, car.getName());
             ps.setInt(2, car.getKm());
 
-            ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
-                return getOneCar(rs);
-            }
+             ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            int id = keys.getInt(1);
+
+            return new Car(id, car); // another constructor?
 
         }
         catch (SQLException ex)
         {
             throw new KajCarExceptions("Unable to create simple Car");
         }
-        return null;
+        
     }
 
     @Override

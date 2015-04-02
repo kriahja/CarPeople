@@ -5,6 +5,8 @@
  */
 package DAL.DB;
 
+import BE.Car;
+import BE.Customer;
 import BE.Rent;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
@@ -120,5 +122,34 @@ public class RentDBManager implements ICRUDmanager<Rent>
     public void delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    /*
+    public Rent create(Rent rent, Customer cust, Car car) throws SQLException
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
+                    + "StartDate, EndDate) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, cust.getId());
+            ps.setInt(2, car.getCarId());
+            ps.setInt(3, rent.getInsuranceId());
+            ps.setInt(4, rent.startDate);
+            ps.setInt(4, rent.endDate);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new SQLException("Unable to add Car.");
+            }
+
+            ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            int id = keys.getInt(1);  // first column in keys resultset
+
+            return new Rent(id, rent);
+        }
+    }
+    */
     
 }

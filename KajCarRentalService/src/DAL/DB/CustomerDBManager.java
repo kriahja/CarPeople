@@ -78,7 +78,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
             keys.next();
             int id = keys.getInt(1);  // first column in keys resultset
 
-            return new Customer(id, cus.getName(), cus.getAddress(), cus.getDriversLicenceNo());
+            return new Customer(id, cus);
         }
         catch (SQLException ex)
         {
