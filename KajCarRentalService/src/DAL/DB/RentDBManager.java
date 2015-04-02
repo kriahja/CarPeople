@@ -88,7 +88,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
         try (Connection con = cm.getConnection())
         {
             ArrayList<Rent> carList = new ArrayList<>();
-            String sql = "Select * from Car";
+            String sql = "Select * from Rent";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
