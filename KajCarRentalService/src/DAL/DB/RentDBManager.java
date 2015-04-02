@@ -8,7 +8,7 @@ package DAL.DB;
 import BE.Rent;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
-import DAL.ICRUDrepository;
+import DAL.ICRUDmanager;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author ZALI
  */
-public class RentDBManager implements ICRUDrepository<Rent> 
+public class RentDBManager implements ICRUDmanager<Rent> 
 {
     private final DBConnectionManager cm;
     private static RentDBManager instance = null;
@@ -104,11 +104,6 @@ public class RentDBManager implements ICRUDrepository<Rent>
 
             throw new KajCarExceptions("Unable to read data.");
         }
-    }
-
-    @Override
-    public Rent readName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

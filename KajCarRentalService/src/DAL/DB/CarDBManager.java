@@ -9,7 +9,7 @@ import BE.Car;
 import BE.Controller.EntityCtrl;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
-import DAL.ICRUDrepository;
+import DAL.ICRUDmanager;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author notandi
  */
-public class CarDBManager implements ICRUDrepository<Car>
+public class CarDBManager implements ICRUDmanager<Car>
 {
     private EntityCtrl ec;
     
@@ -135,7 +135,7 @@ public class CarDBManager implements ICRUDrepository<Car>
         }
     }
 
-    @Override
+    
     public Car readName(String carName)
     {
         try (Connection con = cm.getConnection())

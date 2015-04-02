@@ -15,9 +15,9 @@ import java.io.IOException;
  */
 public class DalFacade
 {
-    private ICRUDrepository<Car> carManager;
+    private ICRUDmanager<Car> carManager;
     
-    public ICRUDrepository<Car> getCarManager() throws IOException
+    public ICRUDmanager<Car> getCarManager() throws IOException
     {
         if(carManager == null)
         {

@@ -13,14 +13,14 @@ import java.util.List;
  * @author notandi
  * @param <T>
  */
-public interface ICRUDrepository<T extends IEntityCtrl>
+public interface ICRUDmanager<T extends IEntityCtrl>
 {
 
     public T create(T t);
 
     public List<T> readAll();
 
-    public T readName(String name);
+    //public T readName(String name);
     
     public T readId(int id);
 

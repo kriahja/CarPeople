@@ -8,7 +8,7 @@ package DAL.DB;
 import BE.Customer;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
-import DAL.ICRUDrepository;
+import DAL.ICRUDmanager;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author notandi
  */
-public class CustomerDBManager implements ICRUDrepository<Customer>
+public class CustomerDBManager implements ICRUDmanager<Customer>
 {
 
     private final DBConnectionManager cm;
@@ -109,7 +109,7 @@ public class CustomerDBManager implements ICRUDrepository<Customer>
         }
     }
 
-    @Override
+    
     public Customer readName(String customerName)
     {
         try (Connection con = cm.getConnection())
