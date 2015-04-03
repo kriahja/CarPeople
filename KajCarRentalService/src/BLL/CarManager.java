@@ -8,9 +8,12 @@ package BLL;
 import BE.Car;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DB.CarDBManager;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +30,14 @@ public class CarManager
     private CarManager()
     {
         cars = new ArrayList<>();
-        // Need to finish the contructer once the DAL is created
+        try
+        {
+            db = CarDBManager.getInstance();
+        }
+        catch (IOException ex)
+        {
+            throw new KajCarExceptions("Unable to connect to Car database");
+        }
     }
 
     public static CarManager getInstance()

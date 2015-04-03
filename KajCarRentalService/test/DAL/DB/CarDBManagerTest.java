@@ -26,7 +26,7 @@ public class CarDBManagerTest
     public void testSetUp() throws IOException
     {
         mgr = CarDBManager.getInstance();
-        car2 = new Car("Bonz", 10, 2, 2);
+        car2 = new Car(1, "B", 1, 1, 1);
 
     }
 
