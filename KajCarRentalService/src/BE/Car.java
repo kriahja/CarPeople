@@ -44,11 +44,11 @@ public class Car extends EntityCtrl
         
     }
 
-//    public Car(int id, Car car) {
-//        
-//        this(id, car.getName(), car.getKm());
-//        
-//    }
+    public Car(int id, Car car) {
+        
+        this(id, car.getName(), car.getKm(), car.getDepId(), car.getCatId());
+        
+    }
 
     /**
      * @return the name

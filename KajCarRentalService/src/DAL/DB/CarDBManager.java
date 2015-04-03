@@ -91,7 +91,7 @@ public class CarDBManager implements ICRUDmanager<Car>
             keys.next();                            // 
             int id = keys.getInt(1);                // changed here because we want t create a car not get an existing one
 
-            return new Car("Name", car.getKm(), car.getDepId(), car.getCatId());                //
+            return new Car(id, car);                //
         }
         catch (SQLException ex)
         {
