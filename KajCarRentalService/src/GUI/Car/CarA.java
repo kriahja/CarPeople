@@ -46,11 +46,14 @@ public class CarA extends javax.swing.JFrame
     private void doWindowClosing(WindowEvent e)
     {
 
-        
         int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
         if (option == JOptionPane.YES_OPTION)
         {
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
+        }
+        else if (option == JOptionPane.NO_OPTION)
+        {
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
 
     }

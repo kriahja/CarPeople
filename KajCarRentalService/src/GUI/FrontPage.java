@@ -60,6 +60,10 @@ public class FrontPage extends javax.swing.JFrame
 
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
         }
+        else if (option == JOptionPane.NO_OPTION)
+        {
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
 
     }
 
