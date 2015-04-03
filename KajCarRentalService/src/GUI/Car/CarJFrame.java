@@ -17,6 +17,11 @@ import javax.swing.JOptionPane;
 public class CarJFrame extends javax.swing.JFrame
 {
 
+    CarA ca;
+    CarB cb;
+    CarC cc;
+    CarD cd;
+
     /**
      * Creates new form Car
      */
@@ -28,6 +33,7 @@ public class CarJFrame extends javax.swing.JFrame
     private void Initialize()
     {
         initComponents();
+        setTitle("Car Category");
         setResizable(false);
         setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter()
@@ -44,7 +50,7 @@ public class CarJFrame extends javax.swing.JFrame
     private void doWindowClosing(WindowEvent e)
     {
 
-        //System.exit(0);
+        
         int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
         if (option == JOptionPane.YES_OPTION)
         {
@@ -79,15 +85,43 @@ public class CarJFrame extends javax.swing.JFrame
 
         btnA.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         btnA.setText("A");
+        btnA.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAActionPerformed(evt);
+            }
+        });
 
         btnB.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         btnB.setText("B");
+        btnB.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnBActionPerformed(evt);
+            }
+        });
 
         btnC.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         btnC.setText("C");
+        btnC.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCActionPerformed(evt);
+            }
+        });
 
         btnD.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         btnD.setText("D");
+        btnD.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnDActionPerformed(evt);
+            }
+        });
 
         btnNext.setText("Next");
 
@@ -140,6 +174,30 @@ public class CarJFrame extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAActionPerformed
+    {//GEN-HEADEREND:event_btnAActionPerformed
+        ca = new CarA();
+        ca.setVisible(true);
+    }//GEN-LAST:event_btnAActionPerformed
+
+    private void btnBActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnBActionPerformed
+    {//GEN-HEADEREND:event_btnBActionPerformed
+        cb = new CarB();
+        cb.setVisible(true);
+    }//GEN-LAST:event_btnBActionPerformed
+
+    private void btnCActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCActionPerformed
+    {//GEN-HEADEREND:event_btnCActionPerformed
+        cc = new CarC();
+        cc.setVisible(true);
+    }//GEN-LAST:event_btnCActionPerformed
+
+    private void btnDActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDActionPerformed
+    {//GEN-HEADEREND:event_btnDActionPerformed
+        cd = new CarD();
+        cd.setVisible(true);
+    }//GEN-LAST:event_btnDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

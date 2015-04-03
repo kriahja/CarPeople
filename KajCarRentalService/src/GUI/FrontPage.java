@@ -34,6 +34,7 @@ public class FrontPage extends javax.swing.JFrame
     public void Initialize()
     {
         initComponents();
+        setTitle("Kaj Car Rental Service");
         setResizable(false);
         setLocationRelativeTo(null);
 

@@ -5,6 +5,11 @@
  */
 package GUI.Car;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author agnarsdottir
@@ -17,7 +22,37 @@ public class CarA extends javax.swing.JFrame
      */
     public CarA()
     {
+        Initialize();
+
+    }
+
+    private void Initialize()
+    {
         initComponents();
+        setTitle("Category A");
+        setResizable(false);
+        setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                doWindowClosing(e);
+            }
+
+        });
+    }
+
+    private void doWindowClosing(WindowEvent e)
+    {
+
+        
+        int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
+        if (option == JOptionPane.YES_OPTION)
+        {
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
+        }
+
     }
 
     /**

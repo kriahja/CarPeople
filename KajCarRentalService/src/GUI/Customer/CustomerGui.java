@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class CustomerGui extends javax.swing.JFrame
 {
-
+    CustomerNewJFrame newCust;
     /**
      * Creates new form Customer
      */
@@ -29,6 +29,7 @@ public class CustomerGui extends javax.swing.JFrame
     private void Initialize()
     {
         initComponents();
+        setTitle("Main Customer Window");
         setResizable(false);
         setLocationRelativeTo(null);
         addWindowListener(new WindowAdapter()
@@ -171,7 +172,8 @@ public class CustomerGui extends javax.swing.JFrame
 
     private void btnNewCustomerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNewCustomerActionPerformed
     {//GEN-HEADEREND:event_btnNewCustomerActionPerformed
-        // TODO add your handling code here:
+        newCust = new CustomerNewJFrame();
+        newCust.setVisible(true);
     }//GEN-LAST:event_btnNewCustomerActionPerformed
 
 
