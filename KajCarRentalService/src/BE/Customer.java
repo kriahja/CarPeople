@@ -53,6 +53,11 @@ public class Customer extends EntityCtrl
         this(id, cus.getName(), cus.getAddress(),cus.getCreditCardId(), cus.getRentId(), cus.getDriversLicenceNo(), cus.getTypeId());
     }
 
+    public Customer(int zipCode, int credit, int CustomerId, int zipCode0, int zipCode1, String name, int zipCode2)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * @return the name
      */

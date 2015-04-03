@@ -5,6 +5,10 @@
  */
 package GUI.Customer;
 
+import BE.Customer;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author agnarsdottir
@@ -18,6 +22,7 @@ public class CustomerNewJFrame extends javax.swing.JFrame
     public CustomerNewJFrame()
     {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -30,6 +35,7 @@ public class CustomerNewJFrame extends javax.swing.JFrame
     private void initComponents()
     {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnAddressAdd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtNamee = new javax.swing.JTextField();
@@ -59,6 +65,8 @@ public class CustomerNewJFrame extends javax.swing.JFrame
         txtCustomerId = new javax.swing.JTextField();
         btnAddCustomer = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
+        rbPrivateCustomer = new javax.swing.JRadioButton();
+        rbBusinessCustomer = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +94,14 @@ public class CustomerNewJFrame extends javax.swing.JFrame
 
         lblAddress.setText("Address:");
 
+        txtAddress.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                txtAddressActionPerformed(evt);
+            }
+        });
+
         txtZipCode.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -97,6 +113,14 @@ public class CustomerNewJFrame extends javax.swing.JFrame
         lblZipCode.setText("Zip Code:");
 
         lblCountry.setText("Country:");
+
+        txtCountry.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                txtCountryActionPerformed(evt);
+            }
+        });
 
         btnNameAdd.setText("Add");
         btnNameAdd.addActionListener(new java.awt.event.ActionListener()
@@ -112,6 +136,14 @@ public class CustomerNewJFrame extends javax.swing.JFrame
         btnCountryAdd.setText("Add");
 
         lblCPR.setText("Cpr :");
+
+        txtCPR.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                txtCPRActionPerformed(evt);
+            }
+        });
 
         btnAddCPR.setText("Add");
         btnAddCPR.addActionListener(new java.awt.event.ActionListener()
@@ -148,13 +180,56 @@ public class CustomerNewJFrame extends javax.swing.JFrame
 
         lblRentId.setText("Rent Id:");
 
+        txtRent.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                txtRentActionPerformed(evt);
+            }
+        });
+
         btnAddRent.setText("Add");
 
         lblCustomerId.setText("Customer Id:");
 
+        txtCustomerId.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                txtCustomerIdActionPerformed(evt);
+            }
+        });
+
         btnAddCustomer.setText("Add");
 
         btnNext.setText("Next");
+        btnNext.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnNextActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rbPrivateCustomer);
+        rbPrivateCustomer.setText("Private Customer");
+        rbPrivateCustomer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rbPrivateCustomerActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rbBusinessCustomer);
+        rbBusinessCustomer.setText("Business Customer");
+        rbBusinessCustomer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rbBusinessCustomerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,44 +285,44 @@ public class CustomerNewJFrame extends javax.swing.JFrame
                                 .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCountryAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtCredit, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCPR))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnAddCPR, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAddCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                                .addGap(41, 41, 41))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(lblDriversLicens))
-                                    .addComponent(lblRentId))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtDrivers, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRent, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblCPR)
-                                            .addComponent(lblCreditcard))
-                                        .addGap(0, 39, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAddDriversLicens, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAddRent, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(39, 39, 39))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(rbBusinessCustomer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnNext)
-                        .addGap(17, 17, 17))))
+                        .addGap(17, 17, 17))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtCredit, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCPR))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAddCPR, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAddCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDrivers, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRent, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCPR)
+                                    .addComponent(lblCreditcard))
+                                .addGap(0, 39, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAddDriversLicens, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAddRent, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblDriversLicens))
+                            .addComponent(lblRentId)
+                            .addComponent(rbPrivateCustomer))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,10 +378,14 @@ public class CustomerNewJFrame extends javax.swing.JFrame
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAddCustomer))
-                        .addContainerGap(18, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(rbPrivateCustomer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNext)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNext)
+                            .addComponent(rbBusinessCustomer))
                         .addContainerGap())))
         );
 
@@ -347,6 +426,79 @@ public class CustomerNewJFrame extends javax.swing.JFrame
     {//GEN-HEADEREND:event_txtNameeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameeActionPerformed
+
+    private void rbPrivateCustomerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbPrivateCustomerActionPerformed
+    {//GEN-HEADEREND:event_rbPrivateCustomerActionPerformed
+         
+    }//GEN-LAST:event_rbPrivateCustomerActionPerformed
+
+    private void rbBusinessCustomerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rbBusinessCustomerActionPerformed
+    {//GEN-HEADEREND:event_rbBusinessCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbBusinessCustomerActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNextActionPerformed
+    {//GEN-HEADEREND:event_btnNextActionPerformed
+{                                          
+        try
+        {
+            //int zipCode = new Scanner(txtZipCode.getText().trim()).nextInt();
+            
+            String name = txtNamee.getText().trim();
+            if (name.isEmpty())
+            {
+                throw new RuntimeException("Name is required.");
+            }
+            
+            int credit = new Scanner (txtCredit.getText().trim()).nextInt();
+            
+            int customerId = new Scanner (txtCustomerId.getText().trim()).nextInt();
+            
+            //int cpr = new Scanner (txtCPR.getText().trim()).nextInt();
+            
+            String driverslicense = txtDrivers.getText().trim();
+            
+            String address = txtAddress.getText().trim();
+
+            //String country  = txtCountry.getText().trim().nextInt();
+
+            
+            Customer cust;
+            cust = new Customer
+            
+            
+            dispose();
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
+        }
+       }//GEN-LAST:event_btnNextActionPerformed
+
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtAddressActionPerformed
+    {//GEN-HEADEREND:event_txtAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void txtCountryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCountryActionPerformed
+    {//GEN-HEADEREND:event_txtCountryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCountryActionPerformed
+
+    private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCustomerIdActionPerformed
+    {//GEN-HEADEREND:event_txtCustomerIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustomerIdActionPerformed
+
+    private void txtCPRActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCPRActionPerformed
+    {//GEN-HEADEREND:event_txtCPRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPRActionPerformed
+
+    private void txtRentActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtRentActionPerformed
+    {//GEN-HEADEREND:event_txtRentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,6 +563,7 @@ public class CustomerNewJFrame extends javax.swing.JFrame
     private javax.swing.JButton btnCountryAdd;
     private javax.swing.JButton btnNameAdd;
     private javax.swing.JButton btnNext;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblCPR;
@@ -421,6 +574,8 @@ public class CustomerNewJFrame extends javax.swing.JFrame
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblRentId;
     private javax.swing.JLabel lblZipCode;
+    private javax.swing.JRadioButton rbBusinessCustomer;
+    private javax.swing.JRadioButton rbPrivateCustomer;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCPR;
     private javax.swing.JTextField txtCountry;
