@@ -19,14 +19,13 @@ public class CarDBManagerTest
 {
 
     ICRUDmanager<Car> mgr;
-    Car car;
+
     Car car2;
 
     @Before
     public void testSetUp() throws IOException
     {
         mgr = CarDBManager.getInstance();
-        car = new Car(1, "Benz", 10, 1, 1);
         car2 = new Car("Bonz", 10, 2, 2);
 
     }
@@ -72,6 +71,7 @@ public class CarDBManagerTest
     @Test
     public void testReadName()
     {
+        
     }
 
     /**

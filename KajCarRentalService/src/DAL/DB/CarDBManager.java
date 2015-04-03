@@ -56,16 +56,16 @@ public class CarDBManager implements ICRUDmanager<Car>
         return car;
     }
 
-    private Car getOneCarWithID(ResultSet rs) throws SQLException
-    {
-        int id = rs.getInt("ID");
-        String carName = rs.getString("Name");
-        int km = rs.getInt("KM");
-
-        Car car = new Car(id, carName, km);
-
-        return car;
-    }
+//    private Car getOneCarWithID(ResultSet rs) throws SQLException
+//    {
+//        int id = rs.getInt("ID");
+//        String carName = rs.getString("Name");
+//        int km = rs.getInt("KM");
+//
+//        Car car = new Car(id, carName, km);
+//
+//        return car;
+//    }
 
     @Override
     public Car create(Car car)
@@ -91,7 +91,7 @@ public class CarDBManager implements ICRUDmanager<Car>
             keys.next();                            // 
             int id = keys.getInt(1);                // changed here because we want t create a car not get an existing one
 
-            return new Car(id, car);                //
+            return new Car("Name", car.getKm(), car.getDepId(), car.getCatId());                //
         }
         catch (SQLException ex)
         {
@@ -100,29 +100,6 @@ public class CarDBManager implements ICRUDmanager<Car>
         
     }
 
-    public Car createSimpleCar(Car car)
-    {
-        try (Connection con = cm.getConnection())
-        {
-            String sql = "INSERT INTO Car(Name, KM) VALUES (? ?)";
-            PreparedStatement ps = con.prepareStatement(sql,
-                    PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, car.getName());
-            ps.setInt(2, car.getKm());
-
-             ResultSet keys = ps.getGeneratedKeys();
-            keys.next();
-            int id = keys.getInt(1);
-
-            return new Car(id, car); // another constructor?
-
-        }
-        catch (SQLException ex)
-        {
-            throw new KajCarExceptions("Unable to create simple Car");
-        }
-        
-    }
 
     @Override
     public List<Car> readAll()
