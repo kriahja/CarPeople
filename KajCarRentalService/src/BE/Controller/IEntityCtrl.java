@@ -17,8 +17,10 @@ public interface IEntityCtrl
     
     //  CAR
     public int getDepId();
+    public void setDepId(int depId);
 
     public int getCatId();
+    public void setCatId(int catId);
 
     public boolean isDamaged();
 
@@ -34,17 +36,23 @@ public interface IEntityCtrl
 
     //  CUSTOMER
     public int getCreditCardId();
+    public void setCreditCardId(int creditCardId);
 
     public int getRentId();
+    public void setRentId(int rentId);
 
     public int getTypeId();
+    public void setTypeId(int typeId);
     
     //  RENT
     public int getCarId();
+    public void setCarid(int carId);
     
     public int getCustomerId();
+    public void setCustomerId(int customerId);
     
     public int getInsuranceId();
+    public void setInsuranceId(int insuranceId);
 
     
     

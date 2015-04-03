@@ -20,13 +20,14 @@ public class CarDBManagerTest
 
     ICRUDmanager<Car> mgr;
     Car car;
+    Car car2;
 
     @Before
     public void testSetUp() throws IOException
     {
         mgr = CarDBManager.getInstance();
-        car = new Car(1, "Benz", 10);
-
+        car = new Car(1, "Benz", 10, 1, 1);
+        car2 = new Car("Bonz", 10, 2, 2);
 
     }
 
@@ -37,7 +38,7 @@ public class CarDBManagerTest
     public void testGetInstance() throws Exception
     {
         System.out.println("testGetInstance()");
-        
+
         assertTrue(mgr instanceof CarDBManager);
     }
 
@@ -48,15 +49,11 @@ public class CarDBManagerTest
     public void testCreate() throws IOException
     {
         System.out.println("testCreate()");
-        
-        car = mgr.create(car);
-        assertTrue("should have id 1 and name Benz",mgr.readId(car.getCarId()).getName().equals("Benz"));
-        assertTrue("should have id 1 and km 10",mgr.readId(car.getCarId()).getKm() == 10);
 
-   
+        car2 = mgr.create(car2);
         
-        
-        
+
+
     }
 
     /**
@@ -66,8 +63,7 @@ public class CarDBManagerTest
     public void testReadAll()
     {
         System.out.println("testReadAll()");
-        
-        
+
     }
 
     /**

@@ -125,4 +125,52 @@ public class EntityCtrl implements IEntityCtrl
         return insuranceId;
     }
 
+    @Override
+    public void setDepId(int depId)
+    {
+        this.depId = depId;
+    }
+
+    @Override
+    public void setCatId(int catId)
+    {
+        this.catId = catId;
+    }
+
+    @Override
+    public void setCreditCardId(int creditCardId)
+    {
+        this.creditCardId = creditCardId;
+    }
+
+    @Override
+    public void setRentId(int rentId)
+    {
+        this.rentId = rentId;
+    }
+
+    @Override
+    public void setTypeId(int typeId)
+    {
+        this.typeId = typeId;
+    }
+
+    @Override
+    public void setCarid(int carId)
+    {
+        this.carId = carId;
+    }
+
+    @Override
+    public void setCustomerId(int customerId)
+    {
+        this.customerId = customerId;
+    }
+
+    @Override
+    public void setInsuranceId(int insuranceId)
+    {
+        this.insuranceId = insuranceId;
+    }
+
 }
