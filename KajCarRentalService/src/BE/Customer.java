@@ -37,7 +37,7 @@ public class Customer extends EntityCtrl
         this.driversLicenceNo = driversLicenceNo;
     }
     
-    public Customer(int id, String name, String address, int creditCardId, int rentId, String driversLicenceNo, int typeId)
+    public Customer(int id,String name, String address, int creditCardId, int rentId, String driversLicenceNo, int typeId)
     {
        this.name = name;
         this.address = address;

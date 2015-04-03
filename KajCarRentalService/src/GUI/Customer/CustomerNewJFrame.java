@@ -439,7 +439,7 @@ public class CustomerNewJFrame extends javax.swing.JFrame
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNextActionPerformed
     {//GEN-HEADEREND:event_btnNextActionPerformed
-{                                          
+                                          
         try
         {
             //int zipCode = new Scanner(txtZipCode.getText().trim()).nextInt();
@@ -454,7 +454,7 @@ public class CustomerNewJFrame extends javax.swing.JFrame
             
             int customerId = new Scanner (txtCustomerId.getText().trim()).nextInt();
             
-            //int cpr = new Scanner (txtCPR.getText().trim()).nextInt();
+            int cpr = new Scanner (txtCPR.getText().trim()).nextInt();
             
             String driverslicense = txtDrivers.getText().trim();
             
@@ -464,7 +464,7 @@ public class CustomerNewJFrame extends javax.swing.JFrame
 
             
             Customer cust;
-            cust = new Customer
+            //cust = new Customer
             
             
             dispose();
