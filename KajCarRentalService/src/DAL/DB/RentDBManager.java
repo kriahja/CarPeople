@@ -5,8 +5,6 @@
  */
 package DAL.DB;
 
-import BE.Car;
-import BE.Customer;
 import BE.Rent;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
@@ -62,7 +60,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, rent.getCustomerId());
-            ps.setInt(2, rent.getCarId());
+            ps.setInt(2, rent.getRentId());
             ps.setInt(3, rent.getInsuranceId());
             ps.setInt(4, rent.startDate);
             ps.setInt(4, rent.endDate);
@@ -70,7 +68,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
-                throw new SQLException("Unable to add Car.");
+                throw new SQLException("Unable to add Rent.");
             }
 
             ResultSet keys = ps.getGeneratedKeys();
@@ -89,7 +87,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
     public List<Rent> readAll() {
         try (Connection con = cm.getConnection())
         {
-            ArrayList<Rent> carList = new ArrayList<>();
+            ArrayList<Rent> rentList = new ArrayList<>();
             String sql = "Select * from Rent";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -97,9 +95,9 @@ public class RentDBManager implements ICRUDmanager<Rent>
             while (rs.next())
             {
                 Rent rent = getOneRent(rs);
-                carList.add(rent);
+                rentList.add(rent);
             }
-            return carList;
+            return rentList;
         }
         catch (SQLException ex)
         {
@@ -110,29 +108,70 @@ public class RentDBManager implements ICRUDmanager<Rent>
 
     @Override
     public Rent readId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "SELECT * FROM Rent WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return getOneRent(rs);
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read Rent id.");
+        }
+        return null;
     }
 
     @Override
-    public void update(Rent t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Rent rent) {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "UPDATE rent SET  CustId = ?, CarId = ?, InsurranceId = ?, StartDate = ?, EndDate = ? WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, rent.getStartDate());
+            ps.setInt(2, rent.getEndDate());
+
+            ps.executeUpdate();
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to update rent data.");
+        }
     }
 
     @Override
     public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "DELETE FROM Rent WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to remove Rent.");
+        }
+    
     }
     /*
-    public Rent create(Rent rent, Customer cust, Car car) throws SQLException
+    public Rent create(Rent rent) throws SQLException
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
+            String sql = "INSERT INTO Rent(CustId, RentId, InsurranceId, "
                     + "StartDate, EndDate) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, cust.getId());
-            ps.setInt(2, car.getCarId());
+            ps.setInt(1, rent.getCustomerId());
+            ps.setInt(2, rent.getRentId());
             ps.setInt(3, rent.getInsuranceId());
             ps.setInt(4, rent.startDate);
             ps.setInt(4, rent.endDate);
@@ -140,7 +179,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
-                throw new SQLException("Unable to add Car.");
+                throw new SQLException("Unable to add Rent.");
             }
 
             ResultSet keys = ps.getGeneratedKeys();
@@ -151,5 +190,6 @@ public class RentDBManager implements ICRUDmanager<Rent>
         }
     }
     */
+    
     
 }
