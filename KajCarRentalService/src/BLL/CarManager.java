@@ -130,6 +130,7 @@ public class CarManager
     public ArrayList<Car> getIsDamaged()
     {
         ArrayList<Car> damagedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isDmg : cars)
         {
             if (isDmg.isDamaged() == true)
@@ -143,6 +144,7 @@ public class CarManager
     public ArrayList<Car> getIsNotDamaged()
     {
         ArrayList<Car> unDamagedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isNotDmg : cars)
         {
             if (isNotDmg.isDamaged() == false)
@@ -156,6 +158,7 @@ public class CarManager
     public ArrayList<Car> getIsFull()
     {
         ArrayList<Car> fullFuelList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isFull : cars)
         {
             if (isFull.isFull() == true)
@@ -169,6 +172,7 @@ public class CarManager
     public List<Car> getIsNotFull()
     {
         ArrayList<Car> notFullFuelList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isNotFull : cars)
         {
             if (isNotFull.isFull() == false)
@@ -182,6 +186,7 @@ public class CarManager
     public List<Car> getIsFixed()
     {
         ArrayList<Car> fixedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isFixed : cars)
         {
             if (isFixed.isFull() == true)
@@ -195,6 +200,7 @@ public class CarManager
     public List<Car> getIsNotFixed()
     {
         ArrayList<Car> notFixedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isNotFixed : cars)
         {
             if (isNotFixed.isFull() == false)

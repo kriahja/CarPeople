@@ -271,7 +271,7 @@ public class CarDBManager implements ICRUDmanager<Car>
         {
             throw new KajCarExceptions("Unable to read Car catid.");
         }
-        
+           
     }
       
       public ArrayList<Car> getByKm(int km)
