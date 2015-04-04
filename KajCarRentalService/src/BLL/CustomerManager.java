@@ -140,7 +140,7 @@ public class CustomerManager
 
     public ArrayList<Customer> getAll()
     {
-        return (ArrayList<Customer>) db.readAll();
+        return db.readAll();
        
     }
 
