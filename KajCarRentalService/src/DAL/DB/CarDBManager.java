@@ -224,5 +224,78 @@ public class CarDBManager implements ICRUDmanager<Car>
             throw new KajCarExceptions("Unable to remove Car.");
         }
     }
+    
+     public ArrayList<Car> readDepId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<Car> carList = new ArrayList<>();
+            String sql = "SELECT * FROM Car WHERE DepId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                Car car = getOneCar(rs);
+                carList.add(car);
+            }
+            
+            return carList;
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read Car depid.");
+        }
+    }
+     
+      public ArrayList<Car> readCatId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<Car> carList = new ArrayList<>();
+            String sql = "SELECT * FROM Car WHERE CatId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                Car car = getOneCar(rs);
+                carList.add(car);
+            }
+            
+            return carList;
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read Car catid.");
+        }
+        
+    }
+      
+      public ArrayList<Car> getByKm(int km)
+      {
+          try (Connection con = cm.getConnection())
+        {
+            ArrayList<Car> carList = new ArrayList<>();
+            String sql = "SELECT * FROM Car WHERE KM = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, km);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                Car car = getOneCar(rs);
+                carList.add(car);
+            }
+            
+            return carList;
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read Car km.");
+        }
+      }
 
 }

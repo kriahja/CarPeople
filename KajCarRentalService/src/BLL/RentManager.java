@@ -5,6 +5,8 @@
  */
 package BLL;
 
+import BE.Car;
+import BE.Customer;
 import BE.Rent;
 import DAL.DB.RentDBManager;
 import java.util.ArrayList;
@@ -90,4 +92,6 @@ public class RentManager {
         db.create(rent);
     }
 
+    
+    
 }

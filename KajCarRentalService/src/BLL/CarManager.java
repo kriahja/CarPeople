@@ -51,6 +51,7 @@ public class CarManager
 
     public Car getById(int id)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getId() == id)
@@ -59,10 +60,14 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.readId(id);
+        
     }
 
     public Car getByName(String name)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getName().equals(name))
@@ -71,10 +76,13 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.readName(name);
     }
 
-    public Car getByDepId(int depId)
+    public ArrayList<Car> getByDepId(int depId)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getDepId() == depId)
@@ -83,10 +91,14 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.readDepId(depId);
+        
     }
 
-    public Car getByCatid(int catId)
+    public ArrayList<Car> getByCatid(int catId)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getCatId() == catId)
@@ -95,10 +107,14 @@ public class CarManager
             }
         }
         return null;
+                */
+        
+        return db.readCatId(catId);
     }
 
-    public Car getByKm(int km)
+    public ArrayList<Car> getByKm(int km)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getKm() == km)
@@ -107,6 +123,8 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.getByKm(km);
     }
 
     public ArrayList<Car> getIsDamaged()
