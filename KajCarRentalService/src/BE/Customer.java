@@ -4,31 +4,25 @@
  * and open the template in the editor.
  */
 package BE;
-
 import BE.Controller.*;
-
 /**
  *
  * @author notandi
  */
 public class Customer extends EntityCtrl
 {
-
     private String name;
     private String address;
     private String driversLicenceNo;
  //   private int rentId;
     private int typeId;
     private int creditCardId;
-
     public Customer(String name, String address, String driversLicenceNo)
     {
         this.name = name;
         this.address = address;
         this.driversLicenceNo = driversLicenceNo;
-
     }
-
     public Customer(int id, String name, String address, String driversLicenceNo)
     {
         setId(id);
@@ -38,7 +32,6 @@ public class Customer extends EntityCtrl
     }
     
     public Customer(int id, String name, String address, int creditCardId,  String driversLicenceNo, int typeId)
-    public Customer(int id,String name, String address, int creditCardId, int rentId, String driversLicenceNo, int typeId)
     {
        this.name = name;
         this.address = address;
@@ -46,19 +39,12 @@ public class Customer extends EntityCtrl
    //     this.rentId = rentId;
         this.driversLicenceNo = driversLicenceNo;
         this.typeId = typeId;
-
     }
     
     public Customer(int id, Customer cus)
     {
         this(id, cus.getName(), cus.getAddress(),cus.getCreditCardId(), cus.getDriversLicenceNo(), cus.getTypeId());
     }
-
-    public Customer(int zipCode, int credit, int CustomerId, int zipCode0, int zipCode1, String name, int zipCode2)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * @return the name
      */
@@ -66,7 +52,6 @@ public class Customer extends EntityCtrl
     {
         return name;
     }
-
     /**
      * @param name the name to set
      */
@@ -74,7 +59,6 @@ public class Customer extends EntityCtrl
     {
         this.name = name;
     }
-
     /**
      * @return the address
      */
@@ -82,7 +66,6 @@ public class Customer extends EntityCtrl
     {
         return address;
     }
-
     /**
      * @param address the address to set
      */
@@ -90,7 +73,6 @@ public class Customer extends EntityCtrl
     {
         this.address = address;
     }
-
     /**
      * @return the driversLicenceNo
      */
@@ -98,7 +80,6 @@ public class Customer extends EntityCtrl
     {
         return driversLicenceNo;
     }
-
     /**
      * @param driversLicenceNo the driversLicenceNo to set
      */
@@ -106,13 +87,11 @@ public class Customer extends EntityCtrl
     {
         this.driversLicenceNo = driversLicenceNo;
     }
-
     @Override
     public String toString()
     {
         return "Customer{" + "name=" + name + ", address=" + address + ", driversLicenceNo=" + driversLicenceNo + '}';
     }
-
     /**
      * @return the rentId
      */
@@ -120,7 +99,6 @@ public class Customer extends EntityCtrl
     public int getRentId() {
         return rentId;
     }
-
     /**
      * @param rentId the rentId to set
      */
@@ -135,28 +113,22 @@ public class Customer extends EntityCtrl
     public int getTypeId() {
         return typeId;
     }
-
     /**
      * @param typeId the typeId to set
      */
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
-
     /**
      * @return the creditCardId
      */
     public int getCreditCardId() {
         return creditCardId;
     }
-
     /**
      * @param creditCardId the creditCardId to set
      */
     public void setCreditCardId(int creditCardId) {
         this.creditCardId = creditCardId;
     }
-
-
-
 }

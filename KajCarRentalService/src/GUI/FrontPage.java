@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import GUI.Car.CarJFrame;
+import GUI.Car.CatJFrame;
 import GUI.Customer.CustomerGui;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -20,7 +20,7 @@ public class FrontPage extends javax.swing.JFrame
 {
 
     CustomerGui custGui;
-    CarJFrame carGui;
+    CatJFrame catGui;
 
     /**
      * Creates new form FrontPage
@@ -181,8 +181,8 @@ public class FrontPage extends javax.swing.JFrame
 
     private void btnCarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCarActionPerformed
     {//GEN-HEADEREND:event_btnCarActionPerformed
-        carGui = new CarJFrame();
-        carGui.setVisible(true);
+        catGui = new CatJFrame();
+        catGui.setVisible(true);
     }//GEN-LAST:event_btnCarActionPerformed
 
 
