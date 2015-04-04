@@ -17,7 +17,7 @@ public class Customer extends EntityCtrl
     private String name;
     private String address;
     private String driversLicenceNo;
-    private int rentId;
+ //   private int rentId;
     private int typeId;
     private int creditCardId;
 
@@ -37,12 +37,13 @@ public class Customer extends EntityCtrl
         this.driversLicenceNo = driversLicenceNo;
     }
     
+    public Customer(int id, String name, String address, int creditCardId,  String driversLicenceNo, int typeId)
     public Customer(int id,String name, String address, int creditCardId, int rentId, String driversLicenceNo, int typeId)
     {
        this.name = name;
         this.address = address;
         this.creditCardId = creditCardId;
-        this.rentId = rentId;
+   //     this.rentId = rentId;
         this.driversLicenceNo = driversLicenceNo;
         this.typeId = typeId;
 
@@ -50,7 +51,7 @@ public class Customer extends EntityCtrl
     
     public Customer(int id, Customer cus)
     {
-        this(id, cus.getName(), cus.getAddress(),cus.getCreditCardId(), cus.getRentId(), cus.getDriversLicenceNo(), cus.getTypeId());
+        this(id, cus.getName(), cus.getAddress(),cus.getCreditCardId(), cus.getDriversLicenceNo(), cus.getTypeId());
     }
 
     public Customer(int zipCode, int credit, int CustomerId, int zipCode0, int zipCode1, String name, int zipCode2)
@@ -115,6 +116,7 @@ public class Customer extends EntityCtrl
     /**
      * @return the rentId
      */
+    /*
     public int getRentId() {
         return rentId;
     }
@@ -122,10 +124,11 @@ public class Customer extends EntityCtrl
     /**
      * @param rentId the rentId to set
      */
+    /*
     public void setRentId(int rentId) {
         this.rentId = rentId;
     }
-
+*/
     /**
      * @return the typeId
      */

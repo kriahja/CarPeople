@@ -5,8 +5,9 @@
  */
 package GUI.Customer;
 
-import BE.Customer;
-import java.util.Scanner;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,8 +22,41 @@ public class CustomerNewJFrame extends javax.swing.JFrame
      */
     public CustomerNewJFrame()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         initComponents();
-        setLocationRelativeTo(this);
+        setTitle("Main Customer Window");
+        setResizable(false);
+        setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                doWindowClosing(e);
+            }
+
+        });
+    }
+
+    private void doWindowClosing(WindowEvent e)
+    {
+
+        //System.exit(0);
+        int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
+        if (option == JOptionPane.YES_OPTION)
+        {
+
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
+        }
+        else if (option == JOptionPane.NO_OPTION)
+        {
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
+
     }
 
     /**

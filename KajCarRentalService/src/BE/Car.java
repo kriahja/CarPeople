@@ -31,23 +31,23 @@ public class Car extends EntityCtrl
         this.km = km;
         setDepId(depId);
         setCatId(catId);
-        
-        
+
     }
-        public Car(String name, int km, int depId, int catId)
+
+    public Car(String name, int km, int depId, int catId)
     {
         this.name = name;
         this.km = km;
         setDepId(depId);
         setCatId(catId);
-        
-        
+
     }
 
-    public Car(int id, Car car) {
-        
+    public Car(int id, Car car)
+    {
+
         this(id, car.getName(), car.getKm(), car.getDepId(), car.getCatId());
-        
+
     }
 
     /**

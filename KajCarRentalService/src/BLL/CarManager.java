@@ -8,7 +8,7 @@ package BLL;
 import BE.Car;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DB.CarDBManager;
-import java.sql.SQLException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,14 @@ public class CarManager
     private CarManager()
     {
         cars = new ArrayList<>();
-        // Need to finish the contructer once the DAL is created
+        try
+        {
+            db = CarDBManager.getInstance();
+        }
+        catch (IOException ex)
+        {
+            throw new KajCarExceptions("Unable to connect to Car database");
+        }
     }
 
     public static CarManager getInstance()
@@ -41,6 +48,7 @@ public class CarManager
 
     public Car getById(int id)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getId() == id)
@@ -49,10 +57,14 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.readId(id);
+        
     }
 
     public Car getByName(String name)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getName().equals(name))
@@ -61,10 +73,13 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.readName(name);
     }
 
-    public Car getByDepId(int depId)
+    public ArrayList<Car> getByDepId(int depId)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getDepId() == depId)
@@ -73,10 +88,14 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.readDepId(depId);
+        
     }
 
-    public Car getByCatid(int catId)
+    public ArrayList<Car> getByCatid(int catId)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getCatId() == catId)
@@ -85,10 +104,14 @@ public class CarManager
             }
         }
         return null;
+                */
+        
+        return db.readCatId(catId);
     }
 
-    public Car getByKm(int km)
+    public ArrayList<Car> getByKm(int km)
     {
+        /*
         for (Car c : cars)
         {
             if (c.getKm() == km)
@@ -97,11 +120,14 @@ public class CarManager
             }
         }
         return null;
+                */
+        return db.getByKm(km);
     }
 
     public ArrayList<Car> getIsDamaged()
     {
         ArrayList<Car> damagedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isDmg : cars)
         {
             if (isDmg.isDamaged() == true)
@@ -115,6 +141,7 @@ public class CarManager
     public ArrayList<Car> getIsNotDamaged()
     {
         ArrayList<Car> unDamagedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isNotDmg : cars)
         {
             if (isNotDmg.isDamaged() == false)
@@ -128,6 +155,7 @@ public class CarManager
     public ArrayList<Car> getIsFull()
     {
         ArrayList<Car> fullFuelList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isFull : cars)
         {
             if (isFull.isFull() == true)
@@ -141,6 +169,7 @@ public class CarManager
     public List<Car> getIsNotFull()
     {
         ArrayList<Car> notFullFuelList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isNotFull : cars)
         {
             if (isNotFull.isFull() == false)
@@ -154,6 +183,7 @@ public class CarManager
     public List<Car> getIsFixed()
     {
         ArrayList<Car> fixedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isFixed : cars)
         {
             if (isFixed.isFull() == true)
@@ -167,6 +197,7 @@ public class CarManager
     public List<Car> getIsNotFixed()
     {
         ArrayList<Car> notFixedList = new ArrayList<>();
+        cars = db.readAll();
         for (Car isNotFixed : cars)
         {
             if (isNotFixed.isFull() == false)
