@@ -216,5 +216,71 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
             throw new KajCarExceptions("Unable to delete Customer.");
         }
     }
+    
+    public ArrayList<Customer> getByAddress(String address)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<Customer> cusList = new ArrayList<>();
+            String sql = "SELECT * FROM Customer WHERE Address = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, address);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                Customer cus = getOneCustomer(rs);
+                cusList.add(cus);
+            }
+            return cusList;
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read customer name.");
+        }
+        
+    }
+    
+    public Customer getByDriversLicence(String licence)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "SELECT * FROM Customer WHERE DriversLicence = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, licence);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return getOneCustomer(rs);
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read customer drivers licence.");
+        }
+        return null;
+    }
+    
+    public Customer getByCreditCardId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            String sql = "SELECT * FROM Customer WHERE CrediCardId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                return getOneCustomer(rs);
+            }
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read customer Credit card id.");
+        }
+        return null;
+    }
 
 }

@@ -48,6 +48,7 @@ public class CustomerManager
 
     public Customer getById(int id)
     {
+        /*
         for (Customer c : customers)
         {
             if (c.getId() == id)
@@ -56,10 +57,14 @@ public class CustomerManager
             }
         }
         return null;
+                */
+        
+        return db.readId(id);
     }
 
     public Customer getByName(String name)
     {
+        /*
         for (Customer c : customers)
         {
             if (c.getName().equals(name))
@@ -68,10 +73,13 @@ public class CustomerManager
             }
         }
         return null;
+                */
+        return db.readName(name);
     }
 
-    public Customer getByAddress(String address)
+    public ArrayList<Customer> getByAddress(String address)
     {
+        /*
         for (Customer c : customers)
         {
             if (c.getAddress().equals(address))
@@ -80,22 +88,29 @@ public class CustomerManager
             }
         }
         return null;
+                */
+        return db.getByAddress(address);
     }
-
+/*
     public Customer getByRentId(int rentId)
     {
+        /*
         for (Customer c : customers)
         {
-            if (c.getRentId() == rentId)
-            {
-                return c;
+            if (c.getRentId() == rentId)        we dont need no getbyrentid method
+            {                                                   yeyeye
+                return c;                           rent has cusid so theres no need to have rent id inside here
             }
         }
         return null;
+                
+        
+        return db.getByRentId(rentId);
     }
-
+*/
     public Customer getByDriversLicence(String driversLicence)
     {
+        /*
         for (Customer c : customers)
         {
             if (c.getDriversLicenceNo().equals(driversLicence))
@@ -104,10 +119,13 @@ public class CustomerManager
             }
         }
         return null;
+                */
+        return db.getByDriversLicence(driversLicence);
     }
 
     public Customer getByCreditCardId(int creditCardId)
     {
+        /*
         for (Customer c : customers)
         {
             if (c.getCreditCardId() == creditCardId)
@@ -116,6 +134,8 @@ public class CustomerManager
             }
         }
         return null;
+                */
+        return db.getByCreditCardId(creditCardId);
     }
 
     public ArrayList<Customer> getAll()
