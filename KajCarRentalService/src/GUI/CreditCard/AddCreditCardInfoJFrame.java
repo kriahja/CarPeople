@@ -6,6 +6,7 @@
 package GUI.CreditCard;
 
 import BE.CreditCard;
+import GUI.WindowCtrl;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Scanner;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author notandi
  */
-public class AddCreditCardInfoJFrame extends javax.swing.JFrame
+public class AddCreditCardInfoJFrame extends WindowCtrl
 {
 
 CreditCard credit;
@@ -26,42 +27,12 @@ CreditCard credit;
  */
 public AddCreditCardInfoJFrame()
 {
-    Initialize();
-}
-
-private void Initialize()
-{
     initComponents();
     setTitle("Add Credit Card Information");
-    setResizable(false);
-    setLocationRelativeTo(null);
-    addWindowListener(new WindowAdapter()
-    {
-    @Override
-    public void windowClosing(WindowEvent e)
-    {
-        doWindowClosing(e);
-    }
-
-    });
+    WindowCtrl();
 }
 
-private void doWindowClosing(WindowEvent e)
-{
 
-    //System.exit(0);
-    int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
-    if (option == JOptionPane.YES_OPTION)
-    {
-
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
-    }
-    else if (option == JOptionPane.NO_OPTION)
-    {
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-    }
-
-}
 
 /**
  * This method is called from within the constructor to initialize the form.
@@ -246,10 +217,10 @@ private void doWindowClosing(WindowEvent e)
         }
     }//GEN-LAST:event_btnAddCreditInfoActionPerformed
 
-    public CreditCard getCreditCard()
-    {
-        return credit;
-    }
+public CreditCard getCreditCard()
+{
+    return credit;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCreditInfo;

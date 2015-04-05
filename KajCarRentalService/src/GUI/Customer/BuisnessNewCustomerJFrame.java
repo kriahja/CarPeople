@@ -5,11 +5,13 @@
  */
 package GUI.Customer;
 
+import GUI.WindowCtrl;
+
 /**
  *
  * @author agnarsdottir
  */
-public class BuisnessNewCustomerJFrame extends javax.swing.JFrame
+public class BuisnessNewCustomerJFrame extends WindowCtrl
 {
 
     /**
@@ -18,6 +20,8 @@ public class BuisnessNewCustomerJFrame extends javax.swing.JFrame
     public BuisnessNewCustomerJFrame()
     {
         initComponents();
+        setTitle("Adding New Business Customer");
+        WindowCtrl();
     }
 
     /**

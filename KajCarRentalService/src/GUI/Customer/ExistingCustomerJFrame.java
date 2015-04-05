@@ -5,13 +5,14 @@
  */
 package GUI.Customer;
 
+import GUI.WindowCtrl;
 import java.awt.event.KeyEvent;
 
 /**
  *
  * @author agnarsdottir
  */
-public class ExistingCustomerJFrame extends javax.swing.JFrame
+public class ExistingCustomerJFrame extends WindowCtrl
 {
 
     /**
@@ -20,6 +21,8 @@ public class ExistingCustomerJFrame extends javax.swing.JFrame
     public ExistingCustomerJFrame()
     {
         initComponents();
+        setTitle("Existing Customer Information");
+        WindowCtrl();
     }
 
     /**

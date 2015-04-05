@@ -7,63 +7,33 @@ package GUI.Customer;
 
 import BE.Customer;
 import GUI.CreditCard.AddCreditCardInfoJFrame;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.Scanner;
-import javax.swing.JFrame;
+import GUI.WindowCtrl;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author agnarsdottir
  */
-public class CustomerNewJFrame extends javax.swing.JFrame
+public class CustomerNewJFrame extends WindowCtrl
 {
 
 AddCreditCardInfoJFrame addCredit;
-Customer cust;
 
 /**
  * Creates new form FrontPage
  */
 public CustomerNewJFrame()
 {
-    Initialize();
-}
-
-private void Initialize()
-{
     initComponents();
     setTitle("Main Customer Window");
-    setResizable(false);
-    setLocationRelativeTo(null);
-    addWindowListener(new WindowAdapter()
-    {
-    @Override
-    public void windowClosing(WindowEvent e)
-    {
-        doWindowClosing(e);
-    }
-
-    });
+    WindowCtrl();
+    
 }
 
-private void doWindowClosing(WindowEvent e)
-{
 
-    //System.exit(0);
-    int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
-    if (option == JOptionPane.YES_OPTION)
-    {
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
-    }
-    else if (option == JOptionPane.NO_OPTION)
-    {
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-    }
 
-}
+
 
 /**
  * This method is called from within the constructor to initialize the form.
@@ -74,7 +44,6 @@ private void doWindowClosing(WindowEvent e)
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnAddCreditCard = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
@@ -107,6 +76,11 @@ private void doWindowClosing(WindowEvent e)
         });
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnNext.setText("Next");
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +104,7 @@ private void doWindowClosing(WindowEvent e)
             .addGroup(pnlNameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         pnlNameLayout.setVerticalGroup(
             pnlNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +153,7 @@ private void doWindowClosing(WindowEvent e)
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,9 +183,9 @@ private void doWindowClosing(WindowEvent e)
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelZIP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCity)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelZIP, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -232,9 +206,8 @@ private void doWindowClosing(WindowEvent e)
                 .addContainerGap()
                 .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnlAddressLayout.setVerticalGroup(
             pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +234,7 @@ private void doWindowClosing(WindowEvent e)
             pnlDriversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDriversLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtDrivers)
+                .addComponent(txtDrivers, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlDriversLayout.setVerticalGroup(
@@ -285,9 +258,9 @@ private void doWindowClosing(WindowEvent e)
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(txtCustomerId)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,26 +271,20 @@ private void doWindowClosing(WindowEvent e)
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(btnBack)
-                                    .addGap(238, 238, 238)
-                                    .addComponent(btnNext)
-                                    .addGap(165, 165, 165))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(pnlDrivers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(pnlAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(btnAddCreditCard)
-                            .addComponent(pnlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(214, 214, 214))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnBack)
+                            .addGap(203, 203, 203)
+                            .addComponent(btnNext)
+                            .addGap(200, 200, 200))
+                        .addComponent(pnlDrivers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddCreditCard)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,6 +366,7 @@ private void doWindowClosing(WindowEvent e)
 
         try
         {
+            //int zipCode = new Scanner(txtZipCode.getText().trim()).nextInt();
 
             String name = txtName.getText().trim();
             if (name.isEmpty())
@@ -406,21 +374,21 @@ private void doWindowClosing(WindowEvent e)
                 throw new RuntimeException("Name is required.");
             }
 
-            String streetName = txtStreetName.getText().trim();
-            if (streetName.isEmpty())
+            String address = txtStreetName.getText().trim();
+            if (address.isEmpty())
             {
-                throw new RuntimeException("Street Name is required.");
+                throw new RuntimeException("Address is required.");
             }
 
-            String driverslicenseNumber = txtDrivers.getText().trim();
-            if (driverslicenseNumber.isEmpty())
+            String driverslicenceNumber = txtDrivers.getText().trim();
+            if (driverslicenceNumber.isEmpty())
             {
                 throw new RuntimeException("Drivers licence is required.");
             }
-            int id = cust.getCustomerId();
 
             //String country  = txtCountry.getText().trim().nextInt();
-            cust = new Customer(id, name, streetName, driverslicenseNumber);
+            Customer cust;
+            //cust = new Customer
 
         }
         catch (Exception e)
@@ -434,6 +402,10 @@ private void doWindowClosing(WindowEvent e)
         addCredit = new AddCreditCardInfoJFrame();
         addCredit.setVisible(true);
     }//GEN-LAST:event_btnAddCreditCardActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+
+    }//GEN-LAST:event_btnBackActionPerformed
 
 /**
  * @param args the command line arguments
@@ -491,7 +463,6 @@ public static void main(String args[])
     private javax.swing.JButton btnAddCreditCard;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNext;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

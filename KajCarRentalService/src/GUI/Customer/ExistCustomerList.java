@@ -7,6 +7,7 @@ package GUI.Customer;
 
 import BE.Customer;
 import BLL.CustomerManager;
+import GUI.WindowCtrl;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -21,7 +22,7 @@ import javax.swing.event.TableModelListener;
  *
  * @author notandi
  */
-public class ExistCustomerList extends javax.swing.JFrame
+public class ExistCustomerList extends WindowCtrl
 {
 
     CustomerTableModel custModel;
@@ -34,9 +35,11 @@ public class ExistCustomerList extends javax.swing.JFrame
      */
     public ExistCustomerList()
     {
-        Initialize();
+        initComponents();
+        setTitle("Main Customer Window");
         InstanceInitializers();
         CustTableMgr();
+        WindowCtrl();
     }
 
     private void CustTableMgr()
@@ -55,39 +58,7 @@ public class ExistCustomerList extends javax.swing.JFrame
         cmgr = CustomerManager.getInstance();
     }
 
-    private void Initialize()
-    {
-        initComponents();
-        setTitle("Main Customer Window");
-        setResizable(false);
-        setLocationRelativeTo(null);
-        addWindowListener(new WindowAdapter()
-        {
-            @Override
-            public void windowClosing(WindowEvent e)
-            {
-                doWindowClosing(e);
-            }
-
-        });
-    }
-
-    private void doWindowClosing(WindowEvent e)
-    {
-
-        //System.exit(0);
-        int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
-        if (option == JOptionPane.YES_OPTION)
-        {
-
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
-        }
-        else if (option == JOptionPane.NO_OPTION)
-        {
-            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        }
-
-    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.

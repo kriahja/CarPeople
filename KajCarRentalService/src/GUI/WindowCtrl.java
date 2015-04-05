@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -15,30 +14,45 @@ import javax.swing.JOptionPane;
  *
  * @author notandi
  */
-public class WindowCtrl extends javax.swing.JFrame
+public abstract class WindowCtrl extends javax.swing.JFrame
 {
 
-    private static WindowCtrl instance = null;
+public void WindowCtrl()
+{
+    setResizable(false);
+    setLocationRelativeTo(null);
+    WindowCloseEvent();
+}
 
-    private WindowCtrl()
+public void WindowCloseEvent()
+{
+
+    addWindowListener(new WindowAdapter()
     {
-
-        WindowClose();
+    @Override
+    public void windowClosing(WindowEvent e)
+    {
+        doWindowClosing(e);
     }
 
-    private void WindowClose()
+    });
+}
+
+private void doWindowClosing(WindowEvent e)
+{
+
+    //System.exit(0);
+    int option = JOptionPane.showConfirmDialog(this, "Do you really want to close ?");
+    if (option == JOptionPane.YES_OPTION)
     {
 
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // shuts the application down when the last window closes.
     }
-
-    public static WindowCtrl getInstance()
+    else if (option == JOptionPane.NO_OPTION)
     {
-        if (instance == null)
-        {
-            instance = new WindowCtrl();
-        }
-        return instance;
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     }
 
+}
 
 }

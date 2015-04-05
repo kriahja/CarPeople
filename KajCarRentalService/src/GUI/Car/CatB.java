@@ -5,11 +5,13 @@
  */
 package GUI.Car;
 
+import GUI.WindowCtrl;
+
 /**
  *
  * @author agnarsdottir
  */
-public class CatB extends javax.swing.JFrame
+public class CatB extends WindowCtrl
 {
 
     /**
@@ -18,6 +20,8 @@ public class CatB extends javax.swing.JFrame
     public CatB()
     {
         initComponents();
+        setTitle("Category B");
+        WindowCtrl();
     }
 
     /**
