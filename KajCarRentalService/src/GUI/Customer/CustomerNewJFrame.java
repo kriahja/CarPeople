@@ -6,6 +6,7 @@
 package GUI.Customer;
 
 import BE.Customer;
+import DAL.DalFacade;
 import GUI.CreditCard.AddCreditCardInfoJFrame;
 import GUI.WindowCtrl;
 import javax.swing.JOptionPane;
@@ -18,6 +19,8 @@ public class CustomerNewJFrame extends WindowCtrl
 {
 
 AddCreditCardInfoJFrame addCredit;
+Customer cust;
+DalFacade facade;
 
 /**
  * Creates new form FrontPage
@@ -27,13 +30,8 @@ public CustomerNewJFrame()
     initComponents();
     setTitle("Main Customer Window");
     WindowCtrl();
-    
+
 }
-
-
-
-
-
 
 /**
  * This method is called from within the constructor to initialize the form.
@@ -42,60 +40,42 @@ public CustomerNewJFrame()
  */
 @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnAddCreditCard = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         pnlName = new javax.swing.JPanel();
         txtName = new javax.swing.JTextField();
         pnlAddress = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        txtStreetName = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
         txtCountry = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        txtZipCode = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
-        labelZIP = new javax.swing.JLabel();
+        txtZip = new javax.swing.JTextField();
+        txtStreetName = new javax.swing.JTextField();
+        lblCountry = new javax.swing.JLabel();
+        lblStreet = new javax.swing.JLabel();
+        lblCity = new javax.swing.JLabel();
+        lblZip = new javax.swing.JLabel();
         pnlDrivers = new javax.swing.JPanel();
         txtDrivers = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        txtCustomerId = new javax.swing.JTextField();
+        btnAddCrredit = new javax.swing.JButton();
+        txtCustId = new javax.swing.JTextField();
+        lblCustId = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("New customer information"));
-
-        btnAddCreditCard.setText("Add Creditcard Information");
-        btnAddCreditCard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddCreditCardActionPerformed(evt);
-            }
-        });
-
         btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         btnNext.setText("Next");
-        btnNext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNext.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNextActionPerformed(evt);
             }
         });
 
-        pnlName.setBorder(javax.swing.BorderFactory.createTitledBorder("Name:"));
-
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
+        pnlName.setBorder(javax.swing.BorderFactory.createTitledBorder("Name"));
 
         javax.swing.GroupLayout pnlNameLayout = new javax.swing.GroupLayout(pnlName);
         pnlName.setLayout(pnlNameLayout);
@@ -103,100 +83,34 @@ public CustomerNewJFrame()
             pnlNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(txtName)
+                .addContainerGap())
         );
         pnlNameLayout.setVerticalGroup(
             pnlNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        pnlAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Address:"));
+        pnlAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Address"));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Street name:"));
-
-        txtStreetName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        txtStreetName.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 txtStreetNameActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(txtStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(txtStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        lblCountry.setText("Country:");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Country:"));
+        lblStreet.setText("Street Name:");
 
-        txtCountry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCountryActionPerformed(evt);
-            }
-        });
+        lblCity.setText("City:");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
-        );
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("City/Zip code"));
-
-        txtZipCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtZipCodeActionPerformed(evt);
-            }
-        });
-
-        txtCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCityActionPerformed(evt);
-            }
-        });
-
-        labelZIP.setText("ZIP:");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelZIP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(txtZipCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(labelZIP))
-        );
+        lblZip.setText("ZIP:");
 
         javax.swing.GroupLayout pnlAddressLayout = new javax.swing.GroupLayout(pnlAddress);
         pnlAddress.setLayout(pnlAddressLayout);
@@ -204,29 +118,46 @@ public CustomerNewJFrame()
             pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAddressLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlAddressLayout.createSequentialGroup()
+                        .addComponent(lblCountry)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCountry))
+                    .addGroup(pnlAddressLayout.createSequentialGroup()
+                        .addComponent(lblStreet)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtStreetName))
+                    .addGroup(pnlAddressLayout.createSequentialGroup()
+                        .addComponent(lblCity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblZip)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         pnlAddressLayout.setVerticalGroup(
             pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAddressLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCountry))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStreet)
+                    .addComponent(txtStreetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCity)
+                    .addComponent(lblZip))
+                .addContainerGap())
         );
 
-        pnlDrivers.setBorder(javax.swing.BorderFactory.createTitledBorder("Drivers license nr."));
-
-        txtDrivers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDriversActionPerformed(evt);
-            }
-        });
+        pnlDrivers.setBorder(javax.swing.BorderFactory.createTitledBorder("Drivers License Nr."));
 
         javax.swing.GroupLayout pnlDriversLayout = new javax.swing.GroupLayout(pnlDrivers);
         pnlDrivers.setLayout(pnlDriversLayout);
@@ -234,7 +165,7 @@ public CustomerNewJFrame()
             pnlDriversLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDriversLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtDrivers, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(txtDrivers)
                 .addContainerGap())
         );
         pnlDriversLayout.setVerticalGroup(
@@ -245,66 +176,16 @@ public CustomerNewJFrame()
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer identification nr."));
-
-        txtCustomerId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCustomerIdActionPerformed(evt);
+        btnAddCrredit.setText("Add Credit Card Information");
+        btnAddCrredit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnAddCrreditActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(txtCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnBack)
-                            .addGap(203, 203, 203)
-                            .addComponent(btnNext)
-                            .addGap(200, 200, 200))
-                        .addComponent(pnlDrivers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(pnlAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAddCreditCard)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlDrivers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAddCreditCard, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnNext))
-                .addGap(18, 18, 18))
-        );
+        lblCustId.setText("Customer ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -312,73 +193,78 @@ public CustomerNewJFrame()
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNext)
+                .addGap(29, 29, 29))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAddCrredit)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pnlDrivers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                        .addComponent(lblCustId)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCustId, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(pnlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCustId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCustId))))
+                .addGap(18, 18, 18)
+                .addComponent(pnlAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlDrivers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddCrredit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnNext))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCustomerIdActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCustomerIdActionPerformed
-    {//GEN-HEADEREND:event_txtCustomerIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCustomerIdActionPerformed
-
-    private void txtDriversActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtDriversActionPerformed
-    {//GEN-HEADEREND:event_txtDriversActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDriversActionPerformed
-
-    private void txtCityActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCityActionPerformed
-    {//GEN-HEADEREND:event_txtCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCityActionPerformed
-
-    private void txtZipCodeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtZipCodeActionPerformed
-    {//GEN-HEADEREND:event_txtZipCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtZipCodeActionPerformed
-
-    private void txtCountryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtCountryActionPerformed
-    {//GEN-HEADEREND:event_txtCountryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCountryActionPerformed
-
-    private void txtStreetNameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtStreetNameActionPerformed
-    {//GEN-HEADEREND:event_txtStreetNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStreetNameActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtNameActionPerformed
-    {//GEN-HEADEREND:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
+    private void btnAddCrreditActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAddCrreditActionPerformed
+    {//GEN-HEADEREND:event_btnAddCrreditActionPerformed
+        addCredit = new AddCreditCardInfoJFrame();
+        addCredit.setVisible(true);
+    }//GEN-LAST:event_btnAddCrreditActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnNextActionPerformed
     {//GEN-HEADEREND:event_btnNextActionPerformed
-
         try
         {
-            //int zipCode = new Scanner(txtZipCode.getText().trim()).nextInt();
-
+            
             String name = txtName.getText().trim();
             if (name.isEmpty())
             {
                 throw new RuntimeException("Name is required.");
             }
-
+            //String country  = txtCountry.getText().trim().nextInt();
             String address = txtStreetName.getText().trim();
             if (address.isEmpty())
             {
                 throw new RuntimeException("Address is required.");
             }
+            //int zipCode = new Scanner(txtZipCode.getText().trim()).nextInt()
 
             String driverslicenceNumber = txtDrivers.getText().trim();
             if (driverslicenceNumber.isEmpty())
@@ -386,77 +272,41 @@ public CustomerNewJFrame()
                 throw new RuntimeException("Drivers licence is required.");
             }
             
+            int id = 0;
 
-            //String country  = txtCountry.getText().trim().nextInt();
-            Customer cust;
-            //cust = new Customer
-
+            cust = new Customer(id, name, address, driverslicenceNumber);
         }
         catch (Exception e)
         {
             JOptionPane.showMessageDialog(this, e.getMessage(), getTitle(), JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnNextActionPerformed
 
-    private void btnAddCreditCardActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnAddCreditCardActionPerformed
-    {//GEN-HEADEREND:event_btnAddCreditCardActionPerformed
-        addCredit = new AddCreditCardInfoJFrame();
-        addCredit.setVisible(true);
-    }//GEN-LAST:event_btnAddCreditCardActionPerformed
+    private void txtStreetNameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtStreetNameActionPerformed
+    {//GEN-HEADEREND:event_txtStreetNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStreetNameActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-       
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-       
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
-    }                                       
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
-    }                                       
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
-    }                                       
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
-    }                                       
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {                                        
-       
-    }                                       
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
-    }//GEN-LAST:event_btnBackActionPerformed
-
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddCreditCard;
+    private javax.swing.JButton btnAddCrredit;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNext;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel labelZIP;
+    private javax.swing.JLabel lblCity;
+    private javax.swing.JLabel lblCountry;
+    private javax.swing.JLabel lblCustId;
+    private javax.swing.JLabel lblStreet;
+    private javax.swing.JLabel lblZip;
     private javax.swing.JPanel pnlAddress;
     private javax.swing.JPanel pnlDrivers;
     private javax.swing.JPanel pnlName;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCountry;
-    private javax.swing.JTextField txtCustomerId;
+    private javax.swing.JTextField txtCustId;
     private javax.swing.JTextField txtDrivers;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtStreetName;
-    private javax.swing.JTextField txtZipCode;
+    private javax.swing.JTextField txtZip;
     // End of variables declaration//GEN-END:variables
 }
