@@ -409,6 +409,10 @@ public CustomerNewJFrame()
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+       
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
     }//GEN-LAST:event_btnBackActionPerformed
 
