@@ -9,6 +9,7 @@ import BE.Customer;
 import GUI.CreditCard.AddCreditCardInfoJFrame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,7 +21,7 @@ public class CustomerNewJFrame extends javax.swing.JFrame
 {
 
 AddCreditCardInfoJFrame addCredit;
-
+Customer cust;
 
 /**
  * Creates new form FrontPage
@@ -415,7 +416,6 @@ private void doWindowClosing(WindowEvent e)
 
         try
         {
-            //int zipCode = new Scanner(txtZipCode.getText().trim()).nextInt();
 
             String name = txtName.getText().trim();
             if (name.isEmpty())
@@ -423,21 +423,21 @@ private void doWindowClosing(WindowEvent e)
                 throw new RuntimeException("Name is required.");
             }
 
-            String address = txtStreetName.getText().trim();
-            if (address.isEmpty())
+            String streetName = txtStreetName.getText().trim();
+            if (streetName.isEmpty())
             {
-                throw new RuntimeException("Address is required.");
+                throw new RuntimeException("Street Name is required.");
             }
 
-            String driverslicenceNumber = txtDrivers.getText().trim();
-            if (driverslicenceNumber.isEmpty())
+            String driverslicenseNumber = txtDrivers.getText().trim();
+            if (driverslicenseNumber.isEmpty())
             {
                 throw new RuntimeException("Drivers licence is required.");
             }
+            int id = cust.getCustomerId();
 
             //String country  = txtCountry.getText().trim().nextInt();
-            Customer cust;
-            //cust = new Customer
+            cust = new Customer(id, name, streetName, driverslicenseNumber);
 
         }
         catch (Exception e)
