@@ -70,7 +70,6 @@ private void doWindowClosing(WindowEvent e)
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         btnAddCreditCard = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
@@ -492,7 +491,6 @@ public static void main(String args[])
     private javax.swing.JButton btnAddCreditCard;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnNext;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
