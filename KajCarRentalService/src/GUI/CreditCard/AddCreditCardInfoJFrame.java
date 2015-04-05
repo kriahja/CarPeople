@@ -9,6 +9,7 @@ import BE.CreditCard;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Scanner;
+import javafx.beans.binding.Bindings;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -218,7 +219,7 @@ private void doWindowClosing(WindowEvent e)
         try
         {
             int creditNr = new Scanner(txtCreditnr.getText().trim()).nextInt();
-            if (creditNr == 0)
+            if(txtCreditnr == null)
             {
                 throw new RuntimeException("Credit Number is required.");
             }
@@ -227,6 +228,7 @@ private void doWindowClosing(WindowEvent e)
             {
                 throw new RuntimeException("Expiration date is required.");
             }
+            
 //        int expY = new Scanner(txtExpY.getText().trim()).nextInt();
 //        if (expY == 0)
 //        {
