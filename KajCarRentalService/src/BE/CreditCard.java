@@ -24,6 +24,19 @@ public class CreditCard extends EntityCtrl
         this.RegNumber = RegNumber;
         this.Exp = Exp;
     }
+    
+    public CreditCard(int id, int CardNumber, int RegNumber, int Exp)
+    {
+        setId(id);
+        this.CardNumber = CardNumber;
+        this.RegNumber = RegNumber;
+        this.Exp = Exp;
+    }
+    
+    public CreditCard(int id, CreditCard credit)
+    {
+        this(id, credit.getCardNumber(), credit.getRegNumber(), credit.getExp());
+    }
 
     public int getCardNumber()
     {

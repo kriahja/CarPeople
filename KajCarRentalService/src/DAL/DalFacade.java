@@ -23,7 +23,7 @@ public class DalFacade
     private ICRUDmanager<Customer> custManager;
     private ICRUDmanager<Rent> rentManager;
     
-    public ICRUDmanager<Car> getCarManager() throws IOException
+    public ICRUDmanager<Car> getCarDBManager() throws IOException
     {
         if(carManager == null)
         {
@@ -32,7 +32,7 @@ public class DalFacade
         return carManager;
     }
     
-    public ICRUDmanager<Customer> getCustomerManager() throws IOException
+    public ICRUDmanager<Customer> getCustomerDBManager() throws IOException
     {
         if (custManager == null)
         {
@@ -41,7 +41,7 @@ public class DalFacade
         return custManager;
     }
     
-        public ICRUDmanager<Rent> getRentManager() throws IOException
+        public ICRUDmanager<Rent> getRentDBManager() throws IOException
     {
         if (rentManager == null)
         {

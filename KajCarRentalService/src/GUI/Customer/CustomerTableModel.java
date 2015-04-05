@@ -84,12 +84,12 @@ public class CustomerTableModel extends AbstractTableModel
     {
         return columnType[col];
     }
-    
-    @Override
-    public boolean isCellEditable(int row, int col)
-    {
-        return (col != NAME_COLUMN && col != ADDRESS_COLUMN && col != DRIVERLICENCENR_COLUMN && col != RENTID_COLUMN);
-    }
+//    
+//    @Override
+//    public boolean isCellEditable(int row, int col)
+//    {
+//        return (col != NAME_COLUMN && col != ADDRESS_COLUMN && col != DRIVERLICENCENR_COLUMN && col != RENTID_COLUMN);
+//    }
     
     public Customer getCustomer(int row)
     {
