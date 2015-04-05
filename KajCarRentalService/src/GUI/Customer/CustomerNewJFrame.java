@@ -417,7 +417,7 @@ private void doWindowClosing(WindowEvent e)
             {
                 throw new RuntimeException("Drivers licence is required.");
             }
-            int id = cust.getCustomerId();  // not correct
+            int id = cust.getCustomerId();
 
             //String country  = txtCountry.getText().trim().nextInt();
             cust = new Customer(id, name, streetName, driverslicenseNumber);
