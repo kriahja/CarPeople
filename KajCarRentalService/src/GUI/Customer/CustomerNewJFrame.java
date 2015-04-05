@@ -385,6 +385,7 @@ public CustomerNewJFrame()
             {
                 throw new RuntimeException("Drivers licence is required.");
             }
+            
 
             //String country  = txtCountry.getText().trim().nextInt();
             Customer cust;
@@ -402,6 +403,10 @@ public CustomerNewJFrame()
         addCredit = new AddCreditCardInfoJFrame();
         addCredit.setVisible(true);
     }//GEN-LAST:event_btnAddCreditCardActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+       
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
