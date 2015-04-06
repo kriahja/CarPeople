@@ -16,7 +16,20 @@ import javax.swing.table.AbstractTableModel;
 public class CreditCardTableModel extends AbstractTableModel
 {
 
+    public static final int CARDNUMBER_COLUMN = 0;
+    public static final int REGNUMBER_COLUMN = 1;
+    public static final int EXP_COLUMN = 2;
     // Instance fields containing the creditCards to show in the table.
+
+    private final String[] headers =
+    {
+        "Card Number", "Exp", "CVC"
+    };
+
+    private final Class[] columnType =
+    {
+        Integer.class, Integer.class, Integer.class
+    };
 
     private ArrayList<CreditCard> creditCards;
 
@@ -24,42 +37,50 @@ public class CreditCardTableModel extends AbstractTableModel
      * Creates a new CreditCardTableModel instance with the creditCards from the
      * given initial list allEmploees.
      *
-     * @param allCreditCards The initial list of creditCards.
+     * @param creditCard
      */
-    public CreditCardTableModel(ArrayList<CreditCard> allCreditCards)
+    public CreditCardTableModel(ArrayList<CreditCard> creditCard)
     {
-        // TO DO
+        creditCards = creditCard;
     }
 
     @Override
     public int getRowCount()
     {
-        // TO DO
-        return 0; // DUMMY VALUE
+        return creditCards.size();
     }
 
     @Override
     public int getColumnCount()
     {
-        // TO DO
-        return 1; // DUMMY VALUE
+        return headers.length;
     }
 
     @Override
     public Object getValueAt(int row, int col)
     {
-        // TO DO
-        return null; // DUMMY VALUE
+        CreditCard c = creditCards.get(row);
+        switch (col)
+        {
+            case CARDNUMBER_COLUMN:
+                return c.getCardNumber();
+            case REGNUMBER_COLUMN:
+                return c.getRegNumber();
+            case EXP_COLUMN:
+                return c.getExp();
+        }
+        return null;
     }
 
     /**
      * Sets the content of the table model to the given list of creditCards.
      *
-     * @param empList the list of creditCards to show in the JTable.
+     * @param creditList
      */
-    public void setCreditCardList(ArrayList<CreditCard> empList)
+    public void setCreditCardList(ArrayList<CreditCard> creditList)
     {
-        // TO DO
+        creditCards = creditList;
+        fireTableDataChanged();
     }
 
     /**
@@ -71,7 +92,6 @@ public class CreditCardTableModel extends AbstractTableModel
      */
     public CreditCard getCreditCardByRow(int row)
     {
-        // TO DO
-        return null; // DUMMY VALUE
+        return creditCards.get(row);
     }
 }

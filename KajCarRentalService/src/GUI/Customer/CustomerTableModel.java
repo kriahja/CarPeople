@@ -20,7 +20,7 @@ public class CustomerTableModel extends AbstractTableModel
     public static final int NAME_COLUMN = 0;
     public static final int ADDRESS_COLUMN = 1;
     public static final int DRIVERLICENCENR_COLUMN = 2;
-    public static final int RENTID_COLUMN = 4;
+    public static final int RENTID_COLUMN = 3;
 
     private final String[] headers =
     {

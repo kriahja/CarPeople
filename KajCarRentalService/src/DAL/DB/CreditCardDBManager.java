@@ -103,6 +103,29 @@ public class CreditCardDBManager implements ICRUDmanager<CreditCard>
 
     }
 
+    public ArrayList<CreditCard> readOneCard()
+    {
+
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<CreditCard> creditList = new ArrayList<>();
+            String sql = "Select CardNum, RegNum, Exp from CreditCard";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+            {
+                CreditCard credit = getOneCreditCard(rs);
+                creditList.add(credit);
+            }
+            return creditList;
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read Credit Card data.");
+        }
+    }
+
     @Override
     public CreditCard readId(int id)
     {

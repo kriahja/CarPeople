@@ -13,6 +13,8 @@ import GUI.CreditCard.AddCreditCardInfoJFrame;
 import GUI.CreditCard.CreditCardTableModel;
 import GUI.WindowCtrl;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -32,18 +34,14 @@ public class CustomerNewJFrame extends WindowCtrl
      */
     public CustomerNewJFrame()
     {
+        creditMgr = CreditCardManager.getInstance();
         initComponents();
         setTitle("Main Customer Window");
         WindowCtrl();
+        creditModel = new CreditCardTableModel(creditMgr.getOneCreditCard());
+        tblCreditInfo.setModel(creditModel);
     }
 
-    public void nafn()
-    {
-        creditMgr = CreditCardManager.getInstance();
-        
-        creditModel = new CreditCardTableModel(creditMgr.getAll());
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,8 +69,8 @@ public class CustomerNewJFrame extends WindowCtrl
         pnlDrivers = new javax.swing.JPanel();
         txtDrivers = new javax.swing.JTextField();
         btnAddCredit = new javax.swing.JButton();
-        txtCustId = new javax.swing.JTextField();
-        lblCustId = new javax.swing.JLabel();
+        scrPnlCreditInfo = new javax.swing.JScrollPane();
+        tblCreditInfo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,7 +145,7 @@ public class CustomerNewJFrame extends WindowCtrl
                         .addComponent(lblZip)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         pnlAddressLayout.setVerticalGroup(
             pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +164,7 @@ public class CustomerNewJFrame extends WindowCtrl
                     .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCity)
                     .addComponent(lblZip))
-                .addContainerGap())
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pnlDrivers.setBorder(javax.swing.BorderFactory.createTitledBorder("Drivers License Nr."));
@@ -197,13 +195,26 @@ public class CustomerNewJFrame extends WindowCtrl
             }
         });
 
-        lblCustId.setText("Customer ID:");
+        tblCreditInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String []
+            {
+
+            }
+        ));
+        scrPnlCreditInfo.setViewportView(tblCreditInfo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -211,40 +222,31 @@ public class CustomerNewJFrame extends WindowCtrl
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAddCredit)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pnlDrivers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
-                        .addComponent(lblCustId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCustId, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlDrivers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAddCredit)
+                    .addComponent(scrPnlCreditInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(pnlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCustId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCustId))))
-                .addGap(18, 18, 18)
-                .addComponent(pnlAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pnlName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAddCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrPnlCreditInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlDrivers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAddCredit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnNext))
@@ -258,24 +260,23 @@ public class CustomerNewJFrame extends WindowCtrl
     {//GEN-HEADEREND:event_btnAddCreditActionPerformed
         addCredit = new AddCreditCardInfoJFrame();
         addCredit.setVisible(true);
-//        AddCreditCardInfoJFrame addCredit = new AddCreditCardInfoJFrame(this, true);
-//        addCredit.setLocationRelativeTo(this);
-//        addCredit.setVisible(true);
-//
-//        CreditCard creditCard = addCredit.getCreditCard();
-//        if (creditCard != null)
-//        {
-//            try
-//            {
-//                // add the credit card to the model and also update the table model.
-//                creditMgr.addCreditCard(creditCard);
-//                creditModel.setCreditCardList(creditMgr.getAll());
-//            }
-//            catch (Exception e)
-//            {
-//                JOptionPane.showMessageDialog(this, "Unable to add Credit Card", "Add Credit Card", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
+        
+        
+        CreditCard creditCard = addCredit.getCreditCard();
+        if (creditCard != null)
+        {
+            try
+            {
+                // add the credit card to the model and also update the table model.
+                creditMgr.addCreditCard(creditCard);
+                creditModel.setCreditCardList(creditMgr.getOneCreditCard());
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Unable to add Credit Card", "Add Credit Card", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
     }//GEN-LAST:event_btnAddCreditActionPerformed
 
@@ -327,15 +328,15 @@ public class CustomerNewJFrame extends WindowCtrl
     private javax.swing.JButton btnNext;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCountry;
-    private javax.swing.JLabel lblCustId;
     private javax.swing.JLabel lblStreet;
     private javax.swing.JLabel lblZip;
     private javax.swing.JPanel pnlAddress;
     private javax.swing.JPanel pnlDrivers;
     private javax.swing.JPanel pnlName;
+    private javax.swing.JScrollPane scrPnlCreditInfo;
+    private javax.swing.JTable tblCreditInfo;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCountry;
-    private javax.swing.JTextField txtCustId;
     private javax.swing.JTextField txtDrivers;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtStreetName;

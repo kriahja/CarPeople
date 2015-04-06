@@ -9,6 +9,7 @@ import BE.CreditCard;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DB.CreditCardDBManager;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +81,11 @@ public class CreditCardManager
     public ArrayList<CreditCard> getAll()
     {
         return db.readAll();
+    }
+    
+    public ArrayList<CreditCard> getOneCreditCard()
+    {
+        return db.readOneCard();
     }
 
     public CreditCard addCreditCard(CreditCard credit)

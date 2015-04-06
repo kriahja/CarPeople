@@ -49,7 +49,7 @@ public class ExistCustomerList extends WindowCtrl
         //Creating the JTable (CustomerTable) instance and adding it to the 
         // center of the panel.
         custTable = new CustomerTable(custModel);
-        pnlCustTable.add(new JScrollPane(custTable), BorderLayout.CENTER);
+        tblCustInfo.add(new JScrollPane(custTable), BorderLayout.CENTER);
 
     }
 
@@ -70,26 +70,16 @@ public class ExistCustomerList extends WindowCtrl
     private void initComponents()
     {
 
-        pnlCustTable = new javax.swing.JPanel();
         txtCustSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         cbxSearch = new javax.swing.JComboBox();
         btnNext = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
+        scrTblCustInfo = new javax.swing.JScrollPane();
+        tblCustInfo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout pnlCustTableLayout = new javax.swing.GroupLayout(pnlCustTable);
-        pnlCustTable.setLayout(pnlCustTableLayout);
-        pnlCustTableLayout.setHorizontalGroup(
-            pnlCustTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 304, Short.MAX_VALUE)
-        );
-        pnlCustTableLayout.setVerticalGroup(
-            pnlCustTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         jLabel1.setText("Search Customer:");
 
@@ -119,11 +109,24 @@ public class ExistCustomerList extends WindowCtrl
             }
         });
 
+        tblCustInfo.setAutoCreateColumnsFromModel(false);
+        tblCustInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+
+            },
+            new String []
+            {
+
+            }
+        ));
+        scrTblCustInfo.setViewportView(tblCustInfo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -131,15 +134,15 @@ public class ExistCustomerList extends WindowCtrl
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(pnlCustTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrTblCustInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))))
         );
@@ -151,17 +154,14 @@ public class ExistCustomerList extends WindowCtrl
                     .addComponent(txtCustSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(pnlCustTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrTblCustInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -169,19 +169,19 @@ public class ExistCustomerList extends WindowCtrl
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSearchActionPerformed
     {//GEN-HEADEREND:event_btnSearchActionPerformed
-//        String searchText = txtCustSearch.getText();
-//        ArrayList<Customer> custList = (ArrayList<Customer>) custSearchmgr.searchAction(searchText);
-//        ArrayList<Customer> newCust = new ArrayList<>();
-//        int limit;
-//        limit = Integer.parseInt(cbxSearch.getSelectedItem().toString());
-//
-//        for (int i = 0; i < limit && i < custList.size(); ++i)
-//        {
-//            newCust.add(custList.get(i));
-//        }
-//
-//        custModel.setCustomerList(newCust);
-//        custTable.setModel(custModel);
+        String searchText = txtCustSearch.getText();
+        ArrayList<Customer> custList = (ArrayList<Customer>) custSearchmgr.searchAction(searchText);
+        ArrayList<Customer> newCust = new ArrayList<>();
+        int limit;
+        limit = Integer.parseInt(cbxSearch.getSelectedItem().toString());
+
+        for (int i = 0; i < limit && i < custList.size(); ++i)
+        {
+            newCust.add(custList.get(i));
+        }
+
+        custModel.setCustomerList(newCust);
+        custTable.setModel(custModel);
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
@@ -191,7 +191,8 @@ public class ExistCustomerList extends WindowCtrl
     private javax.swing.JComboBox cbxSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel pnlCustTable;
+    private javax.swing.JScrollPane scrTblCustInfo;
+    private javax.swing.JTable tblCustInfo;
     private javax.swing.JTextField txtCustSearch;
     // End of variables declaration//GEN-END:variables
 }

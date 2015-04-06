@@ -6,6 +6,7 @@
 package GUI.CreditCard;
 
 import BE.CreditCard;
+import BLL.CreditCardManager;
 import GUI.WindowCtrl;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -19,12 +20,14 @@ public class AddCreditCardInfoJFrame extends WindowCtrl
 
     private CreditCard creditCard = null;
     private AddCreditCardInfoJFrame addCredit;
+    private CreditCardManager cMgr;
 
     /**
      * Creates new form AddCreditCardInfoJFrame
      */
     public AddCreditCardInfoJFrame()
     {
+        cMgr = CreditCardManager.getInstance();
         initComponents();
         WindowCtrl();
     }
@@ -208,22 +211,7 @@ public class AddCreditCardInfoJFrame extends WindowCtrl
             int cvc = new Scanner(txtCVC.getText().trim()).nextInt();
 
             creditCard = new CreditCard(creditNr, exp, cvc);
-
-            creditCard = addCredit.getCreditCard();
-            if (creditCard != null)
-            {
-                try
-                {
-                    // add the credit card to the model and also update the table model.
-                    creditMgr.addCreditCard(creditCard);
-                    creditModel.setCreditCardList(creditMgr.getAll());
-                }
-                catch (Exception e)
-                {
-                    JOptionPane.showMessageDialog(this, "Unable to add Credit Card", "Add Credit Card", JOptionPane.ERROR_MESSAGE);
-                }                
-            }
-
+            cMgr.addCreditCard(creditCard);
         }
         catch (Exception e)
         {
