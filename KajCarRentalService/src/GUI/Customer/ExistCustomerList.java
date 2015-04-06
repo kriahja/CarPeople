@@ -169,19 +169,19 @@ public class ExistCustomerList extends WindowCtrl
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSearchActionPerformed
     {//GEN-HEADEREND:event_btnSearchActionPerformed
-        String searchText = txtCustSearch.getText();
-        ArrayList<Customer> custList = (ArrayList<Customer>) custSearchmgr.searchAction(searchText);
-        ArrayList<Customer> newCust = new ArrayList<>();
-        int limit;
-        limit = Integer.parseInt(cbxSearch.getSelectedItem().toString());
-
-        for (int i = 0; i < limit && i < custList.size(); ++i)
-        {
-            newCust.add(custList.get(i));
-        }
-
-        custModel.setCustomerList(newCust);
-        custTable.setModel(custModel);
+//        String searchText = txtCustSearch.getText();
+//        ArrayList<Customer> custList = (ArrayList<Customer>) custSearchmgr.searchAction(searchText);
+//        ArrayList<Customer> newCust = new ArrayList<>();
+//        int limit;
+//        limit = Integer.parseInt(cbxSearch.getSelectedItem().toString());
+//
+//        for (int i = 0; i < limit && i < custList.size(); ++i)
+//        {
+//            newCust.add(custList.get(i));
+//        }
+//
+//        custModel.setCustomerList(newCust);
+//        custTable.setModel(custModel);
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
