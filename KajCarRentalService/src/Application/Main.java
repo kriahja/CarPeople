@@ -5,9 +5,8 @@
  */
 package Application;
 
-import GUI.CreditCard.AddCreditCardInfoJFrame;
-import GUI.Customer.CustomerGui;
-import GUI.FrontPage;
+import GUI.MainGui;
+
 
 /**
  *
@@ -27,7 +26,7 @@ public class Main
         {
             public void run()
             {
-                new FrontPage().setVisible(true);
+                new MainGui().setVisible(true);
                 
             }
         });
