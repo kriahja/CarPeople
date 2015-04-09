@@ -16,6 +16,7 @@ public class NewUser extends javax.swing.JFrame {
      */
     public NewUser() {
         initComponents();
+        setTitle("Create new Customer");
          setResizable(false);
         setLocationRelativeTo(null);
     }

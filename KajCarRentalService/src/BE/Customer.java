@@ -131,4 +131,6 @@ public class Customer extends EntityCtrl
     public void setCreditCardId(int creditCardId) {
         this.creditCardId = creditCardId;
     }
+    
+    
 }

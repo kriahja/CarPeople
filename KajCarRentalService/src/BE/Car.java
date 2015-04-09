@@ -5,7 +5,6 @@
  */
 package BE;
 
-import BLL.CarManager;
 import BE.Controller.*;
 
 /**
@@ -82,5 +81,12 @@ public class Car extends EntityCtrl
     {
         this.km = km;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format(name + " / " + km+"km");
+    }
+    
 
 }
