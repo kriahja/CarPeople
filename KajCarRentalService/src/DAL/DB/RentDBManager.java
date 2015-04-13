@@ -43,11 +43,12 @@ public class RentDBManager implements ICRUDmanager<Rent> {
     }
 
     private Rent getOneRent(ResultSet rs) throws SQLException {
-
+        
+        int id = rs.getInt("ID");
         int startDate = rs.getInt("StartDate");
         int endDate = rs.getInt("EndDate");
 
-        Rent rent = new Rent(startDate, endDate);
+        Rent rent = new Rent(id, startDate, endDate);
 
         return rent;
     }

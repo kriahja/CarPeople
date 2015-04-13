@@ -5,24 +5,16 @@
  */
 package GUI;
 
+import BE.Car;
 import GUI.CarTable.CarTableModel;
 import GUI.CarTable.CarTable;
-import BE.Car;
-import BE.Customer;
 import BLL.CarManager;
 import BLL.CustomerManager;
-import BLL.DepartmentManager;
-import DAL.DalFacade;
+import BLL.RentManager;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.AbstractListModel;
 import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 /**
  *
@@ -31,14 +23,14 @@ import javax.swing.event.TableModelListener;
 public class Rent extends javax.swing.JFrame
 {
 
-    private DalFacade facade;
+    
     private CarTable carTable;
     private CarTableModel carModel;
-    private CarManager carMgr;
-    
-    private CustomerManager custMgr;
+    private final CarManager carMgr;    
+    private final CustomerManager custMgr;
     private CustomerTable custTable;
     private CustomerTableModel custModel;
+//    private RentManager rmgr;
 
     /**
      * Creates new form Rent
@@ -48,12 +40,13 @@ public class Rent extends javax.swing.JFrame
         initComponents();
         custMgr = CustomerManager.getInstance();
         carMgr = CarManager.getInstance();
+//        rmgr = RentManager.getInstance();
         setTitle("Rent");
-        setResizable(false);
-        facade = new DalFacade();
+        setResizable(false);       
         CarList();
         CustomerList();
         setLocationRelativeTo(null);
+        
     }
 
     private void CarList() throws IOException
@@ -122,8 +115,7 @@ public class Rent extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jtpRenting = new javax.swing.JTabbedPane();
@@ -158,11 +150,9 @@ public class Rent extends javax.swing.JFrame
 
         jLabel1.setText("Category:");
 
-        cbxRentCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "C", "D" }));
-        cbxRentCategory.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        cbxRentCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "A", "B", "C", "D" }));
+        cbxRentCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxRentCategoryActionPerformed(evt);
             }
         });
@@ -184,10 +174,8 @@ public class Rent extends javax.swing.JFrame
         jLabel6.setText("-");
 
         btnNextToCustomer.setText("Next");
-        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextToCustomerActionPerformed(evt);
             }
         });
@@ -281,10 +269,8 @@ public class Rent extends javax.swing.JFrame
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("New Customer"));
 
         jButton2.setText("Add New Customer");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -391,7 +377,13 @@ public class Rent extends javax.swing.JFrame
     }//GEN-LAST:event_btnNextToCustomerActionPerformed
 
     private void cbxRentCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRentCategoryActionPerformed
-        // TODO add your handling code here:
+        ArrayList<Car> carList = new ArrayList<>(); 
+        carList =  carMgr.getByCatid(cbxRentCategory.getSelectedIndex());
+
+        carModel.setCarList(carList);
+        carTable.setModel(carModel);
+        
+       
     }//GEN-LAST:event_cbxRentCategoryActionPerformed
 
 //    /**
