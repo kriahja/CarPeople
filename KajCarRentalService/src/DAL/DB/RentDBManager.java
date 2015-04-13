@@ -64,8 +64,8 @@ public class RentDBManager implements ICRUDmanager<Rent> {
 //            ps.setInt(1, cust.getId());
             ps.setInt(2, rent.getId());
 //            ps.setInt(3, insurance.getId());
-            ps.setInt(4, rent.startDate);
-            ps.setInt(4, rent.endDate);
+            ps.setInt(4, rent.getStartDate());
+            ps.setInt(4, rent.getEndDate());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
