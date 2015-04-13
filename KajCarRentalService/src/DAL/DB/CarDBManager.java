@@ -49,6 +49,7 @@ public class CarDBManager implements ICRUDmanager<Car>
 
         String carName = rs.getString("Name");
         int km = rs.getInt("KM");
+//        String depName = rs.getString("Name");
 
         Car car = new Car(carName, km);
 
@@ -144,8 +145,8 @@ public class CarDBManager implements ICRUDmanager<Car>
     public Car readId(int id)
     {
         try (Connection con = cm.getConnection())
-        {
-            String sql = "SELECT * FROM Car WHERE ID = ?";
+        { 
+            String sql = "SELECT * FROM Car Join Department ON Car.depId = Department.ID WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
