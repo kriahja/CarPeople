@@ -66,7 +66,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
             ps.setString(1, cus.getName());
             ps.setString(2, cus.getAddress());
             ps.setInt(3, cus.getCreditCardId());
-            
+
             ps.setString(4, cus.getDriversLicenceNo());
             ps.setInt(5, cus.getTypeId());
 
@@ -107,7 +107,6 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         }
     }
 
-    
     public Customer readName(String customerName)
     {
         try (Connection con = cm.getConnection())
@@ -185,7 +184,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
             ps.setString(2, cus.getAddress());
 
             ps.setInt(3, cus.getCreditCardId());
-            
+
             ps.setString(4, cus.getDriversLicenceNo());
             ps.setInt(5, cus.getTypeId());
 
@@ -214,7 +213,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
             throw new KajCarExceptions("Unable to delete Customer.");
         }
     }
-    
+
     public ArrayList<Customer> getByAddress(String address)
     {
         try (Connection con = cm.getConnection())
@@ -236,9 +235,9 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         {
             throw new KajCarExceptions("Unable to read customer name.");
         }
-        
+
     }
-    
+
     public Customer getByDriversLicence(String licence)
     {
         try (Connection con = cm.getConnection())
@@ -259,7 +258,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         }
         return null;
     }
-    
+
     public Customer getByCreditCardId(int id)
     {
         try (Connection con = cm.getConnection())

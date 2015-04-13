@@ -5,7 +5,7 @@
  */
 package DAL.DB;
 
-import BE.Controller.EntityCtrl;
+import BE.Controller.EntityID;
 import BE.Customer;
 import java.io.IOException;
 import org.junit.*;
@@ -20,14 +20,14 @@ public class CustomerDBManagerTest
     
     private CustomerDBManager db;
     Customer cust;
-    EntityCtrl ec;
+    EntityID ec;
     
     @Before
     public void testSetUp() throws IOException
     {
         db = CustomerDBManager.getInstance();
         //cust = new Customer("John", "ingemanns", "1234");
-        cust = new Customer(1, "Rambo", "Amazon", "4321");
+        cust = new Customer(1, cust);
 
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
  * @author notandi
  * @param <T>
  */
-public interface ICRUDmanager<T extends IEntityCtrl>
+public interface ICRUDmanager<T extends IEntityID>
 {
 
     public T create(T t);

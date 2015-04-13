@@ -7,7 +7,7 @@ import BLL.RentManager;
  *
  * @author ZALI
  */
-public class Rent extends EntityCtrl
+public class Rent extends EntityID
 {
 
     public int startDate;
@@ -18,10 +18,19 @@ public class Rent extends EntityCtrl
         this.startDate = startDate;
         this.endDate = endDate;
     }
+    
+    public Rent(int id, int startDate, int endDate)
+    {
+        setId(id);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
+    
 
     public Rent(int id, Rent rent)
     {
-        
+        this(id, rent.getStartDate(), rent.getEndDate());
     }
 
     public int getStartDate()

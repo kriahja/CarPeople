@@ -17,7 +17,7 @@ public class CustomerTest
 {
 
     private Customer customer;
-    private EntityCtrl e;
+    private EntityID e;
 
     @Before
     public void testSetUp()
@@ -87,16 +87,6 @@ public class CustomerTest
         assertNotNull("CreditId should not be null", customer.getCreditCardId());
     }
 
-    /**
-     * Test of getRentId method, of class Customer.
-     */
-    @Test
-    public void testGetRentId()
-    {
-        System.out.println("testGetRentId()");
-
-        assertNotNull("RentId should not be null", customer.getRentId());
-    }
 
     /**
      * Test of getDriversLicenceNo method, of class Customer.

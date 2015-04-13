@@ -4,47 +4,44 @@
  * and open the template in the editor.
  */
 package BE;
+
 import BE.Controller.*;
+
 /**
  *
  * @author notandi
  */
-public class Customer extends EntityCtrl
+public class Customer extends EntityID
 {
+
     private String name;
     private String address;
     private String driversLicenceNo;
- //   private int rentId;
-    private int typeId;
     private int creditCardId;
+    private int typeId;
+
     public Customer(String name, String address, String driversLicenceNo)
     {
         this.name = name;
         this.address = address;
         this.driversLicenceNo = driversLicenceNo;
     }
-    public Customer(int id, String name, String address, String driversLicenceNo)
+
+    public Customer(int id, String name, String address, String driversLicenceNo, int creditCard, int typeId)
     {
         setId(id);
         this.name = name;
         this.address = address;
         this.driversLicenceNo = driversLicenceNo;
-    }
-    
-    public Customer(int id, String name, String address, int creditCardId,  String driversLicenceNo, int typeId)
-    {
-       this.name = name;
-        this.address = address;
-        this.creditCardId = creditCardId;
-   //     this.rentId = rentId;
-        this.driversLicenceNo = driversLicenceNo;
+        this.creditCardId = creditCard;
         this.typeId = typeId;
     }
-    
+
     public Customer(int id, Customer cus)
     {
-        this(id, cus.getName(), cus.getAddress(),cus.getCreditCardId(), cus.getDriversLicenceNo(), cus.getTypeId());
+        this(id, cus.getName(), cus.getAddress(), cus.getDriversLicenceNo(), cus.getCreditCardId(), cus.getTypeId());
     }
+
     /**
      * @return the name
      */
@@ -52,6 +49,7 @@ public class Customer extends EntityCtrl
     {
         return name;
     }
+
     /**
      * @param name the name to set
      */
@@ -59,6 +57,7 @@ public class Customer extends EntityCtrl
     {
         this.name = name;
     }
+
     /**
      * @return the address
      */
@@ -66,6 +65,7 @@ public class Customer extends EntityCtrl
     {
         return address;
     }
+
     /**
      * @param address the address to set
      */
@@ -73,6 +73,7 @@ public class Customer extends EntityCtrl
     {
         this.address = address;
     }
+
     /**
      * @return the driversLicenceNo
      */
@@ -80,6 +81,7 @@ public class Customer extends EntityCtrl
     {
         return driversLicenceNo;
     }
+
     /**
      * @param driversLicenceNo the driversLicenceNo to set
      */
@@ -87,50 +89,61 @@ public class Customer extends EntityCtrl
     {
         this.driversLicenceNo = driversLicenceNo;
     }
+
     @Override
     public String toString()
     {
-        return "Customer{" + "name=" + name + ", address=" + address + ", driversLicenceNo=" + driversLicenceNo + '}';
+        return String.format(name + " / " + address + " / driversNr: " + driversLicenceNo);
     }
+
     /**
      * @return the rentId
      */
-    /*
-    public int getRentId() {
-        return rentId;
-    }
-    /**
-     * @param rentId the rentId to set
-     */
-    /*
-    public void setRentId(int rentId) {
-        this.rentId = rentId;
-    }
-*/
+
+//    public int getRentId()
+//    {
+//        return rentId;
+//    }
+//
+//    /**
+//     * @param rentId the rentId to set
+//     */
+//
+//    public void setRentId(int rentId)
+//    {
+//        this.rentId = rentId;
+//    }
+
     /**
      * @return the typeId
      */
-    public int getTypeId() {
+    public int getTypeId()
+    {
         return typeId;
     }
+
     /**
      * @param typeId the typeId to set
      */
-    public void setTypeId(int typeId) {
+    public void setTypeId(int typeId)
+    {
         this.typeId = typeId;
     }
+
     /**
      * @return the creditCardId
      */
-    public int getCreditCardId() {
+    public int getCreditCardId()
+    {
         return creditCardId;
     }
+
     /**
      * @param creditCardId the creditCardId to set
      */
-    public void setCreditCardId(int creditCardId) {
+    public void setCreditCardId(int creditCardId)
+    {
         this.creditCardId = creditCardId;
     }
-    
-    
+
 }

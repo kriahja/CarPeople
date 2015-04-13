@@ -64,16 +64,16 @@ public class CarManager
 
     public Car getByName(String name)
     {
-        /*
-        for (Car c : cars)
-        {
-            if (c.getName().equals(name))
-            {
-                return c;
-            }
-        }
-        return null;
-                */
+
+//        for (Car c : cars)
+//        {
+//            if (c.getName().equals(name))
+//            {
+//                return c;
+//            }
+//        }
+//        return null;
+
         return db.readName(name);
     }
 
@@ -111,16 +111,16 @@ public class CarManager
 
     public ArrayList<Car> getByKm(int km)
     {
-        /*
-        for (Car c : cars)
-        {
-            if (c.getKm() == km)
-            {
-                return c;
-            }
-        }
-        return null;
-                */
+        
+//        for (Car c : cars)
+//        {
+//            if (c.getKm() == km)
+//            {
+//                return c;
+//            }
+//        }
+//        return null;
+                
         return db.getByKm(km);
     }
 
@@ -130,7 +130,7 @@ public class CarManager
         cars = db.readAll();
         for (Car isDmg : cars)
         {
-            if (isDmg.isDamaged() == true)
+            if (isDmg.isIsDamaged() == true)
             {
                 damagedList.add(isDmg);
             }
@@ -144,7 +144,7 @@ public class CarManager
         cars = db.readAll();
         for (Car isNotDmg : cars)
         {
-            if (isNotDmg.isDamaged() == false)
+            if (isNotDmg.isIsDamaged() == false)
             {
                 unDamagedList.add(isNotDmg);
             }
@@ -158,7 +158,7 @@ public class CarManager
         cars = db.readAll();
         for (Car isFull : cars)
         {
-            if (isFull.isFull() == true)
+            if (isFull.isIsFull() == true)
             {
                 fullFuelList.add(isFull);
             }
@@ -172,7 +172,7 @@ public class CarManager
         cars = db.readAll();
         for (Car isNotFull : cars)
         {
-            if (isNotFull.isFull() == false)
+            if (isNotFull.isIsFull() == false)
             {
                 notFullFuelList.add(isNotFull);
             }
@@ -186,7 +186,7 @@ public class CarManager
         cars = db.readAll();
         for (Car isFixed : cars)
         {
-            if (isFixed.isFull() == true)
+            if (isFixed.isIsFull() == true)
             {
                 fixedList.add(isFixed);
             }
@@ -200,7 +200,7 @@ public class CarManager
         cars = db.readAll();
         for (Car isNotFixed : cars)
         {
-            if (isNotFixed.isFull() == false)
+            if (isNotFixed.isIsFull() == false)
             {
                 notFixedList.add(isNotFixed);
             }
@@ -212,6 +212,11 @@ public class CarManager
     {
         return db.create(car);
 
+    }
+    
+    public ArrayList<Car> getAll()
+    {
+        return (ArrayList<Car>) db.readAll();
     }
 
 }

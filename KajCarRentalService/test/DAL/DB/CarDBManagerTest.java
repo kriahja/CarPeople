@@ -8,6 +8,7 @@ package DAL.DB;
 import BE.Car;
 import DAL.ICRUDmanager;
 import java.io.IOException;
+import java.util.List;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -19,14 +20,13 @@ public class CarDBManagerTest
 {
 
     ICRUDmanager<Car> mgr;
-
-    Car car2;
+    Car car1;
 
     @Before
     public void testSetUp() throws IOException
     {
         mgr = CarDBManager.getInstance();
-        car2 = new Car(1, "B", 1, 1, 1);
+        car1 = new Car(1, "B", 1, 1, 1);
 
     }
 
@@ -49,9 +49,8 @@ public class CarDBManagerTest
     {
         System.out.println("testCreate()");
 
-        car2 = mgr.create(car2);
-        
-
+        car1 = mgr.create(car1);
+        assertTrue("" + car1.getId(), mgr.readId(car1.getId()).getName().equals("B"));
 
     }
 
@@ -62,7 +61,8 @@ public class CarDBManagerTest
     public void testReadAll()
     {
         System.out.println("testReadAll()");
-
+        
+        List<Car> cars = mgr.readAll();
     }
 
     /**
@@ -71,7 +71,7 @@ public class CarDBManagerTest
     @Test
     public void testReadName()
     {
-        
+
     }
 
     /**

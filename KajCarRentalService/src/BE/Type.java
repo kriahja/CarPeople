@@ -11,7 +11,7 @@ import BE.Controller.*;
  *
  * @author notandi
  */
-public class Type extends EntityCtrl
+public class Type extends EntityID
 {
     private String privateCustomer;
     private String businessCustomer;
@@ -20,6 +20,18 @@ public class Type extends EntityCtrl
     {
         this.privateCustomer = privateCustomer;
         this.businessCustomer = businessCustomer;
+    }
+    
+    public Type(int id, String privateCustomer, String businessCustomer)
+    {
+        setId(id);
+        this.privateCustomer = privateCustomer;
+        this.businessCustomer = businessCustomer;
+    }
+    
+    public Type(int id, Type type)
+    {
+        this(id, type.getPrivateCustomer(), type.getBusinessCustomer());
     }
 
     public String getPrivateCustomer()

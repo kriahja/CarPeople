@@ -6,10 +6,20 @@
 package GUI;
 
 import BE.Car;
+import BE.Customer;
+import BLL.CarManager;
+import BLL.DepartmentManager;
 import DAL.DalFacade;
+import java.awt.BorderLayout;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.AbstractListModel;
+import javax.swing.JScrollPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 /**
  *
@@ -17,39 +27,83 @@ import javax.swing.AbstractListModel;
  */
 public class Rent extends javax.swing.JFrame
 {
+
     private DalFacade facade;
-    private Car cars;
+    private CarTable carTable;
+    private CarTableModel carModel;
+    private CarManager cmgr;
     List<Car> carList;
-    
+    List<Customer> custList;
+
     /**
      * Creates new form Rent
      */
     public Rent() throws IOException
     {
         initComponents();
+        cmgr = CarManager.getInstance();
         setTitle("Rent");
+        setResizable(false);
         facade = new DalFacade();
+        CarList();
+        CustomerList();
+        setLocationRelativeTo(null);
+    }
 
-        carList = facade.getCarDBManager().readAll();
+    private void CarList() throws IOException
+    {
+        
+        carModel = new CarTableModel(cmgr.getAll());
+        
+        carTable = new CarTable(carModel);
+        
+        pnlJTable.add(new JScrollPane(carTable), BorderLayout.CENTER);
+        
+//        cmgr = CarManager.getInstance();
+//
+//        carModel = new CarTableModel(cmgr.getAll());
+//        tblCars.setModel(carModel);
+
+//        carList = facade.getCarDBManager().readAll();        
+//        lstAvailableCars.setModel(new AbstractListModel()
+//        {
+//
+//            @Override
+//            public int getSize()
+//            {
+//                return carList.size();
+//            }
+//
+//            @Override
+//            public Object getElementAt(int i)
+//            {
+//                return carList.get(i);
+//            }
+//        });
+
+    }
 
 
-        lstAvailableCars.setModel(new AbstractListModel()
+    private void CustomerList() throws IOException
+    {
+        custList = facade.getCustomerDBManager().readAll();
+
+        lstCustList.setModel(new AbstractListModel()
         {
 
             @Override
             public int getSize()
             {
-                return carList.size();
+                return custList.size();
             }
 
             @Override
             public Object getElementAt(int i)
             {
-                return carList.get(i);
+                return custList.get(i);
             }
         });
-        setResizable(false);
-        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -78,16 +132,13 @@ public class Rent extends javax.swing.JFrame
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnNextToCustomer = new javax.swing.JButton();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 300), new java.awt.Dimension(32767, 300));
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstAvailableCars = new javax.swing.JList();
+        pnlJTable = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        lstCustList = new javax.swing.JList();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -133,27 +184,7 @@ public class Rent extends javax.swing.JFrame
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Available Cars"));
-
-        lstAvailableCars.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(lstAvailableCars);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        pnlJTable.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout cbxCategoryLayout = new javax.swing.GroupLayout(cbxCategory);
         cbxCategory.setLayout(cbxCategoryLayout);
@@ -164,12 +195,11 @@ public class Rent extends javax.swing.JFrame
                 .addGroup(cbxCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(cbxCategoryLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnNextToCustomer))
+                        .addComponent(btnNextToCustomer)
+                        .addGap(19, 19, 19))
                     .addGroup(cbxCategoryLayout.createSequentialGroup()
                         .addGroup(cbxCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(cbxCategoryLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(49, 49, 49))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(cbxCategoryLayout.createSequentialGroup()
                                 .addGroup(cbxCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbxRentCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,11 +217,10 @@ public class Rent extends javax.swing.JFrame
                                             .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel5)))
                                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)))
-                        .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                        .addComponent(pnlJTable, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         cbxCategoryLayout.setVerticalGroup(
@@ -201,9 +230,11 @@ public class Rent extends javax.swing.JFrame
                 .addGroup(cbxCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cbxCategoryLayout.createSequentialGroup()
                         .addGroup(cbxCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
+                            .addGroup(cbxCategoryLayout.createSequentialGroup()
+                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 205, Short.MAX_VALUE))
+                            .addComponent(pnlJTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNextToCustomer))
                     .addGroup(cbxCategoryLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -226,10 +257,7 @@ public class Rent extends javax.swing.JFrame
                             .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(cbxCategoryLayout.createSequentialGroup()
-                .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         jtpRenting.addTab("Rent", cbxCategory);
@@ -238,13 +266,13 @@ public class Rent extends javax.swing.JFrame
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Private", "Company", " " }));
 
-        jList2.setModel(new javax.swing.AbstractListModel()
+        lstCustList.setModel(new javax.swing.AbstractListModel()
         {
             String[] strings = { "Napoleon Hill", "Dave Ramsey", "Jim Rohn", "Bill Gates", "Anthony Robbins", "Brian Tracy" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(lstCustList);
 
         jLabel8.setText("Customers:");
 
@@ -420,7 +448,6 @@ public class Rent extends javax.swing.JFrame
     private javax.swing.JPanel cbxCategory;
     private javax.swing.JComboBox cbxRentCategory;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.Box.Filler filler2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox2;
@@ -436,16 +463,14 @@ public class Rent extends javax.swing.JFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTabbedPane jtpRenting;
-    private javax.swing.JList lstAvailableCars;
+    private javax.swing.JList lstCustList;
+    private javax.swing.JPanel pnlJTable;
     // End of variables declaration//GEN-END:variables
 }

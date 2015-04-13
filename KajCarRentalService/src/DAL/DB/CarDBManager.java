@@ -6,7 +6,6 @@
 package DAL.DB;
 
 import BE.Car;
-import BE.Controller.EntityCtrl;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
 import DAL.ICRUDmanager;
@@ -81,11 +80,6 @@ public class CarDBManager implements ICRUDmanager<Car>
             ps.setInt(3, car.getDepId());
             ps.setInt(4, car.getCatId());
 
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0)
-            {
-                throw new SQLException("Unable to add Team.");
-            }
 
             ResultSet keys = ps.getGeneratedKeys(); //
             keys.next();                            // 

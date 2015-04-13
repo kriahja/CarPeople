@@ -5,6 +5,8 @@
  */
 package DAL.DB;
 
+import BE.Customer;
+import BE.Insurance;
 import BE.Rent;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
@@ -26,6 +28,8 @@ public class RentDBManager implements ICRUDmanager<Rent> {
 
     private final DBConnectionManager cm;
     private static RentDBManager instance = null;
+    Customer cust;
+    Insurance insurance;
 
     public RentDBManager() throws IOException {
         cm = DBConnectionManager.getInstance();
@@ -51,13 +55,15 @@ public class RentDBManager implements ICRUDmanager<Rent> {
     @Override
     public Rent create(Rent rent) {
         try (Connection con = cm.getConnection()) {
-            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
-                    + "StartDate, EndDate) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Rent(RentId ,StartDate, EndDate) "
+                               + "VALUES (?, ?, ?)";            
+//            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
+//                    + "StartDate, EndDate) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, rent.getCustomerId());
-            ps.setInt(2, rent.getRentId());
-            ps.setInt(3, rent.getInsuranceId());
+//            ps.setInt(1, cust.getId());
+            ps.setInt(2, rent.getId());
+//            ps.setInt(3, insurance.getId());
             ps.setInt(4, rent.startDate);
             ps.setInt(4, rent.endDate);
 

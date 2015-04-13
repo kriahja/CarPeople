@@ -11,11 +11,17 @@ import BE.Controller.*;
  *
  * @author a.tamas
  */
-public class Car extends EntityCtrl
+public class Car extends EntityID
 {
 
+    private Department dep;
     private String name;
     private int km;
+    private int depId;
+    private int catId;
+    private boolean isDamaged;
+    private boolean isFull;
+    private boolean isFixed;
 
     public Car(String name, int km)
     {
@@ -23,22 +29,22 @@ public class Car extends EntityCtrl
         this.km = km;
     }
 
+    public Car(String name, int km, int depId, int catId)
+    {
+        this.name = name;
+        this.km = km;
+        this.depId = depId;
+        this.catId = catId;
+
+    }
+
     public Car(int id, String name, int km, int depId, int catId)
     {
         setId(id);
         this.name = name;
         this.km = km;
-        setDepId(depId);
-        setCatId(catId);
-
-    }
-
-    public Car(String name, int km, int depId, int catId)
-    {
-        this.name = name;
-        this.km = km;
-        setDepId(depId);
-        setCatId(catId);
+        this.depId = depId;
+        this.catId = catId;
 
     }
 
@@ -82,11 +88,82 @@ public class Car extends EntityCtrl
         this.km = km;
     }
 
+    /**
+     * @return the isDamaged
+     */
+    public boolean isIsDamaged()
+    {
+        return isDamaged;
+    }
+
+    /**
+     * @return the isFull
+     */
+    public boolean isIsFull()
+    {
+        return isFull;
+    }
+
+    /**
+     * @return the isFixed
+     */
+    public boolean isIsFixed()
+    {
+        return isFixed;
+    }
+
+    /**
+     * @return the depId
+     */
+    public int getDepId()
+    {
+        return depId;
+    }
+
+    /**
+     * @return the catId
+     */
+    public int getCatId()
+    {
+        return catId;
+    }
+
     @Override
     public String toString()
     {
-        return String.format(name + " / " + km+"km");
+        return String.format(name + " / " + km + "km");
     }
-    
+
+    /**
+     * @param isDamaged the isDamaged to set
+     */
+    public void setIsDamaged(boolean isDamaged)
+    {
+        this.isDamaged = isDamaged;
+    }
+
+    /**
+     * @param isFull the isFull to set
+     */
+    public void setIsFull(boolean isFull)
+    {
+        this.isFull = isFull;
+    }
+
+    /**
+     * @param isFixed the isFixed to set
+     */
+    public void setIsFixed(boolean isFixed)
+    {
+        this.isFixed = isFixed;
+    }
+
+    /**
+     * @return the dep
+     */
+    public Department getDep()
+    {
+        return dep;
+    }
 
 }

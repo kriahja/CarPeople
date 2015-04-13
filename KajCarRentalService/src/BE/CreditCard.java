@@ -12,7 +12,7 @@ import BE.Controller.*;
  *
  * @author notandi
  */
-public class CreditCard extends EntityCtrl
+public class CreditCard extends EntityID
 {
     private int CardNumber;
     private int RegNumber;
