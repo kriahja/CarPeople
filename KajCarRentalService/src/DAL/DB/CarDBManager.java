@@ -254,7 +254,7 @@ public class CarDBManager implements ICRUDmanager<Car>
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
+            while (rs.next())
             {
                 Car car = getOneCar(rs);
                 carList.add(car);
