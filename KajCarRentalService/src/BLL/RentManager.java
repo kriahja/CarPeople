@@ -80,7 +80,7 @@ public class RentManager {
         return db.getByInsId(id);
     }
 
-    public ArrayList<Rent> getStartDate(int startDate) {
+    public ArrayList<Rent> getStartDate( int startDate) {
        /* for (Rent c : rents) {
             if (c.getStartDate() == startDate) {
                 return c;
