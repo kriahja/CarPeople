@@ -1,10 +1,6 @@
 package BE;
 
 import BE.Controller.*;
-import BLL.RentManager;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
  *
@@ -12,115 +8,48 @@ import java.util.Calendar;
  */
 public class Rent extends EntityID
 {
-    private static DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 
-    private Calendar startDate;
-    private Calendar endDate;
-    private int id;
-     
 
-    public Rent(  String startDate, String endDate)
+    private int startDate;
+    private int endDate;
+
+    public Rent(int startDate, int endDate)
     {
-        //this.startDate = startDate;
-        //this.endDate = endDate;
-        
-    
-    this.startDate = Calendar.getInstance();
-        try
-        {
-            this.startDate.setTime(df.parse(startDate));
-        }
-        catch (Exception ex)
-        {
-            this.startDate = null;
-        }
-         
-    this.endDate = Calendar.getInstance();
-        try
-        {
-            this.endDate.setTime(df.parse(endDate));
-        }
-        catch (Exception ex)
-        {
-            this.endDate = null;
-        }
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
-    public Rent(int id, String startDate, String endDate)
+    
+    public Rent(int id, int startDate, int endDate)
     {
         setId(id);
-        this.startDate = Calendar.getInstance();
-        try
-        {
-            this.startDate.setTime(df.parse(startDate));
-        }
-        catch (Exception ex)
-        {
-            this.startDate = null;
-        }
-         
-    this.endDate = Calendar.getInstance();
-        try
-        {
-            this.endDate.setTime(df.parse(endDate));
-        }
-        catch (Exception ex)
-        {
-            this.endDate = null;
-        }
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
     
+    public Rent(int id, Rent rent)
+    {
+        this(id, rent.getStartDate(), rent.getEndDate());
+    }
     
 
-//    public Rent(int id, Rent rent)
-//    {
-//        this(id, rent.getStartDate(), rent.getEndDate());
-//    }
-
-    /**
-     * @return the startDate
-     */
-    public Calendar getStartDate()
+    public int getStartDate()
     {
         return startDate;
     }
 
-    /**
-     * @param startDate the startDate to set
-     */
-//    public void setStartDate(Calendar startDate)
-//    {
-//        this.startDate = startDate;
-//    }
+    public void setStartDate(int startDate)
+    {
+        this.startDate = startDate;
+    }
 
-    /**
-     * @return the endDate
-     */
-    public Calendar getEndDate()
+    public int getEndDate()
     {
         return endDate;
     }
 
-    /**
-     * @param endDate the endDate to set
-     */
-//    public Calendar setEndDate()
-//    {
-//       return endDate;
-//    }
+    public void setEndDate(int endDate)
+    {
+        this.endDate = endDate;
+    }
 
-    /**
-     * @return the id
-     */
-    public int getId()
-    {
-        return id;
-    }
-    
-    @Override
-    public String toString()
-    {
-        String sd = df.format(startDate.getTime());
-        String ed = df.format(endDate.getTime());
-        return String.format("%4d %10s %8.2f %s", id, sd, ed);
-    }
 }

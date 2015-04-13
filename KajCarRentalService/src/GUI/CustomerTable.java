@@ -15,9 +15,9 @@ import javax.swing.table.TableRowSorter;
  *
  * @author notandi
  */
-public class CarTable extends JTable
+class CustomerTable extends JTable
 {
-    public CarTable (CarTableModel model)
+    public CustomerTable (CustomerTableModel model)
     {
         super(model);
         setRowSorter(new TableRowSorter(model));
@@ -40,5 +40,5 @@ public class CarTable extends JTable
             c.setForeground(Color.BLACK);
         }
         return c;     
-    }
+    }    
 }

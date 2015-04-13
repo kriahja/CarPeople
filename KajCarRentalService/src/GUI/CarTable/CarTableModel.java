@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.CarTable;
 
 import BE.Car;
 import java.util.ArrayList;
@@ -88,8 +88,8 @@ public class CarTableModel extends AbstractTableModel
         return cars.get(row);
     }
 
-    public void setCarList(List<Car> songList)
+    public void setCarList(List<Car> carList)
     {
-        cars = songList;
+        cars = carList;
     } 
 }
