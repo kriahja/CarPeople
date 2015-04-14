@@ -50,26 +50,29 @@ public class RentDBManager implements ICRUDmanager<Rent>
     {
 
         int id = rs.getInt("ID");
-        int startDate = rs.getInt("StartDate");
-        int endDate = rs.getInt("EndDate");
+        int custId = rs.getInt("CustId");
+        int carId = rs.getInt("CarId");
+        int insId = rs.getInt("InsuranceId");
 
-        Rent rent = new Rent(id, startDate, endDate);
+        Rent rent = new Rent(id, custId, carId, insId);
 
         return rent;
     }
 
     @Override
-    public Rent create(Rent rent) {
-        try (Connection con = cm.getConnection()) {
-        
-           String sql = "INSERT INTO Rent(CustId, CarId, InsuranceId) " +
-                    " VALUES (?, ?, ?)";
+    public Rent create(Rent rent)
+    {
+        try (Connection con = cm.getConnection())
+        {
+
+            String sql = "INSERT INTO Rent(CustId, CarId, InsuranceId) "
+                    + " VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-           ps.setInt(1, rent.getCustId());
+            ps.setInt(1, rent.getCustId());
             ps.setInt(2, rent.getCarId());
-           ps.setInt(3, rent.getInsureId());
-            
+            ps.setInt(3, rent.getInsureId());
+
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
@@ -87,21 +90,23 @@ public class RentDBManager implements ICRUDmanager<Rent>
             throw new KajCarExceptions("Unable to insert new Rent data.");
         }
     }
-    
-    public void createR(Rent rent) {
-        try (Connection con = cm.getConnection()) {
-        
-           String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, " +
-                    " VALUES (?, ?, ?)";
+
+    public void createR(Rent rent)
+    {
+        try (Connection con = cm.getConnection())
+        {
+
+            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
+                    + " VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-           ps.setInt(1, rent.getCustId());
-           System.out.println("1");
+            ps.setInt(1, rent.getCustId());
+            System.out.println("1");
             ps.setInt(2, rent.getCarId());
             System.out.println("2");
-           ps.setInt(3, rent.getInsureId());
-           System.out.println("3");
-            
+            ps.setInt(3, rent.getInsureId());
+            System.out.println("3");
+
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
@@ -126,11 +131,34 @@ public class RentDBManager implements ICRUDmanager<Rent>
         try (Connection con = cm.getConnection())
         {
             ArrayList<Rent> rentList = new ArrayList<>();
-            String sql = "SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
-                    + "FROM Rent"
-                    + "INNER JOIN Customer ON Rent.CustId = Customer.ID "
-                    + "INNER JOIN Car ON Rent.CarId = Car.ID"
-                    + "INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
+            String sql = "Select * FROM Rent";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+            {
+                Rent rent = getOneRent(rs);
+                rentList.add(rent);
+            }
+            return rentList;
+        }
+        catch (SQLException ex)
+        {
+
+            throw new KajCarExceptions("Unable to read data.");
+        }
+    }
+
+    public List<Rent> readAllJoin()
+    {
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<Rent> rentList = new ArrayList<>();
+            String sql = " SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
+                    + " FROM Rent"
+                    + " INNER JOIN Customer ON Rent.CustId = Customer.ID "
+                    + " INNER JOIN Car ON Rent.CarId = Car.ID"
+                    + " INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 

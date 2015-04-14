@@ -26,13 +26,9 @@ public class RentManager
     private static RentDBManager db;
     private List<Rent> rents;
 
-    public RentManager() {
-        try {
-            db =  RentDBManager.getInstance();
-        } catch (IOException ex) {
-            Logger.getLogger(RentManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+    public RentManager()
+    {
+
         try
         {
             db = RentDBManager.getInstance();
@@ -129,11 +125,12 @@ public class RentManager
         return db.getByEndDate(endDate);
     }
 
-    public Rent addRent(Rent rent) {
+    public Rent addRent(Rent rent)
+    {
         System.out.println("elotte");
-        
-        return db.create(rent);             
-       
+
+        return db.create(rent);
+
     }
 
     public ArrayList<Rent> getAll()
