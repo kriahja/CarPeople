@@ -88,7 +88,6 @@ public class Rent extends EntityID
      */
     public String getCustName()
     {
-        custName = car.getName();
         return custName;
     }
 

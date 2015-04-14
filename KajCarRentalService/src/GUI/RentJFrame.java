@@ -8,12 +8,15 @@ package GUI;
 import BE.Car;
 import BE.Customer;
 import BE.Insurance;
+import BE.Rent;
 import GUI.CarTable.CarTableModel;
 import GUI.CarTable.CarTable;
 import BLL.CarManager;
 import BLL.CustomerManager;
 import BLL.InsuranceManager;
 import BLL.RentManager;
+import GUI.CustomerTable.CustomerTable;
+import GUI.CustomerTable.CustomerTableModel;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import javax.swing.JScrollPane;
  *
  * @author ZALI
  */
-public class Rent extends javax.swing.JFrame {
+public class RentJFrame extends javax.swing.JFrame {
 
     private CarTable carTable;
     private CarTableModel carModel;
@@ -38,7 +41,7 @@ public class Rent extends javax.swing.JFrame {
     /**
      * Creates new form Rent
      */
-    public Rent() throws IOException {
+    public RentJFrame() throws IOException {
         initComponents();
         custMgr = CustomerManager.getInstance();
         carMgr = CarManager.getInstance();
@@ -118,7 +121,8 @@ public class Rent extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jtpRenting = new javax.swing.JTabbedPane();
@@ -154,8 +158,10 @@ public class Rent extends javax.swing.JFrame {
         jLabel1.setText("Category:");
 
         cbxRentCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "A", "B", "C", "D" }));
-        cbxRentCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxRentCategory.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxRentCategoryActionPerformed(evt);
             }
         });
@@ -177,8 +183,10 @@ public class Rent extends javax.swing.JFrame {
         jLabel6.setText("-");
 
         btnNextToCustomer.setText("Next");
-        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNextToCustomerActionPerformed(evt);
             }
         });
@@ -264,8 +272,10 @@ public class Rent extends javax.swing.JFrame {
         jLabel9.setText("Customer Type:");
 
         cbxCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Private", "Company", " " }));
-        cbxCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxCustomer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxCustomerActionPerformed(evt);
             }
         });
@@ -273,8 +283,10 @@ public class Rent extends javax.swing.JFrame {
         jLabel8.setText("Customers:");
 
         jButton1.setText("Create Rent");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -282,8 +294,10 @@ public class Rent extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("New Customer"));
 
         jButton2.setText("Add New Customer");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -424,7 +438,7 @@ public class Rent extends javax.swing.JFrame {
        Customer cust = custModel.getCustomer(custTable.getSelectedRow());
        Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
        
-       BE.Rent rent = new BE.Rent(car, cust, ins);
+       Rent rent = new Rent(car, cust, ins);
        
         rentMgr.addRent(rent);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -452,19 +466,19 @@ public class Rent extends javax.swing.JFrame {
 //        }
 //        catch (ClassNotFoundException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (InstantiationException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (IllegalAccessException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (javax.swing.UnsupportedLookAndFeelException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -474,7 +488,7 @@ public class Rent extends javax.swing.JFrame {
 //        {
 //            public void run()
 //            {
-//                new Rent().setVisible(true);
+//                new RentJFrame().setVisible(true);
 //            }
 //        });
 //    }

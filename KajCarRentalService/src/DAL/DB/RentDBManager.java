@@ -59,17 +59,19 @@ public class RentDBManager implements ICRUDmanager<Rent>
     }
 
     @Override
-    public Rent create(Rent rent) {
-        try (Connection con = cm.getConnection()) {
-        
-           String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, " +
-                    " VALUES (?, ?, ?)";
+    public Rent create(Rent rent)
+    {
+        try (Connection con = cm.getConnection())
+        {
+
+            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
+                    + " VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-           ps.setInt(1, rent.getCustId());
+            ps.setInt(1, rent.getCustId());
             ps.setInt(2, rent.getCarId());
-           ps.setInt(3, rent.getInsureId());
-            
+            ps.setInt(3, rent.getInsureId());
+
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
@@ -94,11 +96,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
         try (Connection con = cm.getConnection())
         {
             ArrayList<Rent> rentList = new ArrayList<>();
-            String sql = "SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
-                    + "FROM Rent"
-                    + "INNER JOIN Customer ON Rent.CustId = Customer.ID "
-                    + "INNER JOIN Car ON Rent.CarId = Car.ID"
-                    + "INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
+            String sql = "Select * FROM Rent";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -121,7 +119,11 @@ public class RentDBManager implements ICRUDmanager<Rent>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT * FROM Rent WHERE ID = ?";
+            String sql = "SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
+                    + "FROM Rent"
+                    + "INNER JOIN Customer ON Rent.CustId = Customer.ID "
+                    + "INNER JOIN Car ON Rent.CarId = Car.ID"
+                    + "INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
