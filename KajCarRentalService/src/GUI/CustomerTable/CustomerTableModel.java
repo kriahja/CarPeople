@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.CustomerTable;
 
 import BE.Customer;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author notandi
  */
-class CustomerTableModel extends AbstractTableModel
+public class CustomerTableModel extends AbstractTableModel
 {
 
     public static final int NAME_COLUMN = 0;
@@ -92,7 +92,6 @@ class CustomerTableModel extends AbstractTableModel
     public void setCustomerList(List<Customer> custList)
     {
         customers = custList;
-        fireTableDataChanged();
     } 
 
 }
