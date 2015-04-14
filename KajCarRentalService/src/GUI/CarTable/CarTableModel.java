@@ -91,5 +91,6 @@ public class CarTableModel extends AbstractTableModel
     public void setCarList(List<Car> carList)
     {
         cars = carList;
+        fireTableDataChanged();
     } 
 }

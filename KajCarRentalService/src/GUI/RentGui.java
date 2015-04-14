@@ -264,7 +264,7 @@ public class RentGui extends javax.swing.JFrame
 
         jLabel9.setText("Customer Type:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Private", "Company", " " }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Private", "Company" }));
 
         jLabel8.setText("Customers:");
 
