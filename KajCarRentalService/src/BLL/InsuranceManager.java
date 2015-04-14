@@ -45,4 +45,9 @@ public class InsuranceManager {
     {
         return db.readId(id);
     }
+    
+    public Insurance getByName(String name)
+    {
+        return db.readName(name);
+    }
 }

@@ -38,7 +38,7 @@ public class Rent extends EntityID
        this.cust = cust;
         custId = cust.getId();
         this.ins = ins;
-        insureId = ins.getId() + 1;
+        insureId = ins.getId();
     }
 
     public Rent(int id, int startDate, int endDate)

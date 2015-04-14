@@ -39,12 +39,12 @@ public class CustomerDBManager implements ICRUDmanager<Customer> {
     }
 
     private Customer getOneCustomer(ResultSet rs) throws SQLException {
-        //int customerId = rs.getInt("ID");
+        int id = rs.getInt("ID");
         String customerName = rs.getString("Name");
         String address = rs.getString("Address");
         String driversLicenseNo = rs.getString("DrivingLicenceNr");  // SQL name?
 
-        Customer cust = new Customer(customerName, address, driversLicenseNo);
+        Customer cust = new Customer(id, customerName, address, driversLicenseNo);
         return cust;
 
     }
