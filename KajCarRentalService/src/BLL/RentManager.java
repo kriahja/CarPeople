@@ -11,8 +11,6 @@ import DAL.DB.RentDBManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -126,14 +124,15 @@ public class RentManager
         return db.getByEndDate(endDate);
     }
 
-    public void addRent(Rent rent)
+    public Rent addRent(Rent rent)
     {
-        db.create(rent);
+        
+        return db.create(rent);
     }
 
     public ArrayList<Rent> getAll()
     {
-        return (ArrayList<Rent>) db.readAll();
+        return db.readAll();
     }
 
 }

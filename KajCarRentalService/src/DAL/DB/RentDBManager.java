@@ -64,7 +64,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
         try (Connection con = cm.getConnection())
         {
 
-            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
+            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId) "
                     + " VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
@@ -91,7 +91,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
     }
 
     @Override
-    public List<Rent> readAll()
+    public ArrayList<Rent> readAll()
     {
         try (Connection con = cm.getConnection())
         {

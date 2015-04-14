@@ -65,26 +65,6 @@ public class RentJFrame extends javax.swing.JFrame {
 
         pnlJTableCar.add(new JScrollPane(carTable), BorderLayout.CENTER);
 
-//        cmgr = CarManager.getInstance();
-//
-//        carModel = new CarTableModel(cmgr.getAll());
-//        tblCars.setModel(carModel);
-//        carList = facade.getCarDBManager().readAll();        
-//        lstAvailableCars.setModel(new AbstractListModel()
-//        {
-//
-//            @Override
-//            public int getSize()
-//            {
-//                return carList.size();
-//            }
-//
-//            @Override
-//            public Object getElementAt(int i)
-//            {
-//                return carList.get(i);
-//            }
-//        });
     }
 
     private void CustomerList() throws IOException {
@@ -95,23 +75,6 @@ public class RentJFrame extends javax.swing.JFrame {
 
         pnlTableCust.add(new JScrollPane(custTable), BorderLayout.CENTER);
 
-//        custList = facade.getCustomerDBManager().readAll();
-//
-//        lstCustList.setModel(new AbstractListModel()
-//        {
-//
-//            @Override
-//            public int getSize()
-//            {
-//                return custList.size();
-//            }
-//
-//            @Override
-//            public Object getElementAt(int i)
-//            {
-//                return custList.get(i);
-//            }
-//        });
     }
 
     /**

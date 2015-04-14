@@ -33,7 +33,7 @@ public class Admin extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }
 
-    public void RentList()
+    private void RentList()
     {
         rentModel = new RentTableModel(rentMgr.getAll());
 
