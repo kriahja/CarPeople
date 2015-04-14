@@ -59,19 +59,17 @@ public class RentDBManager implements ICRUDmanager<Rent>
     }
 
     @Override
-    public Rent create(Rent rent)
-    {
-        try (Connection con = cm.getConnection())
-        {
-
-            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId) "
-                    + " VALUES (?, ?, ?)";
+    public Rent create(Rent rent) {
+        try (Connection con = cm.getConnection()) {
+        
+           String sql = "INSERT INTO Rent(CustId, CarId, InsuranceId) " +
+                    " VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, rent.getCustId());
+           ps.setInt(1, rent.getCustId());
             ps.setInt(2, rent.getCarId());
-            ps.setInt(3, rent.getInsureId());
-
+           ps.setInt(3, rent.getInsureId());
+            
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
@@ -89,14 +87,50 @@ public class RentDBManager implements ICRUDmanager<Rent>
             throw new KajCarExceptions("Unable to insert new Rent data.");
         }
     }
+    
+    public void createR(Rent rent) {
+        try (Connection con = cm.getConnection()) {
+        
+           String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, " +
+                    " VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+           ps.setInt(1, rent.getCustId());
+           System.out.println("1");
+            ps.setInt(2, rent.getCarId());
+            System.out.println("2");
+           ps.setInt(3, rent.getInsureId());
+           System.out.println("3");
+            
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new SQLException("Unable to add Rent.");
+            }
+
+            ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            int id = keys.getInt(1);  // first column in keys resultset
+
+            //return new Rent(id, rent);
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to insert new Rent data.");
+        }
+    }
 
     @Override
-    public ArrayList<Rent> readAll()
+    public List<Rent> readAll()
     {
         try (Connection con = cm.getConnection())
         {
             ArrayList<Rent> rentList = new ArrayList<>();
-            String sql = "Select * FROM Rent";
+            String sql = "SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
+                    + "FROM Rent"
+                    + "INNER JOIN Customer ON Rent.CustId = Customer.ID "
+                    + "INNER JOIN Car ON Rent.CarId = Car.ID"
+                    + "INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -119,11 +153,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
-                    + "FROM Rent"
-                    + "INNER JOIN Customer ON Rent.CustId = Customer.ID "
-                    + "INNER JOIN Car ON Rent.CarId = Car.ID"
-                    + "INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
+            String sql = "SELECT * FROM Rent WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 

@@ -42,7 +42,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer> {
         //int customerId = rs.getInt("ID");
         String customerName = rs.getString("Name");
         String address = rs.getString("Address");
-        String driversLicenseNo = rs.getString("DriversLicenceNr");  // SQL name?
+        String driversLicenseNo = rs.getString("DrivingLicenceNr");  // SQL name?
 
         Customer cust = new Customer(customerName, address, driversLicenseNo);
         return cust;
