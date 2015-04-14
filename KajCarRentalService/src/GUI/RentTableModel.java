@@ -20,17 +20,18 @@ public class RentTableModel extends AbstractTableModel
     public static final int RENTID_COLUMN = 0;
     public static final int CUSTOMER_COLUMN = 1;
     public static final int CAR_COLUMN = 2;
-    public static final int START_COLUMN = 3;
-    public static final int END_COLUMN = 4;
+    public static final int INSURE_COLUMN = 3;
+    public static final int START_COLUMN = 4;
+    public static final int END_COLUMN = 5;
 
     private final String[] headers =
     {
-        "Rent ID", "Rent Name", "Car Name", "Start Date", "End Date"
+        "Rent ID", "Rent Name", "Car Name", "Insurance", "Start Date", "End Date"
     };
 
     private final Class[] columnTypes =
     {
-        Integer.class, String.class, String.class, Integer.class, Integer.class
+        Integer.class, String.class, String.class, String.class, Integer.class, Integer.class
     };
 
     private List<Rent> rents;
@@ -69,6 +70,8 @@ public class RentTableModel extends AbstractTableModel
                 return r.getCustName();
             case CAR_COLUMN:
                 return r.getCarName();
+            case INSURE_COLUMN:
+                return r.getInsureType();
             case START_COLUMN:
                 return r.getStartDate();
             case END_COLUMN:
@@ -97,6 +100,7 @@ public class RentTableModel extends AbstractTableModel
     public void setRentList(List<Rent> rentList)
     {
         rents = rentList;
+        fireTableDataChanged();
     }     
 
 }

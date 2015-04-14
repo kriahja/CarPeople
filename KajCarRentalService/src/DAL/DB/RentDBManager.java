@@ -50,10 +50,13 @@ public class RentDBManager implements ICRUDmanager<Rent>
     {
 
         int id = rs.getInt("ID");
+        int custName = rs.getInt("ID");
+        int carName = rs.getInt("ID");
+        int insureType = rs.getInt("ID");
         int startDate = rs.getInt("StartDate");
         int endDate = rs.getInt("EndDate");
 
-        Rent rent = new Rent(id, startDate, endDate);
+        Rent rent = new Rent(id, custName, carName, insureType, startDate, endDate);
 
         return rent;
     }
@@ -99,11 +102,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
         try (Connection con = cm.getConnection())
         {
             ArrayList<Rent> rentList = new ArrayList<>();
-            String sql = "SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
-                    + "FROM Rent"
-                    + "INNER JOIN Customer ON Rent.CustId = Customer.ID "
-                    + "INNER JOIN Car ON Rent.CarId = Car.ID"
-                    + "INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
+            String sql = "SELECT * FROM Rent";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -126,7 +125,11 @@ public class RentDBManager implements ICRUDmanager<Rent>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT * FROM Rent WHERE ID = ?";
+            String sql = "SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
+                    + "FROM Rent"
+                    + "INNER JOIN Customer ON Rent.CustId = Customer.ID "
+                    + "INNER JOIN Car ON Rent.CarId = Car.ID"
+                    + "INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
