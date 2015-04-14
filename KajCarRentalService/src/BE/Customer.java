@@ -13,6 +13,7 @@ import BE.Controller.*;
  */
 public class Customer extends EntityID
 {
+    private int id;
 
     private String name;
     private String address;
@@ -22,6 +23,14 @@ public class Customer extends EntityID
 
     public Customer(String name, String address, String driversLicenceNo)
     {
+        this.name = name;
+        this.address = address;
+        this.driversLicenceNo = driversLicenceNo;
+    }
+    
+    public Customer(int id, String name, String address, String driversLicenceNo)
+    {
+        setId(id);
         this.name = name;
         this.address = address;
         this.driversLicenceNo = driversLicenceNo;

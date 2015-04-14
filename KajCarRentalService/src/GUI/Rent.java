@@ -423,11 +423,15 @@ public class Rent extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        Car car = carModel.getCar(carTable.getSelectedRow());
-       Customer cust = custModel.getCustomer(custTable.getSelectedRow());
-       Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
        
-       BE.Rent rent = new BE.Rent(car, cust, ins);
-        System.out.println(car.getId() + cust.getId() + ins.getId());
+      Car cr = carMgr.getByName(car.getName());
+       Customer cust = custModel.getCustomer(custTable.getSelectedRow());
+        
+       Customer cs = custMgr.getByName(cust.getName());
+       Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
+       Insurance in = insMgr.getByName(ins.getType());
+       BE.Rent rent = new BE.Rent(cr, cs, in);
+        System.out.println(cr.getId() + cs.getId() + in.getId());
         rentMgr.addRent(rent);
     }//GEN-LAST:event_jButton1ActionPerformed
 

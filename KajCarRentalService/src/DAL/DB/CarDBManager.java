@@ -56,16 +56,18 @@ public class CarDBManager implements ICRUDmanager<Car>
         return car;
     }
 
-//    private Car getOneCarWithID(ResultSet rs) throws SQLException
-//    {
-//        int id = rs.getInt("ID");
-//        String carName = rs.getString("Name");
-//        int km = rs.getInt("KM");
-//
-//        Car car = new Car(id, carName, km);
-//
-//        return car;
-//    }
+    private Car getOneCarWithID(ResultSet rs) throws SQLException
+    {
+        int id = rs.getInt("ID");
+        String carName = rs.getString("Name");
+        int depId = rs.getInt("DepId");
+        int catId = rs.getInt("CatId");
+        int km = rs.getInt("KM");
+
+        Car car = new Car(id, carName,depId,catId, km);
+
+        return car;
+    }
 
     @Override
     public Car create(Car car)
@@ -131,7 +133,7 @@ public class CarDBManager implements ICRUDmanager<Car>
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
-                return getOneCar(rs);
+                return getOneCarWithID(rs);
             }
         }
         catch (SQLException ex)

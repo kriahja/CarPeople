@@ -76,14 +76,31 @@ public class InsurranceDBManager implements ICRUDmanager<Insurance> {
     
     private Insurance getOneInsurance(ResultSet rs) throws SQLException
     {
-
+        int id = rs.getInt("ID");
         String type = rs.getString("Type");
       
 //        String depName = rs.getString("Name");
 
-        Insurance ins = new Insurance(type);
+        Insurance ins = new Insurance(id, type);
 
         return ins;
+    }
+    
+    
+    public Insurance readName(String insuranceName) {
+        try (Connection con = cm.getConnection()) {
+            String sql = "SELECT * FROM Insurance WHERE Type = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, insuranceName);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return getOneInsurance(rs);
+            }
+        } catch (SQLException ex) {
+            throw new KajCarExceptions("Unable to read customer name.");
+        }
+        return null;
     }
 
 }
