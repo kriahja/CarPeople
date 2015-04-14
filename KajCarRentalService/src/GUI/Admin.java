@@ -5,20 +5,41 @@
  */
 package GUI;
 
+import BLL.RentManager;
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author ZALI
  */
-public class Admin extends javax.swing.JFrame {
+public class Admin extends javax.swing.JFrame
+{
+
+    private RentManager rentMgr;
+    private RentTable rentTable;
+    private RentTableModel rentModel;
 
     /**
      * Creates new form Admin
      */
-    public Admin() {
+    public Admin()
+    {
+        rentMgr = RentManager.getInstance();
         initComponents();
         setTitle("Administrator");
+        RentList();
 //        setResizable(false);
         setLocationRelativeTo(null);
+    }
+
+    public void RentList()
+    {
+        rentModel = new RentTableModel(rentMgr.getAll());
+
+        rentTable = new RentTable(rentModel);
+
+        pnlJTableRent.add(new JScrollPane(rentTable), BorderLayout.CENTER);
     }
 
     /**
@@ -34,11 +55,10 @@ public class Admin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblRent = new javax.swing.JTable();
         btnUpdateRow = new javax.swing.JButton();
         btnDeleteRow = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        pnlJTableRent = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -71,21 +91,6 @@ public class Admin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel1.setText("Administration");
 
-        tblRent.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String []
-            {
-                "RentId", "Customer", "Car", "Start Date", "End Date"
-            }
-        ));
-        jScrollPane2.setViewportView(tblRent);
-
         btnUpdateRow.setText("Update");
         btnUpdateRow.addActionListener(new java.awt.event.ActionListener()
         {
@@ -99,15 +104,14 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel2.setText("Manage Rents:");
 
+        pnlJTableRent.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -116,7 +120,10 @@ public class Admin extends javax.swing.JFrame {
                                 .addComponent(btnUpdateRow)
                                 .addGap(39, 39, 39)
                                 .addComponent(btnDeleteRow)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 315, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlJTableRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,12 +132,12 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlJTableRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDeleteRow)
-                    .addComponent(btnUpdateRow))
-                .addContainerGap(277, Short.MAX_VALUE))
+                    .addComponent(btnUpdateRow)
+                    .addComponent(btnDeleteRow))
+                .addGap(251, 251, 251))
         );
 
         jTabbedPane1.addTab("Rent", jPanel1);
@@ -449,33 +456,47 @@ public class Admin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        }
+        catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        }
+        catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        }
+        catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        }
+        catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(Admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new Admin().setVisible(true);
             }
         });
@@ -507,13 +528,12 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JList lstCustomers;
+    private javax.swing.JPanel pnlJTableRent;
     private javax.swing.JTable tblCar;
-    private javax.swing.JTable tblRent;
     private javax.swing.JTextField txtAddCar;
     private javax.swing.JTextField txtSearchCar;
     // End of variables declaration//GEN-END:variables

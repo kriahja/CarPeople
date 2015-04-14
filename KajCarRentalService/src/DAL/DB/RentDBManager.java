@@ -44,10 +44,13 @@ public class RentDBManager implements ICRUDmanager<Rent> {
 
     private Rent getOneRent(ResultSet rs) throws SQLException {
 
+        int id = rs.getInt("ID");
+        String custName = rs.getString("Name");
+        String carName = rs.getString("Name");
         int startDate = rs.getInt("StartDate");
         int endDate = rs.getInt("EndDate");
 
-        Rent rent = new Rent(startDate, endDate);
+        Rent rent = new Rent(id, custName, carName, startDate, endDate);
 
         return rent;
     }
@@ -55,10 +58,10 @@ public class RentDBManager implements ICRUDmanager<Rent> {
     @Override
     public Rent create(Rent rent) {
         try (Connection con = cm.getConnection()) {
-            String sql = "INSERT INTO Rent(RentId ,StartDate, EndDate) "
-                               + "VALUES (?, ?, ?)";            
-//            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
-//                    + "StartDate, EndDate) VALUES (?, ?, ?, ?, ?)";
+//            String sql = "INSERT INTO Rent(RentId ,StartDate, EndDate) "
+//                               + "VALUES (?, ?, ?)";            
+            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
+                    + "StartDate, EndDate) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
 //            ps.setInt(1, cust.getId());

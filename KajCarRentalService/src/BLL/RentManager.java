@@ -106,6 +106,11 @@ public class RentManager {
     public void addRent(Rent rent) {
         db.create(rent);
     }
+    
+    public ArrayList<Rent> getAll()
+    {
+        return (ArrayList<Rent>) db.readAll();
+    }
 
     
     

@@ -5,30 +5,22 @@
  */
 package GUI;
 
+import GUI.CustomerTable.CustomerTableModel;
+import GUI.CustomerTable.CustomerTable;
 import GUI.CarTable.CarTableModel;
 import GUI.CarTable.CarTable;
-import BE.Car;
-import BE.Customer;
 import BLL.CarManager;
 import BLL.CustomerManager;
-import BLL.DepartmentManager;
 import DAL.DalFacade;
 import java.awt.BorderLayout;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.AbstractListModel;
 import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 /**
  *
  * @author ZALI
  */
-public class Rent extends javax.swing.JFrame
+public class RentGui extends javax.swing.JFrame
 {
 
     private DalFacade facade;
@@ -43,7 +35,7 @@ public class Rent extends javax.swing.JFrame
     /**
      * Creates new form Rent
      */
-    public Rent() throws IOException
+    public RentGui() throws IOException
     {
         initComponents();
         custMgr = CustomerManager.getInstance();
@@ -417,19 +409,19 @@ public class Rent extends javax.swing.JFrame
 //        }
 //        catch (ClassNotFoundException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (InstantiationException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (IllegalAccessException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (javax.swing.UnsupportedLookAndFeelException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -439,7 +431,7 @@ public class Rent extends javax.swing.JFrame
 //        {
 //            public void run()
 //            {
-//                new Rent().setVisible(true);
+//                new RentGui().setVisible(true);
 //            }
 //        });
 //    }
@@ -474,4 +466,9 @@ public class Rent extends javax.swing.JFrame
     private javax.swing.JPanel pnlJTableCar;
     private javax.swing.JPanel pnlTableCust;
     // End of variables declaration//GEN-END:variables
+
+    Object getId()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.CustomerTable;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -15,7 +15,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author notandi
  */
-class CustomerTable extends JTable
+public class CustomerTable extends JTable
 {
     public CustomerTable (CustomerTableModel model)
     {

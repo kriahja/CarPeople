@@ -22,43 +22,22 @@ import java.io.IOException;
 public class DalFacade
 {
 
-    private ICRUDmanager<Car> carManager;
-    private ICRUDmanager<Customer> custManager;
-    private ICRUDmanager<Rent> rentManager;
-    private ICRUDmanager<CreditCard> creditManager;
-
     public ICRUDmanager<Car> getCarDBManager() throws IOException
     {
-        if (carManager == null)
-        {
-            carManager = CarDBManager.getInstance();
-        }
-        return carManager;
+        return CarDBManager.getInstance();
     }
 
     public ICRUDmanager<Customer> getCustomerDBManager() throws IOException
     {
-        if (custManager == null)
-        {
-            custManager = CustomerDBManager.getInstance();
-        }
-        return custManager;
+        return CustomerDBManager.getInstance();
     }
 
     public ICRUDmanager<Rent> getRentDBManager() throws IOException
     {
-        if (rentManager == null)
-        {
-            rentManager = RentDBManager.getInstance();
-        }
-        return rentManager;
+        return RentDBManager.getInstance();
     }
     public ICRUDmanager<CreditCard> getCreditCardDBManager() throws IOException
     {
-        if (creditManager == null)
-        {
-            creditManager = CreditCardDBManager.getInstance();
-        }
-        return creditManager;
+        return CreditCardDBManager.getInstance();
     }
 }
