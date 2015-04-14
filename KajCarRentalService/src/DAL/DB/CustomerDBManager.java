@@ -279,5 +279,30 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         }
         return null;
     }
+    
+      public ArrayList<Customer> readTypeId(int id)
+    {
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<Customer> custList = new ArrayList<>();
+            String sql = "SELECT * FROM Customer WHERE TypeId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                Customer cust = getOneCustomer(rs);
+                custList.add(cust);
+            }
+            
+            return custList;
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to read Car catid.");
+        }
+           
+    }
 
 }

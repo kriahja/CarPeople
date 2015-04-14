@@ -61,6 +61,11 @@ public class CustomerManager
         
         return db.readId(id);
     }
+    
+    public ArrayList<Customer> getByTypeId(int id)
+    {
+        return db.readTypeId(id);
+    }
 
     public Customer getByName(String name)
     {
