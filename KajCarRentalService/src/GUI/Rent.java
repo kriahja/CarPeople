@@ -20,13 +20,11 @@ import javax.swing.JScrollPane;
  *
  * @author ZALI
  */
-public class Rent extends javax.swing.JFrame
-{
+public class Rent extends javax.swing.JFrame {
 
-    
     private CarTable carTable;
     private CarTableModel carModel;
-    private final CarManager carMgr;    
+    private final CarManager carMgr;
     private final CustomerManager custMgr;
     private CustomerTable custTable;
     private CustomerTableModel custModel;
@@ -35,22 +33,20 @@ public class Rent extends javax.swing.JFrame
     /**
      * Creates new form Rent
      */
-    public Rent() throws IOException
-    {
+    public Rent() throws IOException {
         initComponents();
         custMgr = CustomerManager.getInstance();
         carMgr = CarManager.getInstance();
 //        rmgr = RentManager.getInstance();
         setTitle("Rent");
-        setResizable(false);       
+        setResizable(false);
         CarList();
         CustomerList();
         setLocationRelativeTo(null);
-        
+
     }
 
-    private void CarList() throws IOException
-    {
+    private void CarList() throws IOException {
 
         carModel = new CarTableModel(carMgr.getAll());
 
@@ -80,8 +76,7 @@ public class Rent extends javax.swing.JFrame
 //        });
     }
 
-    private void CustomerList() throws IOException
-    {
+    private void CustomerList() throws IOException {
 
         custModel = new CustomerTableModel(custMgr.getAll());
 
@@ -377,13 +372,17 @@ public class Rent extends javax.swing.JFrame
     }//GEN-LAST:event_btnNextToCustomerActionPerformed
 
     private void cbxRentCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRentCategoryActionPerformed
-        ArrayList<Car> carList = new ArrayList<>(); 
-        carList =  carMgr.getByCatid(cbxRentCategory.getSelectedIndex());
-        
+        ArrayList<Car> carList = new ArrayList<>();
+
+        if (cbxRentCategory.getSelectedIndex() == 0) {
+            carList = carMgr.getAll();
+        } else {
+            carList = carMgr.getByCatid(cbxRentCategory.getSelectedIndex());
+        }
         carModel.setCarList(carList);
         carTable.setModel(carModel);
-        
-       
+
+
     }//GEN-LAST:event_cbxRentCategoryActionPerformed
 
 //    /**
