@@ -92,6 +92,7 @@ class CustomerTableModel extends AbstractTableModel
     public void setCustomerList(List<Customer> custList)
     {
         customers = custList;
+        fireTableDataChanged();
     } 
 
 }
