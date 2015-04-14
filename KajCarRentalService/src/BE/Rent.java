@@ -11,7 +11,7 @@ public class Rent extends EntityID
 
     private Customer cust;
     private Car car;
-    private Insurance insure;
+    private Insurance ins;
 
     private String custName;
     private String carName;
@@ -29,6 +29,16 @@ public class Rent extends EntityID
     {
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+    
+    public Rent(Car car, Customer cust, Insurance ins)
+    {
+        this.car = car;
+        carId = car.getId();
+        this.cust = cust;
+        custId = cust.getId();
+        this.ins = ins;
+        insureId = ins.getId();
     }
 
     public Rent(int id, int startDate, int endDate)

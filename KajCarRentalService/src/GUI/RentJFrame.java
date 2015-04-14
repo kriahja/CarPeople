@@ -7,12 +7,13 @@ package GUI;
 
 import BE.Car;
 import BE.Customer;
+import BE.Insurance;
 import GUI.CarTable.CarTableModel;
 import GUI.CarTable.CarTable;
 import BLL.CarManager;
 import BLL.CustomerManager;
-import GUI.CustomerTable.CustomerTable;
-import GUI.CustomerTable.CustomerTableModel;
+import BLL.InsuranceManager;
+import BLL.RentManager;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,36 +23,38 @@ import javax.swing.JScrollPane;
  *
  * @author ZALI
  */
-public class RentJFrame extends javax.swing.JFrame
-{
+public class Rent extends javax.swing.JFrame {
 
     private CarTable carTable;
     private CarTableModel carModel;
     private final CarManager carMgr;
     private final CustomerManager custMgr;
+    private RentManager rentMgr;
     private CustomerTable custTable;
     private CustomerTableModel custModel;
+    private InsuranceManager insMgr;
 //    private RentManager rmgr;
 
     /**
      * Creates new form Rent
      */
-    public RentJFrame() throws IOException
-    {
+    public Rent() throws IOException {
         initComponents();
         custMgr = CustomerManager.getInstance();
         carMgr = CarManager.getInstance();
+        insMgr = InsuranceManager.getInstance();
+        rentMgr = RentManager.getInstance();
 //        rmgr = RentManager.getInstance();
         setTitle("Rent");
         setResizable(false);
         CarList();
         CustomerList();
         setLocationRelativeTo(null);
+        
 
     }
 
-    private void CarList() throws IOException
-    {
+    private void CarList() throws IOException {
 
         carModel = new CarTableModel(carMgr.getAll());
 
@@ -81,8 +84,7 @@ public class RentJFrame extends javax.swing.JFrame
 //        });
     }
 
-    private void CustomerList() throws IOException
-    {
+    private void CustomerList() throws IOException {
 
         custModel = new CustomerTableModel(custMgr.getAll());
 
@@ -116,8 +118,7 @@ public class RentJFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jtpRenting = new javax.swing.JTabbedPane();
@@ -126,7 +127,7 @@ public class RentJFrame extends javax.swing.JFrame
         cbxRentCategory = new javax.swing.JComboBox();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 100), new java.awt.Dimension(0, 100), new java.awt.Dimension(32767, 100));
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbxInsurrance = new javax.swing.JComboBox();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -153,17 +154,15 @@ public class RentJFrame extends javax.swing.JFrame
         jLabel1.setText("Category:");
 
         cbxRentCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "A", "B", "C", "D" }));
-        cbxRentCategory.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        cbxRentCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxRentCategoryActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Insurrance Type:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Only car", "Car and passanger" }));
+        cbxInsurrance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Only car", "Car and passanger" }));
 
         jLabel4.setText("Start Date:");
 
@@ -178,10 +177,8 @@ public class RentJFrame extends javax.swing.JFrame
         jLabel6.setText("-");
 
         btnNextToCustomer.setText("Next");
-        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextToCustomerActionPerformed(evt);
             }
         });
@@ -205,7 +202,7 @@ public class RentJFrame extends javax.swing.JFrame
                             .addGroup(cbxCategoryLayout.createSequentialGroup()
                                 .addGroup(cbxCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbxRentCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxInsurrance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1)
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(cbxCategoryLayout.createSequentialGroup()
@@ -247,7 +244,7 @@ public class RentJFrame extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxInsurrance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,11 +263,9 @@ public class RentJFrame extends javax.swing.JFrame
 
         jLabel9.setText("Customer Type:");
 
-        cbxCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Private", "Company" }));
-        cbxCustomer.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        cbxCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Private", "Company", " " }));
+        cbxCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxCustomerActionPerformed(evt);
             }
         });
@@ -278,14 +273,17 @@ public class RentJFrame extends javax.swing.JFrame
         jLabel8.setText("Customers:");
 
         jButton1.setText("Create Rent");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("New Customer"));
 
         jButton2.setText("Add New Customer");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -389,17 +387,15 @@ public class RentJFrame extends javax.swing.JFrame
 
     private void btnNextToCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextToCustomerActionPerformed
         jtpRenting.setSelectedIndex(1);
+        
     }//GEN-LAST:event_btnNextToCustomerActionPerformed
 
     private void cbxRentCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRentCategoryActionPerformed
         ArrayList<Car> carList = new ArrayList<>();
 
-        if (cbxRentCategory.getSelectedIndex() == 0)
-        {
+        if (cbxRentCategory.getSelectedIndex() == 0) {
             carList = carMgr.getAll();
-        }
-        else
-        {
+        } else {
             carList = carMgr.getByCatid(cbxRentCategory.getSelectedIndex());
         }
         carModel.setCarList(carList);
@@ -410,18 +406,28 @@ public class RentJFrame extends javax.swing.JFrame
 
     private void cbxCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCustomerActionPerformed
         ArrayList<Customer> customerList = new ArrayList<>();
-        if (cbxCustomer.getSelectedIndex() == 0)
+        if(cbxCustomer.getSelectedIndex() == 0)
         {
-            customerList = custMgr.getAll();
+            customerList = custMgr.getAll();            
         }
         else
         {
-            customerList = custMgr.getByTypeId(cbxCustomer.getSelectedIndex() + 1);
+            customerList = custMgr.getByTypeId(cbxCustomer.getSelectedIndex());
         }
         custModel.setCustomerList(customerList);
         custTable.setModel(custModel);
-
+        
     }//GEN-LAST:event_cbxCustomerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Car car = carModel.getCar(carTable.getSelectedRow());
+       Customer cust = custModel.getCustomer(custTable.getSelectedRow());
+       Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
+       
+       BE.Rent rent = new BE.Rent(car, cust, ins);
+       
+        rentMgr.addRent(rent);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -446,19 +452,19 @@ public class RentJFrame extends javax.swing.JFrame
 //        }
 //        catch (ClassNotFoundException ex)
 //        {
-//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (InstantiationException ex)
 //        {
-//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (IllegalAccessException ex)
 //        {
-//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (javax.swing.UnsupportedLookAndFeelException ex)
 //        {
-//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -468,7 +474,7 @@ public class RentJFrame extends javax.swing.JFrame
 //        {
 //            public void run()
 //            {
-//                new RentJFrame().setVisible(true);
+//                new Rent().setVisible(true);
 //            }
 //        });
 //    }
@@ -478,11 +484,11 @@ public class RentJFrame extends javax.swing.JFrame
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel cbxCategory;
     private javax.swing.JComboBox cbxCustomer;
+    private javax.swing.JComboBox cbxInsurrance;
     private javax.swing.JComboBox cbxRentCategory;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
