@@ -379,7 +379,7 @@ public class Rent extends javax.swing.JFrame
     private void cbxRentCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRentCategoryActionPerformed
         ArrayList<Car> carList = new ArrayList<>(); 
         carList =  carMgr.getByCatid(cbxRentCategory.getSelectedIndex());
-
+        
         carModel.setCarList(carList);
         carTable.setModel(carModel);
         
