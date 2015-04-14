@@ -6,11 +6,11 @@
 package GUI;
 
 import BE.Car;
+import BE.Customer;
 import GUI.CarTable.CarTableModel;
 import GUI.CarTable.CarTable;
 import BLL.CarManager;
 import BLL.CustomerManager;
-import BLL.RentManager;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -132,7 +132,7 @@ public class Rent extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        cbxCustomer = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -145,7 +145,7 @@ public class Rent extends javax.swing.JFrame {
 
         jLabel1.setText("Category:");
 
-        cbxRentCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "A", "B", "C", "D" }));
+        cbxRentCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "A", "B", "C", "D" }));
         cbxRentCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxRentCategoryActionPerformed(evt);
@@ -255,7 +255,12 @@ public class Rent extends javax.swing.JFrame {
 
         jLabel9.setText("Customer Type:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Private", "Company", " " }));
+        cbxCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Private", "Company", " " }));
+        cbxCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCustomerActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Customers:");
 
@@ -304,7 +309,7 @@ public class Rent extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbxCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -326,7 +331,7 @@ public class Rent extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -385,6 +390,21 @@ public class Rent extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbxRentCategoryActionPerformed
 
+    private void cbxCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCustomerActionPerformed
+        ArrayList<Customer> customerList = new ArrayList<>();
+        if(cbxCustomer.getSelectedIndex() == 0)
+        {
+            customerList = custMgr.getAll();            
+        }
+        else
+        {
+            customerList = custMgr.getByTypeId(cbxCustomer.getSelectedIndex());
+        }
+        custModel.setCustomerList(customerList);
+        custTable.setModel(custModel);
+        
+    }//GEN-LAST:event_cbxCustomerActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -439,12 +459,12 @@ public class Rent extends javax.swing.JFrame {
     private javax.swing.JButton btnNextToCustomer;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel cbxCategory;
+    private javax.swing.JComboBox cbxCustomer;
     private javax.swing.JComboBox cbxRentCategory;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
