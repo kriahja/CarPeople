@@ -11,6 +11,8 @@ import GUI.CarTable.CarTableModel;
 import GUI.CarTable.CarTable;
 import BLL.CarManager;
 import BLL.CustomerManager;
+import GUI.CustomerTable.CustomerTable;
+import GUI.CustomerTable.CustomerTableModel;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +22,8 @@ import javax.swing.JScrollPane;
  *
  * @author ZALI
  */
-public class Rent extends javax.swing.JFrame {
+public class RentJFrame extends javax.swing.JFrame
+{
 
     private CarTable carTable;
     private CarTableModel carModel;
@@ -33,7 +36,8 @@ public class Rent extends javax.swing.JFrame {
     /**
      * Creates new form Rent
      */
-    public Rent() throws IOException {
+    public RentJFrame() throws IOException
+    {
         initComponents();
         custMgr = CustomerManager.getInstance();
         carMgr = CarManager.getInstance();
@@ -46,7 +50,8 @@ public class Rent extends javax.swing.JFrame {
 
     }
 
-    private void CarList() throws IOException {
+    private void CarList() throws IOException
+    {
 
         carModel = new CarTableModel(carMgr.getAll());
 
@@ -76,7 +81,8 @@ public class Rent extends javax.swing.JFrame {
 //        });
     }
 
-    private void CustomerList() throws IOException {
+    private void CustomerList() throws IOException
+    {
 
         custModel = new CustomerTableModel(custMgr.getAll());
 
@@ -110,7 +116,8 @@ public class Rent extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jtpRenting = new javax.swing.JTabbedPane();
@@ -146,8 +153,10 @@ public class Rent extends javax.swing.JFrame {
         jLabel1.setText("Category:");
 
         cbxRentCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "A", "B", "C", "D" }));
-        cbxRentCategory.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxRentCategory.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxRentCategoryActionPerformed(evt);
             }
         });
@@ -169,8 +178,10 @@ public class Rent extends javax.swing.JFrame {
         jLabel6.setText("-");
 
         btnNextToCustomer.setText("Next");
-        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnNextToCustomer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 btnNextToCustomerActionPerformed(evt);
             }
         });
@@ -255,9 +266,11 @@ public class Rent extends javax.swing.JFrame {
 
         jLabel9.setText("Customer Type:");
 
-        cbxCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Private", "Company", " " }));
-        cbxCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cbxCustomer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Private", "Company" }));
+        cbxCustomer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cbxCustomerActionPerformed(evt);
             }
         });
@@ -269,8 +282,10 @@ public class Rent extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("New Customer"));
 
         jButton2.setText("Add New Customer");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -379,9 +394,12 @@ public class Rent extends javax.swing.JFrame {
     private void cbxRentCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRentCategoryActionPerformed
         ArrayList<Car> carList = new ArrayList<>();
 
-        if (cbxRentCategory.getSelectedIndex() == 0) {
+        if (cbxRentCategory.getSelectedIndex() == 0)
+        {
             carList = carMgr.getAll();
-        } else {
+        }
+        else
+        {
             carList = carMgr.getByCatid(cbxRentCategory.getSelectedIndex());
         }
         carModel.setCarList(carList);
@@ -392,17 +410,17 @@ public class Rent extends javax.swing.JFrame {
 
     private void cbxCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCustomerActionPerformed
         ArrayList<Customer> customerList = new ArrayList<>();
-        if(cbxCustomer.getSelectedIndex() == 0)
+        if (cbxCustomer.getSelectedIndex() == 0)
         {
-            customerList = custMgr.getAll();            
+            customerList = custMgr.getAll();
         }
         else
         {
-            customerList = custMgr.getByTypeId(cbxCustomer.getSelectedIndex());
+            customerList = custMgr.getByTypeId(cbxCustomer.getSelectedIndex() + 1);
         }
         custModel.setCustomerList(customerList);
         custTable.setModel(custModel);
-        
+
     }//GEN-LAST:event_cbxCustomerActionPerformed
 
 //    /**
@@ -428,19 +446,19 @@ public class Rent extends javax.swing.JFrame {
 //        }
 //        catch (ClassNotFoundException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (InstantiationException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (IllegalAccessException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        catch (javax.swing.UnsupportedLookAndFeelException ex)
 //        {
-//            java.util.logging.Logger.getLogger(Rent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(RentJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
@@ -450,7 +468,7 @@ public class Rent extends javax.swing.JFrame {
 //        {
 //            public void run()
 //            {
-//                new Rent().setVisible(true);
+//                new RentJFrame().setVisible(true);
 //            }
 //        });
 //    }

@@ -156,7 +156,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         try (Connection con = cm.getConnection())
         {
             String sql = "UPDATE customer SET Name = ?, Address = ?"
-                    + "DriversLicenceNo = ?"
+                    + "DriversLicenceNr = ?"
                     + "WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, cus.getName());
@@ -177,7 +177,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
         {
             String sql = "UPDATE customer SET Name = ?, Address = ?"
                     + ", CreditCardId = ?"
-                    + ", DriversLicenceNo = ?"
+                    + ", DriversLicenceNr = ?"
                     + ", TypeId = ? WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, cus.getName());
@@ -242,7 +242,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT * FROM Customer WHERE DriversLicence = ?";
+            String sql = "SELECT * FROM Customer WHERE DriversLicenceNr = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, licence);
 

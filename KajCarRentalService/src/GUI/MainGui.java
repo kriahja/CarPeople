@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * @author ZALI
  */
 public class MainGui extends javax.swing.JFrame {
-    RentGui rent;
+    RentJFrame rent;
     /**
      * Creates new form MainGui
      */
@@ -167,7 +167,7 @@ public class MainGui extends javax.swing.JFrame {
         
         try
         {
-            rent = new RentGui();
+            rent = new RentJFrame();
         }
         catch (IOException ex)
         {
@@ -184,7 +184,7 @@ public class MainGui extends javax.swing.JFrame {
     private void miRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRentActionPerformed
         try
         {
-            rent = new RentGui();
+            rent = new RentJFrame();
         }
         catch (IOException ex)
         {
