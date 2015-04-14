@@ -7,8 +7,11 @@ package BLL;
 
 import BE.Rent;
 import DAL.DB.RentDBManager;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +25,11 @@ public class RentManager {
     private List<Rent> rents;
 
     public RentManager() {
-        rents = db.readAll();
+        try {
+            db =  RentDBManager.getInstance();
+        } catch (IOException ex) {
+            Logger.getLogger(RentManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -103,8 +110,11 @@ public class RentManager {
         return db.getByEndDate(endDate);
     }
 
-    public void addRent(Rent rent) {
-        db.create(rent);
+    public Rent addRent(Rent rent) {
+        System.out.println("elotte");
+        
+        return db.create(rent);             
+       
     }
     
     public ArrayList<Rent> getAll()

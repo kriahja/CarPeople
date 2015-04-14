@@ -62,7 +62,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
     public Rent create(Rent rent) {
         try (Connection con = cm.getConnection()) {
         
-           String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, " +
+           String sql = "INSERT INTO Rent(CustId, CarId, InsuranceId) " +
                     " VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
@@ -81,6 +81,38 @@ public class RentDBManager implements ICRUDmanager<Rent>
             int id = keys.getInt(1);  // first column in keys resultset
 
             return new Rent(id, rent);
+        }
+        catch (SQLException ex)
+        {
+            throw new KajCarExceptions("Unable to insert new Rent data.");
+        }
+    }
+    
+    public void createR(Rent rent) {
+        try (Connection con = cm.getConnection()) {
+        
+           String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, " +
+                    " VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql,
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+           ps.setInt(1, rent.getCustId());
+           System.out.println("1");
+            ps.setInt(2, rent.getCarId());
+            System.out.println("2");
+           ps.setInt(3, rent.getInsureId());
+           System.out.println("3");
+            
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0)
+            {
+                throw new SQLException("Unable to add Rent.");
+            }
+
+            ResultSet keys = ps.getGeneratedKeys();
+            keys.next();
+            int id = keys.getInt(1);  // first column in keys resultset
+
+            //return new Rent(id, rent);
         }
         catch (SQLException ex)
         {

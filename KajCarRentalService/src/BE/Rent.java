@@ -35,10 +35,10 @@ public class Rent extends EntityID
     {
         this.car = car;
         carId = car.getId();
-        this.cust = cust;
+       this.cust = cust;
         custId = cust.getId();
         this.ins = ins;
-        insureId = ins.getId();
+        insureId = ins.getId() + 1;
     }
 
     public Rent(int id, int startDate, int endDate)
@@ -48,19 +48,18 @@ public class Rent extends EntityID
         this.endDate = endDate;
     }
 
-    public Rent(int id, int custId, int carId, int insureId, int startDate, int endDate)
+    public Rent(int id, int custId, int carId, int insureId)
     {
         setId(id);
         this.custId = custId;
         this.carId = carId;
         this.insureId = insureId;
-        this.startDate = startDate;
-        this.endDate = endDate;
+       
     }
 
     public Rent(int id, Rent rent)
     {
-        this(id, rent.getCustId(), rent.getCarId(), rent.getInsureId(), rent.getStartDate(), rent.getEndDate());
+        this(id, rent.getCustId(), rent.getCarId(), rent.getInsureId());
     }
 
     public int getStartDate()

@@ -14,6 +14,8 @@ import BLL.CarManager;
 import BLL.CustomerManager;
 import BLL.InsuranceManager;
 import BLL.RentManager;
+import GUI.CustomerTable.CustomerTable;
+import GUI.CustomerTable.CustomerTableModel;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -162,7 +164,7 @@ public class Rent extends javax.swing.JFrame {
 
         jLabel3.setText("Insurrance Type:");
 
-        cbxInsurrance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Only car", "Car and passanger" }));
+        cbxInsurrance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Only car", "Car and passanger" }));
 
         jLabel4.setText("Start Date:");
 
@@ -425,7 +427,7 @@ public class Rent extends javax.swing.JFrame {
        Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
        
        BE.Rent rent = new BE.Rent(car, cust, ins);
-       
+        System.out.println(car.getId() + cust.getId() + ins.getId());
         rentMgr.addRent(rent);
     }//GEN-LAST:event_jButton1ActionPerformed
 
