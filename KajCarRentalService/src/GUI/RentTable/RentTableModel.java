@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI.RentTable;
 
 import BE.Rent;
 import java.util.ArrayList;

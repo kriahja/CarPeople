@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import GUI.RentTable.RentTableModel;
+import GUI.RentTable.RentTable;
 import BLL.RentManager;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
