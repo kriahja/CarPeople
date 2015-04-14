@@ -35,7 +35,7 @@ public class Admin extends javax.swing.JFrame
 
     private void RentList()
     {
-        rentModel = new RentTableModel(rentMgr.getAll());
+        rentModel = new RentTableModel(rentMgr.getAllJoins());
 
         rentTable = new RentTable(rentModel);
 

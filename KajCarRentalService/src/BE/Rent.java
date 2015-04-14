@@ -62,6 +62,14 @@ public class Rent extends EntityID
         this(id, rent.getCustId(), rent.getCarId(), rent.getInsureId());
     }
 
+    public Rent(int id, String custName, String carName, String insType)
+    {
+        setId(id);
+        this.custName = custName;
+        this.carName = carName;
+        this.insureType = insType;
+    }
+
     public int getStartDate()
     {
         return startDate;
@@ -87,7 +95,6 @@ public class Rent extends EntityID
      */
     public String getCustName()
     {
-        custName = car.getName();
         return custName;
     }
 

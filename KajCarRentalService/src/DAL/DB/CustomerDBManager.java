@@ -40,7 +40,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer> {
 
     private Customer getOneCustomer(ResultSet rs) throws SQLException {
         int id = rs.getInt("ID");
-        String customerName = rs.getString("Name");
+        String customerName = rs.getString("CustName");
         String address = rs.getString("Address");
         String driversLicenseNo = rs.getString("DrivingLicenceNr");  // SQL name?
 
@@ -52,7 +52,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer> {
     @Override
     public Customer create(Customer cus) {
         try (Connection con = cm.getConnection()) {
-            String sql = "INSERT INTO Customer(Name, Address, CreditCardId, "
+            String sql = "INSERT INTO Customer(CustName, Address, CreditCardId, "
                     + "DriversLicenceNr, TypeId) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
@@ -95,7 +95,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer> {
 
     public Customer readName(String customerName) {
         try (Connection con = cm.getConnection()) {
-            String sql = "SELECT * FROM Customer WHERE Name = ?";
+            String sql = "SELECT * FROM Customer WHERE CustName = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, customerName);
 
@@ -129,7 +129,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer> {
     @Override
     public void update(Customer cus) {
         try (Connection con = cm.getConnection()) {
-            String sql = "UPDATE customer SET Name = ?, Address = ?"
+            String sql = "UPDATE customer SET CustName = ?, Address = ?"
                     + "DriversLicenceNr = ?"
                     + "WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -145,7 +145,7 @@ public class CustomerDBManager implements ICRUDmanager<Customer> {
 
     public void advancedUpdate(Customer cus) {
         try (Connection con = cm.getConnection()) {
-            String sql = "UPDATE customer SET Name = ?, Address = ?"
+            String sql = "UPDATE customer SET CustName = ?, Address = ?"
                     + ", CreditCardId = ?"
                     + ", DriversLicenceNr = ?"
                     + ", TypeId = ? WHERE ID = ?";

@@ -58,6 +58,21 @@ public class RentDBManager implements ICRUDmanager<Rent>
 
         return rent;
     }
+    
+    private Rent getOneRentJoin(ResultSet rs) throws SQLException
+    {
+
+        int id = rs.getInt("ID");
+        
+        String custName = rs.getString("CustName");
+        String carName = rs.getString("CarName");
+        String insType = rs.getString("Type");
+        
+
+        Rent rent = new Rent(id, custName, carName, insType);
+
+        return rent;
+    }
 
     @Override
     public Rent create(Rent rent)
@@ -154,9 +169,9 @@ public class RentDBManager implements ICRUDmanager<Rent>
         try (Connection con = cm.getConnection())
         {
             ArrayList<Rent> rentList = new ArrayList<>();
-            String sql = " SELECT Rent.ID, Customer.Name, Car.Name, Insurance.Type, Rent.StartDate, Rent.EndDate"
+            String sql = " SELECT Rent.ID, Customer.CustName, Car.CarName, Insurance.Type"
                     + " FROM Rent"
-                    + " INNER JOIN Customer ON Rent.CustId = Customer.ID "
+                    + " INNER JOIN Customer ON Rent.CustId = Customer.ID"
                     + " INNER JOIN Car ON Rent.CarId = Car.ID"
                     + " INNER JOIN Insurance ON Rent.InsuranceId = Insurance.ID";
             Statement st = con.createStatement();
@@ -164,7 +179,7 @@ public class RentDBManager implements ICRUDmanager<Rent>
 
             while (rs.next())
             {
-                Rent rent = getOneRent(rs);
+                Rent rent = getOneRentJoin(rs);
                 rentList.add(rent);
             }
             return rentList;

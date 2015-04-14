@@ -137,5 +137,10 @@ public class RentManager
     {
         return (ArrayList<Rent>) db.readAll();
     }
+    
+    public ArrayList<Rent> getAllJoins()
+    {
+        return (ArrayList<Rent>) db.readAllJoin();
+    }
 
 }

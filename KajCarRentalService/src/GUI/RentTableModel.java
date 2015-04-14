@@ -26,7 +26,7 @@ public class RentTableModel extends AbstractTableModel
 
     private final String[] headers =
     {
-        "Rent ID", "Rent Name", "Car Name", "Insurance", "Start Date", "End Date"
+        "Rent ID", "Customer Name", "Car Name", "Insurance", "Start Date", "End Date"
     };
 
     private final Class[] columnTypes =

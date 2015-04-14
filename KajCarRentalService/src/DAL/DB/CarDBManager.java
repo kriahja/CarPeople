@@ -47,7 +47,7 @@ public class CarDBManager implements ICRUDmanager<Car>
     private Car getOneCar(ResultSet rs) throws SQLException
     {
 
-        String carName = rs.getString("Name");
+        String carName = rs.getString("CarName");
         int km = rs.getInt("KM");
 //        String depName = rs.getString("Name");
 
@@ -59,7 +59,7 @@ public class CarDBManager implements ICRUDmanager<Car>
     private Car getOneCarWithID(ResultSet rs) throws SQLException
     {
         int id = rs.getInt("ID");
-        String carName = rs.getString("Name");
+        String carName = rs.getString("CarName");
         int depId = rs.getInt("DepId");
         int catId = rs.getInt("CatId");
         int km = rs.getInt("KM");
@@ -74,7 +74,7 @@ public class CarDBManager implements ICRUDmanager<Car>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "INSERT INTO Car(Name, KM, depId, catId, "
+            String sql = "INSERT INTO Car(CarName, KM, depId, catId, "
                     + " isDamaged, isFull) VALUES (?, ?, ?, ?, false, true)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
@@ -126,7 +126,7 @@ public class CarDBManager implements ICRUDmanager<Car>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "SELECT * FROM Car WHERE Name = ?";
+            String sql = "SELECT * FROM Car WHERE CarName = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, carName);
 
@@ -170,7 +170,7 @@ public class CarDBManager implements ICRUDmanager<Car>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "UPDATE car SET Name = ?, KM = ? WHERE ID = ?";
+            String sql = "UPDATE car SET CarName = ?, KM = ? WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, car.getName());
             ps.setInt(2, car.getKm());
@@ -187,7 +187,7 @@ public class CarDBManager implements ICRUDmanager<Car>
     {
         try (Connection con = cm.getConnection())
         {
-            String sql = "UPDATE car SET Name = ?, KM = ?, DepId = ?, CatId = ? WHERE ID = ?";
+            String sql = "UPDATE car SET CarName = ?, KM = ?, DepId = ?, CatId = ? WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, car.getName());
             ps.setInt(2, car.getKm());
