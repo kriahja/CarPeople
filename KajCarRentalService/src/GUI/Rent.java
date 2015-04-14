@@ -7,10 +7,13 @@ package GUI;
 
 import BE.Car;
 import BE.Customer;
+import BE.Insurance;
 import GUI.CarTable.CarTableModel;
 import GUI.CarTable.CarTable;
 import BLL.CarManager;
 import BLL.CustomerManager;
+import BLL.InsuranceManager;
+import BLL.RentManager;
 import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,8 +29,10 @@ public class Rent extends javax.swing.JFrame {
     private CarTableModel carModel;
     private final CarManager carMgr;
     private final CustomerManager custMgr;
+    private RentManager rentMgr;
     private CustomerTable custTable;
     private CustomerTableModel custModel;
+    private InsuranceManager insMgr;
 //    private RentManager rmgr;
 
     /**
@@ -37,12 +42,15 @@ public class Rent extends javax.swing.JFrame {
         initComponents();
         custMgr = CustomerManager.getInstance();
         carMgr = CarManager.getInstance();
+        insMgr = InsuranceManager.getInstance();
+        rentMgr = RentManager.getInstance();
 //        rmgr = RentManager.getInstance();
         setTitle("Rent");
         setResizable(false);
         CarList();
         CustomerList();
         setLocationRelativeTo(null);
+        
 
     }
 
@@ -119,7 +127,7 @@ public class Rent extends javax.swing.JFrame {
         cbxRentCategory = new javax.swing.JComboBox();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 100), new java.awt.Dimension(0, 100), new java.awt.Dimension(32767, 100));
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        cbxInsurrance = new javax.swing.JComboBox();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -154,7 +162,7 @@ public class Rent extends javax.swing.JFrame {
 
         jLabel3.setText("Insurrance Type:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Only car", "Car and passanger" }));
+        cbxInsurrance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Only car", "Car and passanger" }));
 
         jLabel4.setText("Start Date:");
 
@@ -194,7 +202,7 @@ public class Rent extends javax.swing.JFrame {
                             .addGroup(cbxCategoryLayout.createSequentialGroup()
                                 .addGroup(cbxCategoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbxRentCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxInsurrance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1)
                                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(cbxCategoryLayout.createSequentialGroup()
@@ -236,7 +244,7 @@ public class Rent extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxInsurrance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,6 +273,11 @@ public class Rent extends javax.swing.JFrame {
         jLabel8.setText("Customers:");
 
         jButton1.setText("Create Rent");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("New Customer"));
 
@@ -374,6 +387,7 @@ public class Rent extends javax.swing.JFrame {
 
     private void btnNextToCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextToCustomerActionPerformed
         jtpRenting.setSelectedIndex(1);
+        
     }//GEN-LAST:event_btnNextToCustomerActionPerformed
 
     private void cbxRentCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRentCategoryActionPerformed
@@ -404,6 +418,16 @@ public class Rent extends javax.swing.JFrame {
         custTable.setModel(custModel);
         
     }//GEN-LAST:event_cbxCustomerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Car car = carModel.getCar(carTable.getSelectedRow());
+       Customer cust = custModel.getCustomer(custTable.getSelectedRow());
+       Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
+       
+       BE.Rent rent = new BE.Rent(car, cust, ins);
+       
+        rentMgr.addRent(rent);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -460,11 +484,11 @@ public class Rent extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel cbxCategory;
     private javax.swing.JComboBox cbxCustomer;
+    private javax.swing.JComboBox cbxInsurrance;
     private javax.swing.JComboBox cbxRentCategory;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;

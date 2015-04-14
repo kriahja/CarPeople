@@ -56,18 +56,15 @@ public class RentDBManager implements ICRUDmanager<Rent> {
     @Override
     public Rent create(Rent rent) {
         try (Connection con = cm.getConnection()) {
-            String sql = "INSERT INTO Rent(RentId ,StartDate, EndDate) "
-                               + "VALUES (?, ?, ?)";            
-//            String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, "
-//                    + "StartDate, EndDate) VALUES (?, ?, ?, ?, ?)";
+        
+           String sql = "INSERT INTO Rent(CustId, CarId, InsurranceId, " +
+                    " VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql,
                     PreparedStatement.RETURN_GENERATED_KEYS);
-//            ps.setInt(1, cust.getId());
-            ps.setInt(2, rent.getId());
-//            ps.setInt(3, insurance.getId());
-            ps.setInt(4, rent.getStartDate());
-            ps.setInt(4, rent.getEndDate());
-
+           ps.setInt(1, rent.getCustId());
+            ps.setInt(2, rent.getCarId());
+           ps.setInt(3, rent.getInsureId());
+            
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
                 throw new SQLException("Unable to add Rent.");
