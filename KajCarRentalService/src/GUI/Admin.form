@@ -102,13 +102,13 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="pnlJTableRent" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnUpdateRow" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDeleteRow" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pnlJTableRent" pref="145" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnDeleteRow" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnUpdateRow" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -133,6 +133,9 @@
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="pnlJTableRent">
+              <Properties>
+                <Property name="autoscrolls" type="boolean" value="true"/>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
             </Container>
@@ -561,6 +564,9 @@
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="pnlJtableCust">
+              <Properties>
+                <Property name="autoscrolls" type="boolean" value="true"/>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
             </Container>

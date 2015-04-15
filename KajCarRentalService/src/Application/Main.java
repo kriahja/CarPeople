@@ -55,7 +55,7 @@ public class Main
                 try {
                     new MainGui().setVisible(true);
                 } catch (IOException ex) {
-                    throw new KajCarExceptions("Error");
+                    throw new KajCarExceptions("aww, snap!");
                 }
                 
             }

@@ -125,6 +125,7 @@ public class Admin extends javax.swing.JFrame
 
         jLabel2.setText("Manage Rents:");
 
+        pnlJTableRent.setAutoscrolls(true);
         pnlJTableRent.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -153,12 +154,12 @@ public class Admin extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlJTableRent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdateRow)
-                    .addComponent(btnDeleteRow))
-                .addGap(251, 251, 251))
+                .addComponent(pnlJTableRent, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDeleteRow)
+                    .addComponent(btnUpdateRow))
+                .addGap(239, 239, 239))
         );
 
         jTabbedPane1.addTab("Rent", jPanel1);
@@ -366,6 +367,7 @@ public class Admin extends javax.swing.JFrame
             }
         });
 
+        pnlJtableCust.setAutoscrolls(true);
         pnlJtableCust.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
