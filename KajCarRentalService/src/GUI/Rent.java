@@ -16,8 +16,9 @@ import BLL.InsuranceManager;
 import BLL.RentManager;
 import GUI.CustomerTable.CustomerTable;
 import GUI.CustomerTable.CustomerTableModel;
+import GUI.RentTable.RentTable;
+import GUI.RentTable.RentTableModel;
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
@@ -36,6 +37,9 @@ public class Rent extends javax.swing.JFrame {
     private CustomerTable custTable;
     private CustomerTableModel custModel;
     private InsuranceManager insMgr;
+    
+    private RentTable rentTable;
+    private RentTableModel rentModel;
 //    private RentManager rmgr;
 
     /**
@@ -64,27 +68,8 @@ public class Rent extends javax.swing.JFrame {
         carTable = new CarTable(carModel);
 
         pnlJTableCar.add(new JScrollPane(carTable), BorderLayout.CENTER);
+        
 
-//        cmgr = CarManager.getInstance();
-//
-//        carModel = new CarTableModel(cmgr.getAll());
-//        tblCars.setModel(carModel);
-//        carList = facade.getCarDBManager().readAll();        
-//        lstAvailableCars.setModel(new AbstractListModel()
-//        {
-//
-//            @Override
-//            public int getSize()
-//            {
-//                return carList.size();
-//            }
-//
-//            @Override
-//            public Object getElementAt(int i)
-//            {
-//                return carList.get(i);
-//            }
-//        });
     }
 
     private void AdminCustomerList() throws IOException {
@@ -95,23 +80,6 @@ public class Rent extends javax.swing.JFrame {
 
         pnlTableCust.add(new JScrollPane(custTable), BorderLayout.CENTER);
 
-//        custList = facade.getCustomerDBManager().readAll();
-//
-//        lstCustList.setModel(new AbstractListModel()
-//        {
-//
-//            @Override
-//            public int getSize()
-//            {
-//                return custList.size();
-//            }
-//
-//            @Override
-//            public Object getElementAt(int i)
-//            {
-//                return custList.get(i);
-//            }
-//        });
     }
 
     /**
@@ -287,6 +255,7 @@ public class Rent extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/TablesHead.png"))); // NOI18N
 
         pnlJTableCar.setAutoscrolls(true);
+        pnlJTableCar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlJTableCar.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);

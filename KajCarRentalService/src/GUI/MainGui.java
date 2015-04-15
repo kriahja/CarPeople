@@ -183,6 +183,14 @@ public class MainGui extends javax.swing.JFrame
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
+        try
+        {
+            admin = new Admin();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MainGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
         admin.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 

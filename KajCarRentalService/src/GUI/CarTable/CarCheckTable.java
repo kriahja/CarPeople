@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.RentTable;
+package GUI.CarTable;
 
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
@@ -16,24 +15,22 @@ import javax.swing.table.TableRowSorter;
  *
  * @author notandi
  */
-public class RentTable extends JTable
+public class CarCheckTable extends JTable
 {
 
-    
-    public RentTable (RentTableModel model)
+    public CarCheckTable(CarCheckTableModel model)
     {
         super(model);
         setRowSorter(new TableRowSorter(model));
         setShowVerticalLines(true);
-
     }
-    
-        @Override
+
+    @Override
     public Component prepareRenderer(TableCellRenderer tcr, int row, int col)
     {
-        
+
         Component c = super.prepareRenderer(tcr, row, col); //To change body of generated methods, choose Tools | Templates.       
-        if (! isRowSelected(row))
+        if (!isRowSelected(row))
         {   // every second row is painted light grey with default fore-ground color.
             c.setBackground(row % 2 == 0 ? Color.LIGHT_GRAY : getBackground());
             c.setForeground(getForeground());
@@ -43,6 +40,6 @@ public class RentTable extends JTable
             c.setBackground(Color.GRAY);
             c.setForeground(Color.BLACK);
         }
-        return c;     
-    }      
+        return c;
+    }
 }

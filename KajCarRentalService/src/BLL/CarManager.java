@@ -6,6 +6,7 @@
 package BLL;
 
 import BE.Car;
+import BE.Customer;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DB.CarDBManager;
 import java.io.IOException;
@@ -217,6 +218,11 @@ public class CarManager
     public ArrayList<Car> getAll()
     {
         return (ArrayList<Car>) db.readAll();
+    }
+
+    public ArrayList<Car> getAllChecks()
+    {
+        return db.readAllChecks();
     }
 
     

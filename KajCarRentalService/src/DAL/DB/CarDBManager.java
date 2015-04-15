@@ -6,6 +6,7 @@
 package DAL.DB;
 
 import BE.Car;
+import BE.Customer;
 import BLL.Exceptions.KajCarExceptions;
 import DAL.DBConnectionManager;
 import DAL.ICRUDmanager;
@@ -64,7 +65,21 @@ public class CarDBManager implements ICRUDmanager<Car>
         int catId = rs.getInt("CatId");
         int km = rs.getInt("KM");
 
-        Car car = new Car(id, carName,depId,catId, km);
+        Car car = new Car(id, carName, depId, catId, km);
+
+        return car;
+    }
+
+    private Car getOneCarWithChecks(ResultSet rs) throws SQLException
+    {
+
+        String carName = rs.getString("CarName");
+        int km = rs.getInt("KM");
+        boolean tank = rs.getBoolean("IsFull");
+        boolean damage = rs.getBoolean("IsDamaged");
+        boolean fix = rs.getBoolean("IsFixed");
+
+        Car car = new Car(carName, km, tank, damage, fix);
 
         return car;
     }
@@ -83,7 +98,6 @@ public class CarDBManager implements ICRUDmanager<Car>
             ps.setInt(3, car.getDepId());
             ps.setInt(4, car.getCatId());
 
-
             ResultSet keys = ps.getGeneratedKeys(); //
             keys.next();                            // 
             int id = keys.getInt(1);                // changed here because we want t create a car not get an existing one
@@ -94,9 +108,8 @@ public class CarDBManager implements ICRUDmanager<Car>
         {
             throw new KajCarExceptions("Unable to create new Car data.");
         }
-        
-    }
 
+    }
 
     @Override
     public List<Car> readAll()
@@ -119,6 +132,29 @@ public class CarDBManager implements ICRUDmanager<Car>
         {
 
             throw new KajCarExceptions("Unable to read all Car data.");
+        }
+    }
+
+    public ArrayList<Car> readAllChecks()
+    {
+        try (Connection con = cm.getConnection())
+        {
+            ArrayList<Car> carList = new ArrayList<>();
+            String sql = "Select * from Car";
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next())
+            {
+                Car car = getOneCarWithChecks(rs);
+                carList.add(car);
+            }
+            return carList;
+        }
+        catch (SQLException ex)
+        {
+
+            throw new KajCarExceptions("Unable to read all CarCheck data.");
         }
     }
 
@@ -147,7 +183,7 @@ public class CarDBManager implements ICRUDmanager<Car>
     public Car readId(int id)
     {
         try (Connection con = cm.getConnection())
-        { 
+        {
             String sql = "SELECT * FROM Car Join Department ON Car.depId = Department.ID WHERE ID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -221,8 +257,8 @@ public class CarDBManager implements ICRUDmanager<Car>
             throw new KajCarExceptions("Unable to remove Car.");
         }
     }
-    
-     public ArrayList<Car> readDepId(int id)
+
+    public ArrayList<Car> readDepId(int id)
     {
         try (Connection con = cm.getConnection())
         {
@@ -237,7 +273,7 @@ public class CarDBManager implements ICRUDmanager<Car>
                 Car car = getOneCar(rs);
                 carList.add(car);
             }
-            
+
             return carList;
         }
         catch (SQLException ex)
@@ -245,8 +281,8 @@ public class CarDBManager implements ICRUDmanager<Car>
             throw new KajCarExceptions("Unable to read Car depid.");
         }
     }
-     
-      public ArrayList<Car> readCatId(int id)
+
+    public ArrayList<Car> readCatId(int id)
     {
         try (Connection con = cm.getConnection())
         {
@@ -261,19 +297,19 @@ public class CarDBManager implements ICRUDmanager<Car>
                 Car car = getOneCar(rs);
                 carList.add(car);
             }
-            
+
             return carList;
         }
         catch (SQLException ex)
         {
             throw new KajCarExceptions("Unable to read Car catid.");
         }
-           
+
     }
-      
-      public ArrayList<Car> getByKm(int km)
-      {
-          try (Connection con = cm.getConnection())
+
+    public ArrayList<Car> getByKm(int km)
+    {
+        try (Connection con = cm.getConnection())
         {
             ArrayList<Car> carList = new ArrayList<>();
             String sql = "SELECT * FROM Car WHERE KM = ?";
@@ -286,13 +322,13 @@ public class CarDBManager implements ICRUDmanager<Car>
                 Car car = getOneCar(rs);
                 carList.add(car);
             }
-            
+
             return carList;
         }
         catch (SQLException ex)
         {
             throw new KajCarExceptions("Unable to read Car km.");
         }
-      }
+    }
 
 }

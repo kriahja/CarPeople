@@ -55,6 +55,15 @@ public class Car extends EntityID
 
     }
 
+    public Car(String name, int km, boolean isFull, boolean isDamaged, boolean IsFixed)
+    {
+        this.name = name;
+        this.km = km;
+        this.isFull = isFull;
+        this.isDamaged = isDamaged;
+        this.isFixed = IsFixed;
+    }
+
     /**
      * @return the name
      */
