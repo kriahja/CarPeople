@@ -17,6 +17,7 @@ import BLL.RentManager;
 import GUI.CustomerTable.CustomerTable;
 import GUI.CustomerTable.CustomerTableModel;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
@@ -213,11 +214,6 @@ public class Rent extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/InsureanceHead.png"))); // NOI18N
 
         cbxInsurrance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Only car", "Car and passanger" }));
-        cbxInsurrance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxInsurranceActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);

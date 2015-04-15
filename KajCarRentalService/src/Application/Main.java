@@ -5,7 +5,11 @@
  */
 package Application;
 
+import BLL.Exceptions.KajCarExceptions;
 import GUI.MainGui;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -48,7 +52,11 @@ public class Main
         {
             public void run()
             {
-                new MainGui().setVisible(true);
+                try {
+                    new MainGui().setVisible(true);
+                } catch (IOException ex) {
+                    throw new KajCarExceptions("Error");
+                }
                 
             }
         });
