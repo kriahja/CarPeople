@@ -294,9 +294,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jXDatePicker1" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <Component id="jXStartDate" min="-2" pref="97" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                  <Component id="jXDatePicker2" min="-2" pref="97" max="-2" attributes="0"/>
+                                  <Component id="jXEndDate" min="-2" pref="97" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel14" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
                           </Group>
@@ -312,8 +312,8 @@
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jXDatePicker1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jXDatePicker2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jXStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jXEndDate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -330,9 +330,15 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker1">
+                <Component class="org.jdesktop.swingx.JXDatePicker" name="jXStartDate">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jXStartDateActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="org.jdesktop.swingx.JXDatePicker" name="jXDatePicker2">
+                <Component class="org.jdesktop.swingx.JXDatePicker" name="jXEndDate">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jXEndDateActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

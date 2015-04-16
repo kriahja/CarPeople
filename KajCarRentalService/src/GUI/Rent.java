@@ -20,6 +20,7 @@ import GUI.RentTable.RentTable;
 import GUI.RentTable.RentTableModel;
 import java.awt.BorderLayout;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JScrollPane;
 
@@ -27,7 +28,8 @@ import javax.swing.JScrollPane;
  *
  * @author ZALI
  */
-public class Rent extends javax.swing.JFrame {
+public class Rent extends javax.swing.JFrame
+{
 
     private CarTable carTable;
     private CarTableModel carModel;
@@ -37,7 +39,7 @@ public class Rent extends javax.swing.JFrame {
     private CustomerTable custTable;
     private CustomerTableModel custModel;
     private InsuranceManager insMgr;
-    
+
     private RentTable rentTable;
     private RentTableModel rentModel;
 //    private RentManager rmgr;
@@ -45,7 +47,8 @@ public class Rent extends javax.swing.JFrame {
     /**
      * Creates new form Rent
      */
-    public Rent() throws IOException {
+    public Rent() throws IOException
+    {
         initComponents();
         custMgr = CustomerManager.getInstance();
         carMgr = CarManager.getInstance();
@@ -57,22 +60,22 @@ public class Rent extends javax.swing.JFrame {
         CarList();
         AdminCustomerList();
         setLocationRelativeTo(null);
-        
 
     }
 
-    private void CarList() throws IOException {
+    private void CarList() throws IOException
+    {
 
         carModel = new CarTableModel(carMgr.getAll());
 
         carTable = new CarTable(carModel);
 
         pnlJTableCar.add(new JScrollPane(carTable), BorderLayout.CENTER);
-        
 
     }
 
-    private void AdminCustomerList() throws IOException {
+    private void AdminCustomerList() throws IOException
+    {
 
         custModel = new CustomerTableModel(custMgr.getAll());
 
@@ -108,8 +111,8 @@ public class Rent extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
+        jXStartDate = new org.jdesktop.swingx.JXDatePicker();
+        jXEndDate = new org.jdesktop.swingx.JXDatePicker();
         jPanel7 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -219,6 +222,22 @@ public class Rent extends javax.swing.JFrame {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/DatesHead.png"))); // NOI18N
 
+        jXStartDate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jXStartDateActionPerformed(evt);
+            }
+        });
+
+        jXEndDate.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jXEndDateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -230,9 +249,9 @@ public class Rent extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jXStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
-                        .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jXEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -244,8 +263,8 @@ public class Rent extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jXStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jXEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -510,15 +529,18 @@ public class Rent extends javax.swing.JFrame {
 
     private void btnNextToCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextToCustomerActionPerformed
         jtpRenting.setSelectedIndex(1);
-        
+
     }//GEN-LAST:event_btnNextToCustomerActionPerformed
 
     private void cbxRentCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRentCategoryActionPerformed
         ArrayList<Car> carList = new ArrayList<>();
 
-        if (cbxRentCategory.getSelectedIndex() == 0) {
+        if (cbxRentCategory.getSelectedIndex() == 0)
+        {
             carList = carMgr.getAll();
-        } else {
+        }
+        else
+        {
             carList = carMgr.getByCatid(cbxRentCategory.getSelectedIndex());
         }
         carModel.setCarList(carList);
@@ -529,9 +551,9 @@ public class Rent extends javax.swing.JFrame {
 
     private void cbxCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCustomerActionPerformed
         ArrayList<Customer> customerList = new ArrayList<>();
-        if(cbxCustomer.getSelectedIndex() == 0)
+        if (cbxCustomer.getSelectedIndex() == 0)
         {
-            customerList = custMgr.getAll();            
+            customerList = custMgr.getAll();
         }
         else
         {
@@ -539,24 +561,36 @@ public class Rent extends javax.swing.JFrame {
         }
         custModel.setCustomerList(customerList);
         custTable.setModel(custModel);
-        
+
     }//GEN-LAST:event_cbxCustomerActionPerformed
 
     private void btnCreateRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateRentActionPerformed
-       Car car = carModel.getCar(carTable.getSelectedRow());
-       
-      Car cr = carMgr.getByName(car.getName());
-       Customer cust = custModel.getCustomer(custTable.getSelectedRow());
-        
-       Customer cs = custMgr.getByName(cust.getName());
-       Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
-       Insurance in = insMgr.getByName(ins.getType());
-       BE.Rent rent = new BE.Rent(cr, cs, in);
+        Car car = carModel.getCar(carTable.getSelectedRow());
+
+        Car cr = carMgr.getByName(car.getName());
+        Customer cust = custModel.getCustomer(custTable.getSelectedRow());
+
+        Customer cs = custMgr.getByName(cust.getName());
+        Insurance ins = insMgr.getById(cbxInsurrance.getSelectedIndex());
+        Insurance in = insMgr.getByName(ins.getType());
+        BE.Rent rent = new BE.Rent(cr, cs, in);
         System.out.println(cr.getId() + cs.getId() + in.getId());
         rentMgr.addRent(rent);
-        
+
         dispose();
     }//GEN-LAST:event_btnCreateRentActionPerformed
+
+    private void jXStartDateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jXStartDateActionPerformed
+    {//GEN-HEADEREND:event_jXStartDateActionPerformed
+        SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+        formater.format(jXStartDate.getDate());
+    }//GEN-LAST:event_jXStartDateActionPerformed
+
+    private void jXEndDateActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jXEndDateActionPerformed
+    {//GEN-HEADEREND:event_jXEndDateActionPerformed
+         SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+        formater.format(jXEndDate.getDate());
+    }//GEN-LAST:event_jXEndDateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -592,8 +626,8 @@ public class Rent extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
+    private org.jdesktop.swingx.JXDatePicker jXEndDate;
+    private org.jdesktop.swingx.JXDatePicker jXStartDate;
     private javax.swing.JTabbedPane jtpRenting;
     private javax.swing.JPanel pnlJTableCar;
     private javax.swing.JPanel pnlTableCust;
